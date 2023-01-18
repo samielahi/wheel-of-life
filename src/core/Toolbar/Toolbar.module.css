@@ -1,0 +1,32 @@
+.toolbar {
+  --jc: space-between;
+  --gap: 0;
+}
+
+.upload {
+  --jc: start;
+  --gap: 1rem;
+}
+
+.name {
+  font-style: italic;
+  background-color: var(--light-gray);
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+
+.export {
+  --jc: flex-end;
+  --gap: 1rem;
+}
+
+@media (max-width: 1000px) {
+  .export,
+  .upload {
+    --display: none;
+  }
+
+  .toolbar {
+    --jc: center;
+  }
+}
