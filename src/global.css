@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Reset; from : https://www.joshwcomeau.com/css/custom-css-reset/ */
 
 /*
@@ -100,24 +104,7 @@ h3 {
   border: 1px solid black;
 }
 
-.bottomBordered {
-  border-bottom: 3px solid var(--light-gray);
-}
-
 /* Generic wrapper */
 .wrapper {
   padding: 1rem 2rem;
-}
-
-/* Needed for centered-space-between layouts */
-.w-third {
-  width: 33.3333%;
-}
-
-.flex {
-  display: var(--display, flex);
-  justify-content: var(--jc, center);
-  align-items: var(--ai, center);
-  flex-direction: var(--fd, row);
-  gap: var(--gap, 1rem);
 }
