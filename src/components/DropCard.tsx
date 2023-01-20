@@ -5,10 +5,8 @@ export interface DropCardProps {
 export default function DropCard(props: DropCardProps) {
   return (
     <>
-      <div className="wrapper border-[3px] border-smoke flex w-[300px] h-[400px] justify-center">
-        <span className="bg-smoke rounded z-10 p-2 flex h-fit">
-          {props.id}
-        </span>
+      <div className="-ml-[3px] -mt-[3px] wrapper border-[3px] border-smoke flex w-[300px] h-[400px] justify-center">
+        <span className="bg-smoke rounded z-10 p-2 flex h-fit">{props.id}</span>
       </div>
     </>
   );
