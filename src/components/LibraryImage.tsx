@@ -1,7 +1,7 @@
 export default function LibraryImage() {
   return (
     <>
-      <div className="relative group">
+      <div className="relative group" draggable>
         {/* <span className="invisible cursor-pointer absolute bg-smoke p-1 rounded-md -top-[5px] left-[130px] group-hover:visible">
           <svg
             className="hover:stroke-red"
