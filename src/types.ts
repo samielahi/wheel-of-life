@@ -3,12 +3,13 @@ export interface Asset {
   id: string;
   // Object URL for uploaded image
   data: string;
+  assignedFrames?: number[];
 }
 
 export interface Frame {
   id: number;
   // This is either Object URL for an uploaded img or drawn img
-  data?: string;
+  data: Asset | undefined;
 }
 
 export interface Animation {
@@ -22,7 +23,7 @@ export interface Animation {
   // Object of Object URL strings for user uploaded images
   assets?: Record<string, Asset>;
   // A stack for selected assets from library
-  selectedAssets?: Asset[];
+  selectedAssets?: string[];
   // Whether or not Animation is ready to be played
   isBuilt?: boolean;
   lastBuildTime?: Date;
@@ -32,19 +33,21 @@ export interface Animation {
 export interface AnimationAction {
   type:
     | "nameChange"
-    | "imgAdd"
-    | "imgDelete"
+    | "assignAsset"
+    | "unassignAsset"
     | "uploadAsset"
+    | "uploadAssets"
     | "deleteAsset"
+    | "deleteAssets"
     | "selectAsset"
-    | "deselectAsset"
-    | "build";
+    | "deselectAsset";
+  targetFrame?: number;
   // For name change
   newName?: string;
   // For frame image add/delete/ AND asset add/delete/select/deselect
+  assetId?: string;
   assetIds?: string[];
   // Uploads
-  newAssets?: Asset[];
-  // Animation build target
-  animationId?: string;
+  uploadedAsset?: Asset;
+  uploadedAssets?: Asset[];
 }

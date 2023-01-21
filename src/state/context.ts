@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { Animation } from "../types";
+import { Animation, AnimationAction } from "../types";
 
 export const AnimationContext = createContext<Animation>({
   id: "test",
