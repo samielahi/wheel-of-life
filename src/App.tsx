@@ -5,6 +5,7 @@ import AnimationReducer from "./state/reducers";
 import Header from "./core/Header";
 import Toolbar from "./components/Toolbar";
 import AssetLibrary from "./components/AssetLibrary/AssetLibrary";
+import DropFrames from "./components/DropFrame/DropFrames";
 
 export default function App() {
   const [animation, dispatchAnimationAction] = useImmerReducer<Animation, any>(
@@ -16,8 +17,9 @@ export default function App() {
     <>
       <AnimationContext.Provider value={animation}>
         <AnimationDispatchContext.Provider value={dispatchAnimationAction}>
-          <div className="h-full w-full">
+          <div className="h-max w-full overflow-auto">
             <Header></Header>
+            <DropFrames></DropFrames>
             <Toolbar />
             <AssetLibrary />
           </div>
