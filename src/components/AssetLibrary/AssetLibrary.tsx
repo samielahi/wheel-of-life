@@ -1,14 +1,15 @@
-import LibraryImage from "./LibraryImage";
-import Button from "./Button";
-import IconButton from "./IconButton";
+import Asset from "./Asset";
+import Button from "../../core/Button";
+import IconButton from "../../core/IconButton";
 
-export default function Library() {
+export default function AssetLibrary() {
   return (
     <>
-      <aside className="hidden lg:flex flex-1 overflow-auto h-full wrapper items-center flex-col gap-8 border-smoke border-r-[3px]">
-        <div className="flex w-full items-center gap-4 flex-wrap justify-between">
-          <h3 className="font-main text-xl">Your Images</h3>
-          <div className="flex gap-4">
+      <div className="w-full flex overflow-auto h-max wrapper flex-col gap-4 border-smoke border-b-[3px]">
+        {/* <h3 className="font-main text-xl z-10 absolute bg-smoke">
+          Your Images
+        </h3> */}
+        {/* <div className="flex gap-4">
             <Button>select</Button>
             <IconButton>
               <svg
@@ -29,16 +30,22 @@ export default function Library() {
                 <line x1="14" y1="11" x2="14" y2="17"></line>
               </svg>
             </IconButton>
-          </div>
+          </div> */}
+        <div className="w-max flex gap-4">
+          <Asset />
+          <Asset />
+          <Asset />
+          <Asset />
+          <Asset />
+          <Asset />
+          <Asset />
+          <Asset />
+          <Asset />
+          <Asset />
+          <Asset />
+          <Asset />
         </div>
-
-        <div className="pb-[180px] flex gap-8 flex-wrap">
-          <LibraryImage></LibraryImage>
-          <LibraryImage></LibraryImage>
-          <LibraryImage></LibraryImage>
-          <LibraryImage></LibraryImage>
-        </div>
-      </aside>
+      </div>
     </>
   );
 }

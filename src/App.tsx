@@ -2,10 +2,9 @@ import { Animation } from "./types";
 import { AnimationContext, AnimationDispatchContext } from "./state/context";
 import { useImmerReducer } from "use-immer";
 import AnimationReducer from "./state/reducers";
-import Header from "./components/Header";
+import Header from "./core/Header";
 import Toolbar from "./components/Toolbar";
-import Library from "./components/Library";
-import DropCard from "./components/DropCard";
+import AssetLibrary from "./components/AssetLibrary/AssetLibrary";
 
 export default function App() {
   const [animation, dispatchAnimationAction] = useImmerReducer<Animation, any>(
@@ -17,18 +16,10 @@ export default function App() {
     <>
       <AnimationContext.Provider value={animation}>
         <AnimationDispatchContext.Provider value={dispatchAnimationAction}>
-          <div className="h-full">
+          <div className="h-full w-full">
             <Header></Header>
             <Toolbar />
-            <div className="flex flex-wrap h-full">
-              <Library />
-              <div className="flex w-fit flex-wrap justify-center">
-                <DropCard id="001" />
-                <DropCard id="002" />
-                <DropCard id="003" />
-                <DropCard id="004" />
-              </div>
-            </div>
+            <AssetLibrary />
           </div>
         </AnimationDispatchContext.Provider>
       </AnimationContext.Provider>
