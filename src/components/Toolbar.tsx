@@ -9,8 +9,8 @@ export default function Toolbar() {
 
   return (
     <>
-      <div className="hidden wrapper md:flex justify-between items-center border-smoke border-b-[3px]">
-        <div className="flex gap-4 w-1/3">
+      <div className="wrapper flex justify-center md:justify-between items-center gap-2 md:gap-0 border-smoke border-b-[3px]">
+        <div className="flex gap-2 md:w-1/3">
           <IconButton>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +47,7 @@ export default function Toolbar() {
             </svg>
           </IconButton>
 
-          <div className="flex gap-4">
+          <div className="flex gap-2">
             <Button>select</Button>
             <IconButton>
               <svg
@@ -71,11 +71,11 @@ export default function Toolbar() {
           </div>
         </div>
 
-        <div className="bg-smoke rounded px-4 py-2">
+        <div className="hidden md:block bg-smoke rounded px-4 py-2">
           <p>No Images Selected</p>
         </div>
 
-        <div className="flex gap-4 w-1/3 justify-end">
+        <div className="flex gap-2 md:w-1/3 md:justify-end">
           <IconButton>
             <svg
               xmlns="http://www.w3.org/2000/svg"

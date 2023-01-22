@@ -51,3 +51,8 @@ export interface AnimationAction {
   uploadedAsset?: Asset;
   uploadedAssets?: Asset[];
 }
+
+export interface Toolbar {
+  currentTool?: "select" | "upload" | "download" | "preview" | "export";
+  status?: "idle" | "selecting" | "previewing" | "downloading" | "help";
+}

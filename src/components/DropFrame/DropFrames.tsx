@@ -3,7 +3,7 @@ import DropFrame from "./DropFrame";
 export default function DropFrames() {
   return (
     <>
-      <div className="w-full flex overflow-auto h-max flex-col border-smoke border-b-[3px]">
+      <div className="w-full flex overflow-x-auto overflow-y-hidden flex-col border-smoke border-b-[3px]">
         <div className="w-max flex">
           <DropFrame id="001"></DropFrame>
           <DropFrame id="002"></DropFrame>

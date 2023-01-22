@@ -17,7 +17,7 @@ export default function App() {
     <>
       <AnimationContext.Provider value={animation}>
         <AnimationDispatchContext.Provider value={dispatchAnimationAction}>
-          <div className="h-max w-full overflow-auto">
+          <div className="w-full overflow-auto">
             <Header></Header>
             <DropFrames></DropFrames>
             <Toolbar />
