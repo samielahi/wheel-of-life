@@ -6,7 +6,8 @@ export default function IconButton(props: ButtonProps) {
       <button
         disabled={props.disabled}
         onClick={props.onClick}
-        className="flex justify-center items-center rounded text-violet hover:text-red bg-smoke w-[50px] h-[50px]"
+        style={props.disabled ? { color: "#D8D0D0" } : { color: "#9c8cdf" }}
+        className="flex justify-center items-center rounded  hover:text-red bg-smoke w-[50px] h-[50px]"
       >
         {props.children}
       </button>

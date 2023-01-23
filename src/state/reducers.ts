@@ -1,9 +1,14 @@
-import { Animation, AnimationAction, Asset } from "../types";
+import {
+  Animation,
+  AnimationAction,
+  ToolbarType,
+  ToolbarAction,
+} from "../types";
 
-export default function AnimationReducer(
-  draft: Animation,
-  action: AnimationAction
-) {
+export function AnimationReducer(draft: Animation, action: AnimationAction) {
+  const currentAssets = draft.assets!;
+  const frames = draft.frames!;
+
   switch (action.type) {
     case "nameChange": {
       draft.name = action.newName;
@@ -11,7 +16,7 @@ export default function AnimationReducer(
     }
 
     case "assignAsset": {
-      const currentAssets = draft.assets!;
+      // const currentAssets = draft.assets!;
       const targetFrame = draft.frames?.find(
         (frame) => frame.id === action.targetFrame
       );
@@ -24,7 +29,7 @@ export default function AnimationReducer(
     }
 
     case "unassignAsset": {
-      const currentAssets = draft.assets!;
+      // const currentAssets = draft.assets!;
       const targetFrame = draft.frames?.find(
         (frame) => frame.id === action.targetFrame
       );
@@ -38,16 +43,16 @@ export default function AnimationReducer(
     }
 
     case "uploadAsset": {
-      const currentAssets = draft.assets;
+      // const currentAssets = draft.assets;
       const assetId = action.uploadedAsset?.id!;
       currentAssets![assetId] = action.uploadedAsset!;
       break;
     }
 
     case "deleteAsset": {
-      const currentAssets = draft.assets!;
+      // const currentAssets = draft.assets!;
       const assetId = action.assetId!;
-      const frames = draft.frames!;
+      // const frames = draft.frames!;
       const assignedFrames = currentAssets[assetId].assignedFrames;
 
       // Remove the image from all frames its assigned to
@@ -61,21 +66,21 @@ export default function AnimationReducer(
     }
 
     case "uploadAssets": {
-      const assets = draft.assets;
+      // const currentAssets = draft.assets;
       const uploadedAssets = action.uploadedAssets;
 
       uploadedAssets?.forEach((asset) => {
         const id = asset.id!;
-        assets![id] = asset;
+        currentAssets![id] = asset;
       });
 
       break;
     }
 
     case "deleteAssets": {
-      const currentAssets = draft.assets!;
+      // const currentAssets = draft.assets!;
       const deleteTargets = action.assetIds!;
-      const frames = draft.frames!;
+      // const frames = draft.frames!;
 
       deleteTargets.forEach((assetId) => {
         // Get all frame ids that contain this asset
@@ -98,6 +103,29 @@ export default function AnimationReducer(
       draft.selectedAssets = draft.selectedAssets?.filter(
         (assetId) => assetId !== action.assetId
       );
+      break;
+    }
+
+    case "deselectAll": {
+      draft.selectedAssets = [];
+      break;
+    }
+
+    default: {
+      throw Error("Unknown action: " + action.type);
+    }
+  }
+}
+
+export function ToolbarReducer(draft: ToolbarType, action: ToolbarAction) {
+  switch (action.type) {
+    case "startSelection": {
+      draft.status = "selecting";
+      break;
+    }
+
+    case "endSelection": {
+      draft.status = "idle";
       break;
     }
 

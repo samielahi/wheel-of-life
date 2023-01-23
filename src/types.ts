@@ -3,6 +3,7 @@ export interface Asset {
   id: string;
   // Object URL for uploaded image
   data: string;
+  isSelected?: boolean;
   assignedFrames?: number[];
 }
 
@@ -40,7 +41,8 @@ export interface AnimationAction {
     | "deleteAsset"
     | "deleteAssets"
     | "selectAsset"
-    | "deselectAsset";
+    | "deselectAsset"
+    | "deselectAll";
   targetFrame?: number;
   // For name change
   newName?: string;
@@ -52,7 +54,11 @@ export interface AnimationAction {
   uploadedAssets?: Asset[];
 }
 
-export interface Toolbar {
-  currentTool?: "select" | "upload" | "download" | "preview" | "export";
-  status?: "idle" | "selecting" | "previewing" | "downloading" | "help";
+export interface ToolbarType {
+  currentTool?: "select";
+  status?: "idle" | "selecting";
+}
+
+export interface ToolbarAction {
+  type: "startSelection" | "endSelection";
 }

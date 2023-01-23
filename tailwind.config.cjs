@@ -9,6 +9,8 @@ module.exports = {
       white: "#ffffff",
       red: "#ff3d00",
       violet: "#9c8cdf",
+      active: "#FCFBF4",
+      pink: "#D8D0D0",
     },
     fontFamily: {
       main: ["Atkinson Hyperlegible", "sans-serif"],
