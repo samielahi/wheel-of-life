@@ -7,15 +7,15 @@ import {
   ToolbarContext,
   ToolbarDispatchContext,
 } from "../state/context";
-import { AnimationAction, ToolbarAction } from "../types";
+import { AnimationDispatch, ToolbarDispatch } from "../types";
 
 export default function Toolbar() {
   const animation = useContext(AnimationContext);
-  const dispatchAnimationAction = useContext<(action: AnimationAction) => void>(
+  const dispatchAnimationAction = useContext<AnimationDispatch>(
     AnimationDispatchContext
   );
   const toolbar = useContext(ToolbarContext);
-  const dispatchToolbarAction = useContext<(action: ToolbarAction) => void>(
+  const dispatchToolbarAction = useContext<ToolbarDispatch>(
     ToolbarDispatchContext
   );
 
@@ -23,6 +23,11 @@ export default function Toolbar() {
     if (toolbar.status === "idle" && animation.assets) {
       dispatchToolbarAction({
         type: "startSelection",
+      });
+
+      dispatchToolbarAction({
+        type: "tooltip",
+        message: "Click any images below to select them.",
       });
     } else {
       dispatchToolbarAction({
@@ -96,9 +101,7 @@ export default function Toolbar() {
             </Button>
             <IconButton
               onClick={deleteAssets}
-              disabled={
-                toolbar.status !== "selecting" && !animation.selectedAssets?.length
-              }
+              disabled={animation.selectedAssets?.length === 0}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -124,7 +127,8 @@ export default function Toolbar() {
         <div className="hidden md:block bg-smoke rounded">
           {toolbar.status === "selecting" ? (
             <p className="px-4 py-2">
-              {animation.selectedAssets?.length} images selected
+              {toolbar.message}
+              {/* {animation.selectedAssets?.length} images selected */}
             </p>
           ) : null}
         </div>

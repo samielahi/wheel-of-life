@@ -29,7 +29,7 @@ export default function App() {
         <ToolbarDispatchContext.Provider value={dispatchToolbarAction}>
           <AnimationContext.Provider value={animation}>
             <AnimationDispatchContext.Provider value={dispatchAnimationAction}>
-              <div className="w-full overflow-auto">
+              <div className="w-full">
                 <Header></Header>
                 <DropFrames></DropFrames>
                 <Toolbar />

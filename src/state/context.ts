@@ -5,6 +5,7 @@ import { Animation, Frame, ToolbarType, Asset } from "../types";
 // Constants
 const NUM_FRAMES = 16;
 const PLACEHOLDER_ASSET = "https://placekitten.com/150/200";
+const PLACEHOLDER_FRAME_ASSET = "https://placekitten.com/300/400";
 
 // Test Animation frames and Assets
 const frames = [];
@@ -19,9 +20,12 @@ for (let i = 0; i < NUM_FRAMES; i++) {
     isSelected: false,
     assignedFrames: [],
   };
-  const frame: Frame = { id: i, data: undefined };
 
   assets[assetId] = asset;
+  asset.data = PLACEHOLDER_FRAME_ASSET;
+
+  const frame: Frame = { id: i, data: undefined };
+
   frames.push(frame);
 }
 
@@ -37,7 +41,7 @@ export const AnimationContext = createContext<Animation>(initialAnimationState);
 export const AnimationDispatchContext = createContext<any>(null);
 
 export const ToolbarContext = createContext<ToolbarType>({
-  currentTool: "select",
+  currentTool: "base",
   status: "idle",
 });
 

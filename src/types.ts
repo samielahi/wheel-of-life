@@ -34,8 +34,8 @@ export interface Animation {
 export interface AnimationAction {
   type:
     | "nameChange"
-    | "assignAsset"
-    | "unassignAsset"
+    | "assignImage"
+    | "deassignImage"
     | "uploadAsset"
     | "uploadAssets"
     | "deleteAsset"
@@ -54,11 +54,22 @@ export interface AnimationAction {
   uploadedAssets?: Asset[];
 }
 
+export type AnimationDispatch = (action: AnimationAction) => void;
+
 export interface ToolbarType {
-  currentTool?: "select";
-  status?: "idle" | "selecting";
+  currentTool?: "base";
+  status?: "idle" | "selecting" | "assigning";
+  message?: string;
 }
 
 export interface ToolbarAction {
-  type: "startSelection" | "endSelection";
+  type:
+    | "startSelection"
+    | "endSelection"
+    | "startAssignment"
+    | "endAssignment"
+    | "tooltip";
+  message?: string;
 }
+
+export type ToolbarDispatch = (action: ToolbarAction) => void;

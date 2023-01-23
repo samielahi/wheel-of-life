@@ -15,7 +15,7 @@ export function AnimationReducer(draft: Animation, action: AnimationAction) {
       break;
     }
 
-    case "assignAsset": {
+    case "assignImage": {
       // const currentAssets = draft.assets!;
       const targetFrame = draft.frames?.find(
         (frame) => frame.id === action.targetFrame
@@ -25,10 +25,11 @@ export function AnimationReducer(draft: Animation, action: AnimationAction) {
       targetFrame!.data = currentAssets[assetId];
       // Update the asset with the frame's id
       currentAssets[assetId].assignedFrames?.push(targetFrame!.id);
+
       break;
     }
 
-    case "unassignAsset": {
+    case "deassignImage": {
       // const currentAssets = draft.assets!;
       const targetFrame = draft.frames?.find(
         (frame) => frame.id === action.targetFrame
@@ -138,6 +139,21 @@ export function ToolbarReducer(draft: ToolbarType, action: ToolbarAction) {
     case "endSelection": {
       console.log("Selection Cancelled");
       draft.status = "idle";
+      break;
+    }
+
+    case "startAssignment": {
+      draft.status = "assigning";
+      break;
+    }
+
+    case "endAssignment": {
+      draft.status = "idle";
+      break;
+    }
+
+    case "tooltip": {
+      draft.message = action.message;
       break;
     }
 
