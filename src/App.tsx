@@ -9,13 +9,14 @@ import { useImmerReducer } from "use-immer";
 import { AnimationReducer, ToolbarReducer } from "./state/reducers";
 import Header from "./core/Header";
 import Toolbar from "./components/Toolbar";
-import AssetLibrary from "./components/AssetLibrary/AssetLibrary";
+import Library from "./components/Library/Library";
 import DropFrames from "./components/DropFrame/DropFrames";
+import { initialAnimationState } from "./state/context";
 
 export default function App() {
   const [animation, dispatchAnimationAction] = useImmerReducer<Animation, any>(
     AnimationReducer,
-    { id: "test", type: "image", selectedAssets: [] }
+    initialAnimationState
   );
   const [toolbar, dispatchToolbarAction] = useImmerReducer<ToolbarType, any>(
     ToolbarReducer,
@@ -32,7 +33,7 @@ export default function App() {
                 <Header></Header>
                 <DropFrames></DropFrames>
                 <Toolbar />
-                <AssetLibrary />
+                <Library />
               </div>
             </AnimationDispatchContext.Provider>
           </AnimationContext.Provider>

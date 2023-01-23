@@ -79,7 +79,7 @@ export function AnimationReducer(draft: Animation, action: AnimationAction) {
 
     case "deleteAssets": {
       // const currentAssets = draft.assets!;
-      const deleteTargets = action.assetIds!;
+      const deleteTargets = draft.selectedAssets!;
       // const frames = draft.frames!;
 
       deleteTargets.forEach((assetId) => {
@@ -91,22 +91,32 @@ export function AnimationReducer(draft: Animation, action: AnimationAction) {
         });
         delete currentAssets![assetId];
       });
+
+      draft.selectedAssets = [];
       break;
     }
 
     case "selectAsset": {
+      console.log("selection made");
       draft.selectedAssets?.push(action.assetId!);
+      currentAssets[action.assetId!].isSelected = true;
       break;
     }
 
     case "deselectAsset": {
+      console.log("deselection made");
       draft.selectedAssets = draft.selectedAssets?.filter(
         (assetId) => assetId !== action.assetId
       );
+      currentAssets[action.assetId!].isSelected = false;
       break;
     }
 
     case "deselectAll": {
+      draft.selectedAssets?.map((assetId) => {
+        currentAssets[assetId].isSelected = false;
+      });
+
       draft.selectedAssets = [];
       break;
     }
@@ -120,11 +130,13 @@ export function AnimationReducer(draft: Animation, action: AnimationAction) {
 export function ToolbarReducer(draft: ToolbarType, action: ToolbarAction) {
   switch (action.type) {
     case "startSelection": {
+      console.log("Selection Started");
       draft.status = "selecting";
       break;
     }
 
     case "endSelection": {
+      console.log("Selection Cancelled");
       draft.status = "idle";
       break;
     }

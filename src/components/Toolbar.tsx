@@ -35,6 +35,14 @@ export default function Toolbar() {
     }
   }
 
+  function deleteAssets() {
+    if (toolbar.status === "selecting") {
+      dispatchAnimationAction({
+        type: "deleteAssets",
+      });
+    }
+  }
+
   return (
     <>
       <div className="wrapper flex justify-center md:justify-between items-center gap-2 md:gap-0 border-smoke border-b-[3px]">
@@ -86,7 +94,12 @@ export default function Toolbar() {
                 <span>select images</span>
               )}
             </Button>
-            <IconButton disabled={toolbar.status !== "selecting"}>
+            <IconButton
+              onClick={deleteAssets}
+              disabled={
+                toolbar.status !== "selecting" && !animation.selectedAssets?.length
+              }
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"

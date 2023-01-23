@@ -6,7 +6,7 @@ export default function DropFrames() {
       <div className="w-full flex overflow-x-auto overflow-y-hidden flex-col border-smoke border-b-[3px]">
         <div className="w-max flex">
           <DropFrame id="001"></DropFrame>
-          <DropFrame id="002"></DropFrame>
+          {/* <DropFrame id="002"></DropFrame>
           <DropFrame id="003"></DropFrame>
           <DropFrame id="004"></DropFrame>
           <DropFrame id="005"></DropFrame>
@@ -20,7 +20,7 @@ export default function DropFrames() {
           <DropFrame id="013"></DropFrame>
           <DropFrame id="014"></DropFrame>
           <DropFrame id="015"></DropFrame>
-          <DropFrame id="016"></DropFrame>
+          <DropFrame id="016"></DropFrame> */}
         </div>
       </div>
     </>
