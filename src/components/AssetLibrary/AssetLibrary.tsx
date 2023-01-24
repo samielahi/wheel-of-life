@@ -2,7 +2,7 @@ import Image from "./Image";
 import { useContext } from "react";
 import { AnimationContext, ToolbarContext } from "../../state/context";
 
-export default function Library() {
+export default function AssetLibrary() {
   const animation = useContext(AnimationContext);
   const toolbar = useContext(ToolbarContext);
   const assets = Object.values(animation.assets!);

@@ -1,5 +1,3 @@
-import IconButton from "../core/IconButton";
-import Button from "../core/Button";
 import { useContext } from "react";
 import {
   AnimationContext,
@@ -8,19 +6,27 @@ import {
   ToolbarDispatchContext,
 } from "../state/context";
 import { AnimationDispatch, ToolbarDispatch } from "../types";
+import Button from "../core/Button";
+import IconButton from "../core/IconButton";
 
 export default function Toolbar() {
   const animation = useContext(AnimationContext);
+  const toolbar = useContext(ToolbarContext);
   const dispatchAnimationAction = useContext<AnimationDispatch>(
     AnimationDispatchContext
   );
-  const toolbar = useContext(ToolbarContext);
   const dispatchToolbarAction = useContext<ToolbarDispatch>(
     ToolbarDispatchContext
   );
 
+  const status = toolbar.status;
+  const isIdle = status === "idle";
+  const isSelecting = status === "selecting";
+  const hasAssets = animation.assets;
+  const hasSelectedAssets = animation.selectedAssets?.length !== 0;
+
   function toggleSelection() {
-    if (toolbar.status === "idle" && animation.assets) {
+    if (isIdle && hasAssets) {
       dispatchToolbarAction({
         type: "startSelection",
       });
@@ -41,7 +47,7 @@ export default function Toolbar() {
   }
 
   function deleteAssets() {
-    if (toolbar.status === "selecting") {
+    if (isSelecting) {
       dispatchAnimationAction({
         type: "deleteAssets",
       });
@@ -52,7 +58,8 @@ export default function Toolbar() {
     <>
       <div className="wrapper flex justify-center md:justify-between items-center gap-2 md:gap-0 border-smoke border-b-[3px]">
         <div className="flex gap-2 md:w-1/3">
-          <IconButton disabled={toolbar.status !== "idle"}>
+          {/* Image Upload */}
+          <IconButton disabled={!isIdle}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -70,7 +77,9 @@ export default function Toolbar() {
               <path d="m15 15-3-3-3 3"></path>
             </svg>
           </IconButton>
-          <IconButton disabled={toolbar.status !== "idle"}>
+
+          {/* Folder Upload */}
+          <IconButton disabled={!isIdle}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -88,21 +97,19 @@ export default function Toolbar() {
             </svg>
           </IconButton>
 
+          {/* Image Selection Toggle */}
           <div className="flex gap-2">
             <Button
               onClick={toggleSelection}
-              disabled={animation.assets ? false : true}
+              disabled={hasAssets ? false : true}
             >
-              {toolbar.status === "selecting" ? (
+              {isSelecting ? (
                 <span className="text-red">cancel</span>
               ) : (
                 <span>select images</span>
               )}
             </Button>
-            <IconButton
-              onClick={deleteAssets}
-              disabled={animation.selectedAssets?.length === 0}
-            >
+            <IconButton onClick={deleteAssets} disabled={!hasSelectedAssets}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -124,17 +131,14 @@ export default function Toolbar() {
           </div>
         </div>
 
+        {/* Toolbar Message, maybe should be own component */}
         <div className="hidden md:block bg-smoke rounded">
-          {toolbar.status === "selecting" ? (
-            <p className="px-4 py-2">
-              {toolbar.message}
-              {/* {animation.selectedAssets?.length} images selected */}
-            </p>
-          ) : null}
+          {isSelecting ? <p className="px-4 py-2">{toolbar.message}</p> : null}
         </div>
 
         <div className="flex gap-2 md:w-1/3 md:justify-end">
-          <IconButton disabled={toolbar.status !== "idle"}>
+          {/* Preview Animation */}
+          <IconButton disabled={!isIdle}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -152,8 +156,8 @@ export default function Toolbar() {
               <path d="M21 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2"></path>
             </svg>
           </IconButton>
-
-          <IconButton disabled={toolbar.status !== "idle"}>
+          {/* Export Toggle */}
+          <IconButton disabled={!isIdle}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -170,8 +174,8 @@ export default function Toolbar() {
               <line x1="12" y1="15" x2="12" y2="3"></line>
             </svg>
           </IconButton>
-
-          <IconButton disabled={toolbar.status !== "idle"}>
+          {/* Help Dialog Toggle */}
+          <IconButton disabled={!isIdle}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"

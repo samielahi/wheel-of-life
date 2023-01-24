@@ -6,7 +6,7 @@ import {
   ToolbarContext,
 } from "../../state/context";
 
-export default function DropFrame(props: Frame) {
+export default function ImageFrame(props: Frame) {
   const animation = useContext(AnimationContext);
   const dispatchAnimationAction = useContext<AnimationDispatch>(
     AnimationDispatchContext

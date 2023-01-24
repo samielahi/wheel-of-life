@@ -9,8 +9,8 @@ import { useImmerReducer } from "use-immer";
 import { AnimationReducer, ToolbarReducer } from "./state/reducers";
 import Header from "./core/Header";
 import Toolbar from "./components/Toolbar";
-import Library from "./components/Library/Library";
-import DropFrames from "./components/DropFrame/DropFrames";
+import AssetLibrary from "./components/AssetLibrary/AssetLibrary";
+import DropFrames from "./components/Frames/ImageFrameList";
 import { initialAnimationState } from "./state/context";
 
 export default function App() {
@@ -20,7 +20,7 @@ export default function App() {
   );
   const [toolbar, dispatchToolbarAction] = useImmerReducer<ToolbarType, any>(
     ToolbarReducer,
-    { currentTool: "select", status: "idle" }
+    { currentTool: "base", status: "idle" }
   );
 
   return (
@@ -33,7 +33,7 @@ export default function App() {
                 <Header></Header>
                 <DropFrames></DropFrames>
                 <Toolbar />
-                <Library />
+                <AssetLibrary />
               </div>
             </AnimationDispatchContext.Provider>
           </AnimationContext.Provider>

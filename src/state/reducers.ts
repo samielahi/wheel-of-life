@@ -16,7 +16,6 @@ export function AnimationReducer(draft: Animation, action: AnimationAction) {
     }
 
     case "assignImage": {
-      // const currentAssets = draft.assets!;
       const targetFrame = draft.frames?.find(
         (frame) => frame.id === action.targetFrame
       );
@@ -30,7 +29,6 @@ export function AnimationReducer(draft: Animation, action: AnimationAction) {
     }
 
     case "deassignImage": {
-      // const currentAssets = draft.assets!;
       const targetFrame = draft.frames?.find(
         (frame) => frame.id === action.targetFrame
       );
@@ -44,16 +42,13 @@ export function AnimationReducer(draft: Animation, action: AnimationAction) {
     }
 
     case "uploadAsset": {
-      // const currentAssets = draft.assets;
       const assetId = action.uploadedAsset?.id!;
       currentAssets![assetId] = action.uploadedAsset!;
       break;
     }
 
     case "deleteAsset": {
-      // const currentAssets = draft.assets!;
       const assetId = action.assetId!;
-      // const frames = draft.frames!;
       const assignedFrames = currentAssets[assetId].assignedFrames;
 
       // Remove the image from all frames its assigned to
@@ -67,7 +62,6 @@ export function AnimationReducer(draft: Animation, action: AnimationAction) {
     }
 
     case "uploadAssets": {
-      // const currentAssets = draft.assets;
       const uploadedAssets = action.uploadedAssets;
 
       uploadedAssets?.forEach((asset) => {
@@ -79,9 +73,7 @@ export function AnimationReducer(draft: Animation, action: AnimationAction) {
     }
 
     case "deleteAssets": {
-      // const currentAssets = draft.assets!;
       const deleteTargets = draft.selectedAssets!;
-      // const frames = draft.frames!;
 
       deleteTargets.forEach((assetId) => {
         // Get all frame ids that contain this asset
