@@ -1,38 +1,46 @@
 import { useContext } from "react";
 import { v4 as uuid } from "uuid";
-import { fileOpen } from "browser-fs-access";
+import { FileWithHandle, fileOpen } from "browser-fs-access";
 import { AnimationDispatchContext } from "../../../state/context";
 import { Asset } from "../../../types";
 import IconButton from "../../../core/IconButton";
 
+function createAsset(file: FileWithHandle): Asset {
+  const imgObjectURL = URL.createObjectURL(file);
+  const assetId = uuid();
+  const asset: Asset = {
+    id: assetId,
+    data: imgObjectURL,
+    isSelected: false,
+    assignedFrames: [],
+  };
+
+  return asset;
+}
+
 export default function AssetUpload(props: { isIdle: boolean }) {
   const dispatchAnimationAction = useContext(AnimationDispatchContext);
-  
-  async function uploadAsset() {
+
+  async function uploadAssets() {
     // Pick the file
-    const blob = await fileOpen({
+    const images = await fileOpen({
       mimeTypes: ["image/*"],
       multiple: true,
     });
-    // Create an asset
-    const imgObjectURL = URL.createObjectURL(blob[0]);
-    const assetId = uuid();
-    const asset: Asset = {
-      id: assetId,
-      data: imgObjectURL,
-      isSelected: false,
-      assignedFrames: [],
-    };
 
-    dispatchAnimationAction({
-      type: "uploadAsset",
-      uploadedAsset: asset,
+    // Create and store assets
+    images.forEach((image) => {
+      const asset = createAsset(image);
+      dispatchAnimationAction({
+        type: "uploadAsset",
+        uploadedAsset: asset,
+      });
     });
   }
 
   return (
     <>
-      <IconButton onClick={uploadAsset} disabled={!props.isIdle}>
+      <IconButton onClick={uploadAssets} disabled={!props.isIdle}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"

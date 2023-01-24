@@ -37,7 +37,6 @@ export interface AnimationAction {
     | "assignImage"
     | "deassignImage"
     | "uploadAsset"
-    | "uploadAssets"
     | "deleteAsset"
     | "deleteAssets"
     | "selectAsset"
@@ -58,17 +57,12 @@ export type AnimationDispatch = (action: AnimationAction) => void;
 
 export interface ToolbarType {
   currentTool?: "base";
-  status?: "idle" | "selecting" | "assigning";
+  status?: "idle" | "selecting";
   message?: string;
 }
 
 export interface ToolbarAction {
-  type:
-    | "startSelection"
-    | "endSelection"
-    | "startAssignment"
-    | "endAssignment"
-    | "tooltip";
+  type: "startSelection" | "endSelection" | "message";
   message?: string;
 }
 

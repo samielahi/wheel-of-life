@@ -12,7 +12,9 @@ export default function AssetLibrary() {
     <>
       <div
         style={
-          toolbar.status === "selecting" ? { backgroundColor: "#FCFBF4" } : {}
+          toolbar.status === "selecting" && hasAssets
+            ? { backgroundColor: "#FCFBF4" }
+            : {}
         }
         className="w-full flex overflow-auto h-full wrapper flex-col"
       >

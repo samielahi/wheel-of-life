@@ -15,7 +15,7 @@ export default function DeleteSelection(props: {
       });
     }
   }
-  
+
   return (
     <>
       <IconButton onClick={deleteAssets} disabled={!props.hasSelectedAssets}>

@@ -56,7 +56,11 @@ export default function ImageFrame(props: Frame) {
         </span>
 
         {props.data ? (
-          <img src={props.data?.data} alt={`Frame ${props.id}'s image`} />
+          <img
+            className="w-full h-full"
+            src={props.data?.data}
+            alt={`Frame ${props.id}'s image`}
+          />
         ) : null}
 
         {props.data && toolbar.status !== "selecting" ? (

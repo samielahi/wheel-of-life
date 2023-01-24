@@ -33,7 +33,7 @@ export const initialAnimationState: Animation = {
   id: "test",
   type: "image",
   frames: frames,
-  assets: assets,
+  assets: {},
   selectedAssets: [],
 };
 

@@ -23,11 +23,6 @@ export default function Select(props: {
       dispatchToolbarAction({
         type: "startSelection",
       });
-
-      dispatchToolbarAction({
-        type: "tooltip",
-        message: "Click any images below to select them.",
-      });
     } else {
       dispatchToolbarAction({
         type: "endSelection",
@@ -45,7 +40,7 @@ export default function Select(props: {
         onClick={toggleSelection}
         disabled={props.hasAssets ? false : true}
       >
-        {props.isSelecting ? (
+        {props.isSelecting && props.hasAssets ? (
           <span className="text-red">cancel</span>
         ) : (
           <span>select images</span>

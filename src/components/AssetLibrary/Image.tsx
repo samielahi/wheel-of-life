@@ -1,19 +1,12 @@
 import { useContext } from "react";
-import {
-  AnimationDispatchContext,
-  ToolbarContext,
-  ToolbarDispatchContext,
-} from "../../state/context";
-import { Asset, AnimationDispatch, ToolbarDispatch } from "../../types";
+import { AnimationDispatchContext, ToolbarContext } from "../../state/context";
+import { Asset, AnimationDispatch } from "../../types";
 
 export default function Image(props: Asset) {
   const dispatchAnimationAction = useContext<AnimationDispatch>(
     AnimationDispatchContext
   );
   const toolbar = useContext(ToolbarContext);
-  const dispatchToolbarAction = useContext<ToolbarDispatch>(
-    ToolbarDispatchContext
-  );
 
   function handleSelection() {
     if (toolbar.status === "selecting") {
@@ -22,20 +15,10 @@ export default function Image(props: Asset) {
           type: "selectAsset",
           assetId: props.id,
         });
-
-        dispatchToolbarAction({
-          type: "tooltip",
-          message: "Click a frame to assign selected images.",
-        });
       } else {
         dispatchAnimationAction({
           type: "deselectAsset",
           assetId: props.id,
-        });
-
-        dispatchToolbarAction({
-          type: "tooltip",
-          message: "Click any images below to select them.",
         });
       }
     }

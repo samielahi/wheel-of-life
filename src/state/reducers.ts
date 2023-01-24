@@ -3,6 +3,7 @@ import {
   AnimationAction,
   ToolbarType,
   ToolbarAction,
+  ToolbarDispatch,
 } from "../types";
 
 export function AnimationReducer(draft: Animation, action: AnimationAction) {
@@ -11,11 +12,13 @@ export function AnimationReducer(draft: Animation, action: AnimationAction) {
 
   switch (action.type) {
     case "nameChange": {
+      console.log(`Name changed to ${action.newName}`);
       draft.name = action.newName;
       break;
     }
 
     case "assignImage": {
+      console.log(`Image assigned to frame ${action.targetFrame! + 1}`);
       const targetFrame = draft.frames?.find(
         (frame) => frame.id === action.targetFrame
       );
@@ -29,6 +32,7 @@ export function AnimationReducer(draft: Animation, action: AnimationAction) {
     }
 
     case "deassignImage": {
+      console.log(`Image deassigned from frame ${action.targetFrame! + 1}`);
       const targetFrame = draft.frames?.find(
         (frame) => frame.id === action.targetFrame
       );
@@ -42,12 +46,14 @@ export function AnimationReducer(draft: Animation, action: AnimationAction) {
     }
 
     case "uploadAsset": {
+      console.log(`Asset uploaded`);
       const assetId = action.uploadedAsset?.id!;
       currentAssets![assetId] = action.uploadedAsset!;
       break;
     }
 
     case "deleteAsset": {
+      console.log(`Selected asset deleted`);
       const assetId = action.assetId!;
       const assignedFrames = currentAssets[assetId].assignedFrames;
 
@@ -61,18 +67,8 @@ export function AnimationReducer(draft: Animation, action: AnimationAction) {
       break;
     }
 
-    case "uploadAssets": {
-      const uploadedAssets = action.uploadedAssets;
-
-      uploadedAssets?.forEach((asset) => {
-        const id = asset.id!;
-        currentAssets![id] = asset;
-      });
-
-      break;
-    }
-
     case "deleteAssets": {
+      console.log(`Selected assets deleted`);
       const deleteTargets = draft.selectedAssets!;
 
       deleteTargets.forEach((assetId) => {
@@ -90,14 +86,14 @@ export function AnimationReducer(draft: Animation, action: AnimationAction) {
     }
 
     case "selectAsset": {
-      console.log("selection made");
+      console.log("Asset selected");
       draft.selectedAssets?.push(action.assetId!);
       currentAssets[action.assetId!].isSelected = true;
       break;
     }
 
     case "deselectAsset": {
-      console.log("deselection made");
+      console.log("Asset Deselected");
       draft.selectedAssets = draft.selectedAssets?.filter(
         (assetId) => assetId !== action.assetId
       );
@@ -134,17 +130,7 @@ export function ToolbarReducer(draft: ToolbarType, action: ToolbarAction) {
       break;
     }
 
-    case "startAssignment": {
-      draft.status = "assigning";
-      break;
-    }
-
-    case "endAssignment": {
-      draft.status = "idle";
-      break;
-    }
-
-    case "tooltip": {
+    case "message": {
       draft.message = action.message;
       break;
     }
