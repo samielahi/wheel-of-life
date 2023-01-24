@@ -10,7 +10,7 @@ import { AnimationReducer, ToolbarReducer } from "./state/reducers";
 import Header from "./core/Header";
 import Toolbar from "./components/Toolbar/Toolbar";
 import AssetLibrary from "./components/AssetLibrary/AssetLibrary";
-import DropFrames from "./components/Frames/ImageFrameList";
+import ImageFrameList from "./components/Frames/ImageFrameList";
 import { initialAnimationState } from "./state/context";
 
 export default function App() {
@@ -29,12 +29,10 @@ export default function App() {
         <ToolbarDispatchContext.Provider value={dispatchToolbarAction}>
           <AnimationContext.Provider value={animation}>
             <AnimationDispatchContext.Provider value={dispatchAnimationAction}>
-              <div className="w-full">
-                <Header></Header>
-                <DropFrames></DropFrames>
-                <Toolbar />
-                <AssetLibrary />
-              </div>
+              <Header />
+              <ImageFrameList />
+              <Toolbar />
+              <AssetLibrary />
             </AnimationDispatchContext.Provider>
           </AnimationContext.Provider>
         </ToolbarDispatchContext.Provider>

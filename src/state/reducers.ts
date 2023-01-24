@@ -3,7 +3,6 @@ import {
   AnimationAction,
   ToolbarType,
   ToolbarAction,
-  ToolbarDispatch,
 } from "../types";
 
 export function AnimationReducer(draft: Animation, action: AnimationAction) {

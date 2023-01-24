@@ -1,17 +1,36 @@
 import { useContext } from "react";
-import { AnimationDispatchContext } from "../../../state/context";
+import {
+  AnimationContext,
+  AnimationDispatchContext,
+  ToolbarDispatchContext,
+} from "../../../state/context";
+import { AnimationDispatch, ToolbarDispatch } from "../../../types";
 import IconButton from "../../../core/IconButton";
 
 export default function DeleteSelection(props: {
   isSelecting: boolean;
   hasSelectedAssets: boolean;
 }) {
-  const dispatchAnimationAction = useContext(AnimationDispatchContext);
+  const animation = useContext(AnimationContext);
+  const dispatchAnimationAction = useContext<AnimationDispatch>(
+    AnimationDispatchContext
+  );
+  const dispatchToolbarAction = useContext<ToolbarDispatch>(
+    ToolbarDispatchContext
+  );
 
   function deleteAssets() {
     if (props.isSelecting) {
       dispatchAnimationAction({
         type: "deleteAssets",
+      });
+    }
+
+    const hasAssets = Object.values(animation.assets!).length !== 0;
+
+    if (hasAssets) {
+      dispatchToolbarAction({
+        type: "endSelection",
       });
     }
   }
