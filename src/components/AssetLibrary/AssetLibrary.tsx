@@ -6,6 +6,7 @@ export default function AssetLibrary() {
   const animation = useContext(AnimationContext);
   const toolbar = useContext(ToolbarContext);
   const assets = Object.values(animation.assets!);
+  const hasAssets = assets.length !== 0;
 
   return (
     <>
@@ -16,7 +17,7 @@ export default function AssetLibrary() {
         className="w-full flex overflow-auto h-full wrapper flex-col"
       >
         <div className="w-max flex gap-8 pt-8 pb-8">
-          {assets ? (
+          {hasAssets ? (
             <>
               {assets.map((asset, i) => (
                 <Image

@@ -8,7 +8,7 @@ import {
 import { useImmerReducer } from "use-immer";
 import { AnimationReducer, ToolbarReducer } from "./state/reducers";
 import Header from "./core/Header";
-import Toolbar from "./components/Toolbar";
+import Toolbar from "./components/Toolbar/Toolbar";
 import AssetLibrary from "./components/AssetLibrary/AssetLibrary";
 import DropFrames from "./components/Frames/ImageFrameList";
 import { initialAnimationState } from "./state/context";
