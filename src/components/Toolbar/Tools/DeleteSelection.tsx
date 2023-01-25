@@ -26,9 +26,10 @@ export default function DeleteSelection(props: {
       });
     }
 
-    const hasAssets = Object.values(animation.assets!).length !== 0;
+    // If there are no more assets left after deletion, end selection session
+    const hasNoAssets = Object.values(animation.assets!).length !== 0;
 
-    if (hasAssets) {
+    if (hasNoAssets) {
       dispatchToolbarAction({
         type: "endSelection",
       });

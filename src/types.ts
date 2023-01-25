@@ -1,16 +1,21 @@
+import { DBSchema } from "idb";
+
 export interface Asset {
+  // animation the image belongs to
   // A uuid for the uploaded image
   id: string;
   // Object URL for uploaded image
   data: string;
   isSelected?: boolean;
   assignedFrames?: number[];
+  animationId?: string;
 }
 
 export interface Frame {
   id: number;
   // This is either Object URL for an uploaded img or drawn img
   data: Asset | undefined;
+  animationId?: string;
 }
 
 export interface Animation {
@@ -67,3 +72,25 @@ export interface ToolbarAction {
 }
 
 export type ToolbarDispatch = (action: ToolbarAction) => void;
+
+// For indexedDB
+
+export interface AnimationSchema extends DBSchema {
+  animation: {
+    key: string;
+    // Name of animation
+    value: { id: string; name: string };
+  };
+
+  assets: {
+    key: string;
+    value: Asset;
+    indexes: { "by-animationId": string };
+  };
+
+  frames: {
+    key: string;
+    value: Frame;
+    indexes: { "by-animationId": string; "by-frameId": number };
+  };
+}
