@@ -7,19 +7,19 @@ const animationDB = openDB<AnimationSchema>("animations", 1, {
     const compoundIdx = ["animationId", "id"];
 
     const assetStore = db.createObjectStore("assets", {
-      keyPath: compoundIdx,
+      keyPath: "id",
     });
 
     const frameStore = db.createObjectStore("frames", {
       keyPath: compoundIdx,
     });
 
-    assetStore.createIndex("by-animationId", compoundIdx, { multiEntry: true });
-    frameStore.createIndex("by-animationId", compoundIdx, { multiEntry: true });
+    assetStore.createIndex("by-animationId", "animationId");
+    frameStore.createIndex("by-animationId", "animationId");
   },
 });
 
-export async function getFrame(key: string | string[]) {
+export async function getFrame(key: string | any[]) {
   // @ts-ignore
   return (await animationDB).get("frames", key);
 }
@@ -29,15 +29,26 @@ export async function setFrame(val: Frame) {
 }
 
 export async function getAllFrames(animationId: string) {
-  return (await animationDB).getAll("frames", animationId);
+  return (await animationDB).getAllFromIndex(
+    "frames",
+    "by-animationId",
+    animationId
+  );
 }
 
-export async function deleteFrame(key: string | string[]) {
-  // @ts-ignore
-  return (await animationDB).delete("frames", key);
+export async function deleteFrames(animationId: string) {
+  const tx = (await animationDB).transaction("frames", "readwrite");
+  const frameStore = tx.objectStore("frames");
+
+  for (let i = 0; i < 16; i++) {
+    // @ts-ignore
+    frameStore.delete([animationId, i + 1]);
+  }
+
+  return await tx.done;
 }
 
-export async function getAsset(key: string | string[]) {
+export async function getAsset(key: string | (string | number)[]) {
   // @ts-ignore
   return (await animationDB).get("assets", key);
 }
@@ -47,10 +58,14 @@ export async function setAsset(val: Asset) {
 }
 
 export async function getAllAssets(animationId: string) {
-  return (await animationDB).getAll("assets", animationId);
+  return (await animationDB).getAllFromIndex(
+    "assets",
+    "by-animationId",
+    animationId
+  );
 }
 
-export async function deleteAsset(key: string | string[]) {
+export async function deleteAsset(key: string | (string | number)[]) {
   // @ts-ignore
   return (await animationDB).delete("assets", key);
 }

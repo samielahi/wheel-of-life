@@ -91,6 +91,6 @@ export interface AnimationSchema extends DBSchema {
   frames: {
     key: string;
     value: Frame;
-    indexes: { "by-animationId": string; "by-frameId": number };
+    indexes: { "by-animationId": string };
   };
 }
