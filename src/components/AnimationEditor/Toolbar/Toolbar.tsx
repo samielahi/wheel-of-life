@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { AnimationContext, ToolbarContext } from "../../state/context";
-import IconButton from "../../core/IconButton";
+import { AnimationContext, ToolbarContext } from "../../../state/context";
+import IconButton from "../../../core/IconButton";
 import AssetUpload from "./Tools/AssetUpload";
 import Select from "./Tools/Select";
 import DeleteSelection from "./Tools/DeleteSelection";

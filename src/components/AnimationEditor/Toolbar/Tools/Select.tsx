@@ -2,9 +2,9 @@ import { useContext } from "react";
 import {
   AnimationDispatchContext,
   ToolbarDispatchContext,
-} from "../../../state/context";
-import { AnimationDispatch, ToolbarDispatch } from "../../../types";
-import Button from "../../../core/Button";
+} from "../../../../state/context";
+import { AnimationDispatch, ToolbarDispatch } from "../../../../types";
+import Button from "../../../../core/Button";
 
 export default function Select(props: {
   isIdle: boolean;

@@ -42,7 +42,7 @@ export function AnimationReducer(draft: Animation, action: AnimationAction) {
       // Assign the asset to the target frame
       targetFrame!.assetId = assetId;
       // Update the asset with the frame's id
-      currentAssets[assetId].assignedFrames?.push(targetFrame!.id);
+      currentAssets[assetId].assignedFrames?.push(action.targetFrame!);
       // Set the new frame's data in idb we need to copy
       // Note we'll need copy the object because we can't store Proxy objects in idb
       setFrame({ ...targetFrame! });
@@ -81,8 +81,9 @@ export function AnimationReducer(draft: Animation, action: AnimationAction) {
 
       // Remove the image from all frames its assigned to
       assignedFrames?.forEach((frameId) => {
-        frames[frameId].assetId = undefined;
-        setFrame({ ...frames[frameId] });
+        const frameIdx = frameId - 1;
+        frames[frameIdx].assetId = undefined;
+        setFrame({ ...frames[frameIdx] });
       });
 
       // Delete from assets state and Idb store
@@ -100,8 +101,9 @@ export function AnimationReducer(draft: Animation, action: AnimationAction) {
         const assignedFrames = currentAssets[assetId].assignedFrames;
         // Remove asset from frames
         assignedFrames?.forEach((frameId) => {
-          frames[frameId].assetId = undefined;
-          setFrame({ ...frames[frameId] });
+          const frameIdx = frameId - 1;
+          frames[frameIdx].assetId = undefined;
+          setFrame({ ...frames[frameIdx] });
         });
         delete currentAssets![assetId];
         deleteAsset(assetId);

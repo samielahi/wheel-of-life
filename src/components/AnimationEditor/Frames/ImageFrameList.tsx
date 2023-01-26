@@ -2,7 +2,7 @@ import ImageFrame from "./ImageFrame";
 import { useContext } from "react";
 import { AnimationContext } from "../../../state/context";
 
-export default function ImageFrames() {
+export default function ImageFrameList() {
   const animation = useContext(AnimationContext);
   return (
     <>

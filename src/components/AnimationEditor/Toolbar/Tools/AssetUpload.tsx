@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { v4 as uuid } from "uuid";
 import { FileWithHandle, fileOpen } from "browser-fs-access";
-import { AnimationDispatchContext } from "../../../state/context";
-import { Asset } from "../../../types";
-import IconButton from "../../../core/IconButton";
+import { AnimationDispatchContext } from "../../../../state/context";
+import { Asset } from "../../../../types";
+import IconButton from "../../../../core/IconButton";
 
 function createAsset(file: FileWithHandle): Asset {
   const assetId = uuid();

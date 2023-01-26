@@ -3,9 +3,9 @@ import {
   AnimationContext,
   AnimationDispatchContext,
   ToolbarDispatchContext,
-} from "../../../state/context";
-import { AnimationDispatch, ToolbarDispatch } from "../../../types";
-import IconButton from "../../../core/IconButton";
+} from "../../../../state/context";
+import { AnimationDispatch, ToolbarDispatch } from "../../../../types";
+import IconButton from "../../../../core/IconButton";
 
 export default function DeleteSelection(props: {
   isSelecting: boolean;

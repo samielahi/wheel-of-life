@@ -1,6 +1,9 @@
 import { useContext } from "react";
-import { AnimationDispatchContext, ToolbarContext } from "../../state/context";
-import { Asset, AnimationDispatch } from "../../types";
+import {
+  AnimationDispatchContext,
+  ToolbarContext,
+} from "../../../state/context";
+import { Asset, AnimationDispatch } from "../../../types";
 
 export default function Image(props: Asset) {
   const dispatchAnimationAction = useContext<AnimationDispatch>(

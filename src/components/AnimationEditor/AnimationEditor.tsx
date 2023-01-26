@@ -38,7 +38,7 @@ export default function AnimationEditor(props: {
   );
 
   useEffect(() => {
-    async function loadDataFromIdb() {
+    async function loadAnimationFromIdb() {
       const loadedAnimationState = { ...initialAnimationState };
       const assetList = await getAllAssets(props.animationId);
       const frames = await getAllFrames(props.animationId);
@@ -57,7 +57,7 @@ export default function AnimationEditor(props: {
       });
     }
 
-    loadDataFromIdb();
+    loadAnimationFromIdb();
   }, []);
 
   return (

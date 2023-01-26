@@ -14,10 +14,11 @@ export default function ImageFrame(props: Frame) {
   const toolbar = useContext(ToolbarContext);
   const assets = animation.assets!;
 
+  const assetExists = props.assetId! && assets[props.assetId];
   let assignedImage: Blob;
   let assignedImageURL;
 
-  if (props.assetId) {
+  if (assetExists) {
     assignedImage = assets[props.assetId!].data;
     assignedImageURL = URL.createObjectURL(assignedImage);
   }
@@ -62,7 +63,7 @@ export default function ImageFrame(props: Frame) {
           {props.id + 1 < 10 ? `00${props.id}` : `0${props.id}`}
         </span>
 
-        {props.assetId ? (
+        {assetExists ? (
           <img
             className="w-full h-full"
             src={assignedImageURL}
@@ -70,7 +71,7 @@ export default function ImageFrame(props: Frame) {
           />
         ) : null}
 
-        {props.assetId && toolbar.status !== "selecting" ? (
+        {assetExists && toolbar.status !== "selecting" ? (
           <>
             <span
               onClick={deassignImage}
