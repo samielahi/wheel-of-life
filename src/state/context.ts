@@ -4,7 +4,6 @@ import { Animation, ToolbarType } from "../types";
 export const AnimationContext = createContext<Animation>({
   id: "test",
   name: "test",
-  type: "image",
 });
 export const AnimationDispatchContext = createContext<any>(null);
 

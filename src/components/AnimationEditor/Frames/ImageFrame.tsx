@@ -13,6 +13,7 @@ export default function ImageFrame(props: Frame) {
   );
   const toolbar = useContext(ToolbarContext);
   const assets = animation.assets!;
+  const selectedAssets = animation.selectedAssets!;
 
   const assetExists = props.assetId! && assets[props.assetId];
   let assignedImage: Blob;

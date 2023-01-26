@@ -22,7 +22,6 @@ export default function AnimationEditor(props: {
   let initialAnimationState: Animation = {
     id: props.animationId,
     name: props.name,
-    type: "image",
     assets: {},
     frames: [],
     selectedAssets: [],
