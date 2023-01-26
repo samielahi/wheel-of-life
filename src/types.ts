@@ -21,8 +21,7 @@ export interface Frame {
 export interface Animation {
   // A uuid
   id: string;
-  type?: "image" | "drawn";
-  // User defined name, defaults to something
+  // User defined name, defaults to id
   name?: string;
   // All 16 frames
   frames?: Frame[];
@@ -94,11 +93,15 @@ export type ToolbarDispatch = (action: ToolbarAction) => void;
 
 // For indexedDB
 
+export interface DbAnimation extends Animation {
+  build?: Blob | undefined;
+}
+
 export interface AnimationSchema extends DBSchema {
   animations: {
     key: string;
     // Name of animation
-    value: { id: string; name: string };
+    value: DbAnimation;
   };
 
   assets: {

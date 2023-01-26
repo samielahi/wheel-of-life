@@ -1,5 +1,5 @@
 import { openDB } from "idb";
-import { AnimationSchema, Asset, Frame } from "../types";
+import { AnimationSchema, Asset, Frame, DbAnimation } from "../types";
 
 const animationDB = openDB<AnimationSchema>("animations", 1, {
   upgrade(db) {
@@ -22,7 +22,7 @@ export async function getAllAnimations() {
   return (await animationDB).getAll("animations");
 }
 
-export async function setAnimation(animation: { id: string; name: string }) {
+export async function setAnimation(animation: DbAnimation) {
   return (await animationDB).put("animations", animation);
 }
 

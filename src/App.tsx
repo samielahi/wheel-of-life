@@ -10,6 +10,8 @@ export default function App() {
     const animation = {
       id: "test",
       name: "test",
+      isBuilt: false,
+      build: undefined,
     };
     setAnimation(animation);
     // Setup the frame store

@@ -28,8 +28,13 @@ export function AnimationReducer(draft: Animation, action: AnimationAction) {
     case "nameChange": {
       console.log(`Name changed to ${action.newName}`);
       draft.name = action.newName;
-      // Update record in idb
-      setAnimation({ id: draft.id, name: action.newName! });
+      // Update record in idb, need to get animation first however
+      // setAnimation({
+      //   id: draft.id!,
+      //   name: draft.name!,
+      //   isBuilt: draft.isBuilt!,
+      //   build: undefined,
+      // });
       break;
     }
 
