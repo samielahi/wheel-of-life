@@ -1,6 +1,6 @@
 import ImageFrame from "./ImageFrame";
 import { useContext } from "react";
-import { AnimationContext } from "../../state/context";
+import { AnimationContext } from "../../../state/context";
 
 export default function ImageFrames() {
   const animation = useContext(AnimationContext);

@@ -1,6 +1,6 @@
 import Image from "./Image";
 import { useContext } from "react";
-import { AnimationContext, ToolbarContext } from "../../state/context";
+import { AnimationContext, ToolbarContext } from "../../../state/context";
 
 export default function AssetLibrary() {
   const animation = useContext(AnimationContext);

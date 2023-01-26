@@ -1,10 +1,10 @@
-import { Frame, AnimationDispatch } from "../../types";
+import { Frame, AnimationDispatch } from "../../../types";
 import { useContext, useMemo } from "react";
 import {
   AnimationContext,
   AnimationDispatchContext,
   ToolbarContext,
-} from "../../state/context";
+} from "../../../state/context";
 
 export default function ImageFrame(props: Frame) {
   const animation = useContext(AnimationContext);

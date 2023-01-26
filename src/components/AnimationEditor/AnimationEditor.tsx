@@ -1,18 +1,18 @@
 import { useImmerReducer } from "use-immer";
 import { useEffect } from "react";
-import { AnimationReducer, ToolbarReducer } from "../state/reducers";
+import { AnimationReducer, ToolbarReducer } from "../../state/reducers";
 import {
   AnimationContext,
   AnimationDispatchContext,
   ToolbarContext,
   ToolbarDispatchContext,
-} from "../state/context";
-import { Animation, ToolbarType, Asset, Frame } from "../types";
-import Header from "../core/Header";
+} from "../../state/context";
+import { Animation, ToolbarType, Asset, Frame } from "../../types";
+import Header from "../../core/Header";
 import Toolbar from "./Toolbar/Toolbar";
 import AssetLibrary from "./AssetLibrary/AssetLibrary";
 import ImageFrameList from "./Frames/ImageFrameList";
-import { getAllAssets, getAllFrames } from "../state/idb";
+import { getAllAssets, getAllFrames } from "../../state/idb";
 
 export default function AnimationEditor(props: {
   animationId: string;
