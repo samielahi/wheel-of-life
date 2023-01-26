@@ -1,11 +1,10 @@
 import { openDB } from "idb";
-import { AnimationSchema, Asset, Frame } from "../../types";
+import { AnimationSchema, Asset, Frame } from "../types";
 
 const animationDB = openDB<AnimationSchema>("animations", 1, {
   upgrade(db) {
-    db.createObjectStore("animation");
+    db.createObjectStore("animations", { keyPath: "id" });
     const compoundIdx = ["animationId", "id"];
-
     const assetStore = db.createObjectStore("assets", {
       keyPath: "id",
     });
@@ -18,6 +17,14 @@ const animationDB = openDB<AnimationSchema>("animations", 1, {
     frameStore.createIndex("by-animationId", "animationId");
   },
 });
+
+export async function getAllAnimations() {
+  return (await animationDB).getAll("animations");
+}
+
+export async function setAnimation(animation: { id: string; name: string }) {
+  return (await animationDB).put("animations", animation);
+}
 
 export async function getFrame(key: string | any[]) {
   // @ts-ignore

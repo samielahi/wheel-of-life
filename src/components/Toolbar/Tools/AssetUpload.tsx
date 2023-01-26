@@ -6,11 +6,11 @@ import { Asset } from "../../../types";
 import IconButton from "../../../core/IconButton";
 
 function createAsset(file: FileWithHandle): Asset {
-  const imgObjectURL = URL.createObjectURL(file);
   const assetId = uuid();
   const asset: Asset = {
+    animationId: "test",
     id: assetId,
-    data: imgObjectURL,
+    data: file,
     isSelected: false,
     assignedFrames: [],
   };

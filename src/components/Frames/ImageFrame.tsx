@@ -1,5 +1,5 @@
 import { Frame, AnimationDispatch } from "../../types";
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import {
   AnimationContext,
   AnimationDispatchContext,
@@ -12,6 +12,15 @@ export default function ImageFrame(props: Frame) {
     AnimationDispatchContext
   );
   const toolbar = useContext(ToolbarContext);
+  const assets = animation.assets!;
+
+  let assignedImage: Blob;
+  let assignedImageURL;
+
+  if (props.assetId) {
+    assignedImage = assets[props.assetId!].data;
+    assignedImageURL = URL.createObjectURL(assignedImage);
+  }
 
   function assignImage() {
     const currentAssetId = animation.selectedAssets![0];
@@ -28,15 +37,13 @@ export default function ImageFrame(props: Frame) {
         assetId: currentAssetId,
       });
     }
-
-    console.log(animation.selectedAssets!);
   }
 
   function deassignImage() {
     dispatchAnimationAction({
       type: "deassignImage",
       targetFrame: props.id,
-      assetId: props.data?.id,
+      assetId: props.assetId,
     });
   }
 
@@ -52,18 +59,18 @@ export default function ImageFrame(props: Frame) {
         className="group -mt-[3px] -mb-[3px] -ml-[3px] w-[300px] h-[400px] relative border-[3px] border-smoke"
       >
         <span className="absolute bg-smoke p-2 rounded h-fit left-[42%] top-4 z-10">
-          {props.id + 1 < 10 ? `00${props.id + 1}` : `0${props.id + 1}`}
+          {props.id + 1 < 10 ? `00${props.id}` : `0${props.id}`}
         </span>
 
-        {props.data ? (
+        {props.assetId ? (
           <img
             className="w-full h-full"
-            src={props.data?.data}
+            src={assignedImageURL}
             alt={`Frame ${props.id}'s image`}
           />
         ) : null}
 
-        {props.data && toolbar.status !== "selecting" ? (
+        {props.assetId && toolbar.status !== "selecting" ? (
           <>
             <span
               onClick={deassignImage}

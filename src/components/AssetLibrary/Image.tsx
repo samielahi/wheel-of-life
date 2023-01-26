@@ -24,11 +24,13 @@ export default function Image(props: Asset) {
     }
   }
 
+  const imgObjectURL = URL.createObjectURL(props.data);
+
   return (
     <>
       <div onClick={handleSelection}>
         <img
-          src={props.data}
+          src={imgObjectURL}
           alt="a cute kitten"
           style={props.isSelected ? { borderColor: "#9c8cdf" } : {}}
           className="opacity-80 w-[150px] h-[200px] border-4 border-smoke rounded cursor-pointer"

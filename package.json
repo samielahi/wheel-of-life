@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/sharedworker": "^0.0.90",
     "@types/uuid": "^9.0.0",
     "browser-fs-access": "^0.31.2",
     "idb": "^7.1.1",

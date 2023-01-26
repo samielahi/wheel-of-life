@@ -9,7 +9,7 @@ export default function ImageFrames() {
       <div className="w-full flex overflow-x-auto overflow-y-hidden flex-col border-smoke border-b-[3px]">
         <div className="w-max flex">
           {animation.frames?.map((frame, i) => (
-            <ImageFrame key={i} id={frame.id} data={frame.data} />
+            <ImageFrame key={i} id={frame.id} assetId={frame.assetId} />
           ))}
         </div>
       </div>

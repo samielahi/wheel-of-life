@@ -5,42 +5,63 @@ import {
   ToolbarAction,
 } from "../types";
 
+import {
+  setFrame,
+  deleteFrames,
+  setAsset,
+  deleteAsset,
+  setAnimation,
+} from "./idb";
+
 export function AnimationReducer(draft: Animation, action: AnimationAction) {
   const currentAssets = draft.assets!;
   const frames = draft.frames!;
 
   switch (action.type) {
+    case "rehydrate": {
+      const newAnimationState = action.animationState!;
+      draft.assets = newAnimationState.assets;
+      draft.frames = newAnimationState.frames;
+      break;
+    }
+
     case "nameChange": {
       console.log(`Name changed to ${action.newName}`);
       draft.name = action.newName;
+      // Update record in idb
+      setAnimation({ id: draft.id, name: action.newName! });
       break;
     }
 
     case "assignImage": {
-      console.log(`Image assigned to frame ${action.targetFrame! + 1}`);
+      console.log(`Image assigned to frame ${action.targetFrame!}`);
       const targetFrame = draft.frames?.find(
         (frame) => frame.id === action.targetFrame
       );
       const assetId = action.assetId!;
       // Assign the asset to the target frame
-      targetFrame!.data = currentAssets[assetId];
+      targetFrame!.assetId = assetId;
       // Update the asset with the frame's id
       currentAssets[assetId].assignedFrames?.push(targetFrame!.id);
-
+      // Set the new frame's data in idb we need to copy
+      // Note we'll need copy the object because we can't store Proxy objects in idb
+      setFrame({ ...targetFrame! });
       break;
     }
 
     case "deassignImage": {
-      console.log(`Image deassigned from frame ${action.targetFrame! + 1}`);
+      console.log(`Image deassigned from frame ${action.targetFrame!}`);
       const targetFrame = draft.frames?.find(
         (frame) => frame.id === action.targetFrame
       );
       const assetId = action.assetId!;
-      targetFrame!.data = undefined;
+      targetFrame!.assetId = undefined;
       // Remove target frame from list of frames that have the asset assigned to it
       currentAssets[assetId].assignedFrames = currentAssets[
         assetId
       ].assignedFrames?.filter((id) => id !== targetFrame?.id);
+
+      setFrame({ ...targetFrame! });
       break;
     }
 
@@ -48,6 +69,8 @@ export function AnimationReducer(draft: Animation, action: AnimationAction) {
       console.log(`Asset uploaded`);
       const assetId = action.uploadedAsset?.id!;
       currentAssets![assetId] = action.uploadedAsset!;
+      // Update idb asset store
+      setAsset(action.uploadedAsset!);
       break;
     }
 
@@ -57,12 +80,14 @@ export function AnimationReducer(draft: Animation, action: AnimationAction) {
       const assignedFrames = currentAssets[assetId].assignedFrames;
 
       // Remove the image from all frames its assigned to
-      assignedFrames?.forEach((i) => {
-        frames[i].data = undefined;
+      assignedFrames?.forEach((frameId) => {
+        frames[frameId].assetId = undefined;
+        setFrame({ ...frames[frameId] });
       });
 
-      // Delete from assets
+      // Delete from assets state and Idb store
       delete currentAssets![assetId];
+      deleteAsset(assetId);
       break;
     }
 
@@ -75,9 +100,11 @@ export function AnimationReducer(draft: Animation, action: AnimationAction) {
         const assignedFrames = currentAssets[assetId].assignedFrames;
         // Remove asset from frames
         assignedFrames?.forEach((frameId) => {
-          frames[frameId].data = undefined;
+          frames[frameId].assetId = undefined;
+          setFrame({ ...frames[frameId] });
         });
         delete currentAssets![assetId];
+        deleteAsset(assetId);
       });
 
       draft.selectedAssets = [];

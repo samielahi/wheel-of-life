@@ -5,7 +5,7 @@ export interface Asset {
   // A uuid for the uploaded image
   id: string;
   // Object URL for uploaded image
-  data: string;
+  data: Blob;
   isSelected?: boolean;
   assignedFrames?: number[];
   animationId?: string;
@@ -14,14 +14,14 @@ export interface Asset {
 export interface Frame {
   id: number;
   // This is either Object URL for an uploaded img or drawn img
-  data: Asset | undefined;
+  assetId?: string | undefined;
   animationId?: string;
 }
 
 export interface Animation {
   // A uuid
   id: string;
-  type: "image" | "drawn";
+  type?: "image" | "drawn";
   // User defined name, defaults to something
   name?: string;
   // All 16 frames
@@ -46,7 +46,8 @@ export interface AnimationAction {
     | "deleteAssets"
     | "selectAsset"
     | "deselectAsset"
-    | "deselectAll";
+    | "deselectAll"
+    | "rehydrate";
   targetFrame?: number;
   // For name change
   newName?: string;
@@ -56,6 +57,24 @@ export interface AnimationAction {
   // Uploads
   uploadedAsset?: Asset;
   uploadedAssets?: Asset[];
+  animationState?: Animation;
+}
+
+export interface WorkerAction {
+  type:
+    | "getFrame"
+    | "getAllFrames"
+    | "setFrame"
+    | "deleteFrame"
+    | "getAsset"
+    | "getAllAssets"
+    | "setAsset"
+    | "deleteAsset";
+  key?: string | (string | number)[];
+  frame?: Frame;
+  asset?: Asset;
+  name?: string;
+  animationId?: string;
 }
 
 export type AnimationDispatch = (action: AnimationAction) => void;
@@ -76,7 +95,7 @@ export type ToolbarDispatch = (action: ToolbarAction) => void;
 // For indexedDB
 
 export interface AnimationSchema extends DBSchema {
-  animation: {
+  animations: {
     key: string;
     // Name of animation
     value: { id: string; name: string };
