@@ -27,6 +27,7 @@ export default function AssetLibrary() {
                   id={asset.id}
                   data={asset.data}
                   isSelected={asset.isSelected}
+                  selectionId={asset.selectionId}
                 />
               ))}
             </>

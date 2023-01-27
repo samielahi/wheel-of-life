@@ -1,22 +1,28 @@
-import { useContext } from "react";
+import { useContext, useRef, useEffect, useMemo } from "react";
 import {
+  AnimationContext,
   AnimationDispatchContext,
   ToolbarContext,
 } from "../../../state/context";
 import { Asset, AnimationDispatch } from "../../../types";
 
 export default function Image(props: Asset) {
+  const animation = useContext(AnimationContext);
   const dispatchAnimationAction = useContext<AnimationDispatch>(
     AnimationDispatchContext
   );
   const toolbar = useContext(ToolbarContext);
+  const numSelectedAssets = animation.selectedAssets?.length!;
+  const selectionId = useRef<number>();
 
   function handleSelection() {
     if (toolbar.status === "selecting") {
       if (!props.isSelected) {
+        selectionId.current = numSelectedAssets + 1;
         dispatchAnimationAction({
           type: "selectAsset",
           assetId: props.id,
+          selectionId: selectionId.current,
         });
       } else {
         dispatchAnimationAction({
@@ -31,7 +37,13 @@ export default function Image(props: Asset) {
 
   return (
     <>
-      <div onClick={handleSelection}>
+      <div onClick={handleSelection} className="relative">
+        <span
+          style={!props.isSelected ? { display: "none" } : {}}
+          className="bg-violet text-white rounded-full text-center w-6 h-6 absolute z-10 left-[90%] bottom-[92%]"
+        >
+          {props.selectionId}
+        </span>
         <img
           src={imgObjectURL}
           alt="a cute kitten"

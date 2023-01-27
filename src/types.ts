@@ -9,6 +9,7 @@ export interface Asset {
   isSelected?: boolean;
   assignedFrames?: number[];
   animationId?: string;
+  selectionId?: number;
 }
 
 export interface Frame {
@@ -56,6 +57,7 @@ export interface AnimationAction {
   // Uploads
   uploadedAsset?: Asset;
   uploadedAssets?: Asset[];
+  selectionId?: number;
   animationState?: Animation;
 }
 

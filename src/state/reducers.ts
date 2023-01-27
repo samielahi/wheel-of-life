@@ -49,7 +49,7 @@ export function AnimationReducer(draft: Animation, action: AnimationAction) {
       // Update the asset with the frame's id
       currentAssets[assetId].assignedFrames?.push(action.targetFrame!);
       // Set the new frame's data in idb we need to copy
-      // Note we'll need copy the object because we can't store Proxy objects in idb
+      // Note we'll need copy the object because draft is a Proxy object
       setFrame({ ...targetFrame! });
       break;
     }
@@ -122,15 +122,27 @@ export function AnimationReducer(draft: Animation, action: AnimationAction) {
       console.log("Asset selected");
       draft.selectedAssets?.push(action.assetId!);
       currentAssets[action.assetId!].isSelected = true;
+      currentAssets[action.assetId!].selectionId = action.selectionId;
       break;
     }
 
     case "deselectAsset": {
       console.log("Asset Deselected");
-      draft.selectedAssets = draft.selectedAssets?.filter(
+      const selectedAssets = draft.selectedAssets!;
+      const numSelectedAssets = selectedAssets.length;
+      const assetId = action.assetId!;
+
+      draft.selectedAssets = selectedAssets?.filter(
         (assetId) => assetId !== action.assetId
       );
-      currentAssets[action.assetId!].isSelected = false;
+      currentAssets[assetId].isSelected = false;
+
+      const deselectedId = currentAssets[assetId].selectionId!;
+      selectedAssets!.forEach((assetId) => {
+        if (deselectedId < currentAssets[assetId].selectionId!) {
+          currentAssets[assetId].selectionId!--;
+        }
+      });
       break;
     }
 
