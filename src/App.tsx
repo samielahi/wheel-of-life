@@ -2,6 +2,7 @@ import { Frame } from "./types";
 import Button from "./core/Button";
 import { Suspense } from "react";
 import { setFrame, setAnimation } from "./state/idb";
+import Modal from "./core/Modal";
 import AnimationEditor from "./components/AnimationEditor/AnimationEditor";
 
 export default function App() {
@@ -28,6 +29,11 @@ export default function App() {
 
   return (
     <>
+      {/* <Modal>
+        <div className="flex justify-center p-4">
+          <h3>Export</h3>
+        </div>
+      </Modal> */}
       <AnimationEditor animationId="test" name="test" />
       {/* <Button onClick={setupAnimation}>make</Button> */}
     </>

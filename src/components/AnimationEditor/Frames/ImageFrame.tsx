@@ -8,9 +8,7 @@ import {
 
 export default function ImageFrame(props: Frame) {
   const animation = useContext(AnimationContext);
-  const dispatchAnimationAction = useContext<AnimationDispatch>(
-    AnimationDispatchContext
-  );
+  const dispatchAnimationAction = useContext<AnimationDispatch>(AnimationDispatchContext);
   const toolbar = useContext(ToolbarContext);
   const assets = animation.assets!;
 
@@ -53,9 +51,7 @@ export default function ImageFrame(props: Frame) {
       <div
         onClick={assignImage}
         style={
-          toolbar.status === "selecting"
-            ? { cursor: "copy", pointerEvents: "auto" }
-            : {}
+          toolbar.status === "selecting" ? { cursor: "copy", pointerEvents: "auto" } : {}
         }
         className="group -mt-[3px] -mb-[3px] -ml-[3px] w-[300px] h-[400px] relative border-[3px] border-smoke"
       >

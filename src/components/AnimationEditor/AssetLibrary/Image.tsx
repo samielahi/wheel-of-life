@@ -8,9 +8,7 @@ import { Asset, AnimationDispatch } from "../../../types";
 
 export default function Image(props: Asset) {
   const animation = useContext(AnimationContext);
-  const dispatchAnimationAction = useContext<AnimationDispatch>(
-    AnimationDispatchContext
-  );
+  const dispatchAnimationAction = useContext<AnimationDispatch>(AnimationDispatchContext);
   const toolbar = useContext(ToolbarContext);
   const numSelectedAssets = animation.selectedAssets?.length!;
   const selectionId = useRef<number>();
@@ -37,13 +35,10 @@ export default function Image(props: Asset) {
 
   return (
     <>
-      <div
-        onClick={handleSelection}
-        className="relative ease-in-out duration-300"
-      >
+      <div onClick={handleSelection} className="relative ease-in-out duration-300">
         <span
           style={!props.isSelected ? { display: "none" } : {}}
-          className="ease-in-out duration-100 bg-violet text-white rounded-full text-center w-6 h-6 absolute z-10 left-[90%] bottom-[92%]"
+          className="ease-in-out duration-100 bg-violet text-white rounded-full text-center w-6 h-6 absolute z-10 left-[90%] bottom-[94%]"
         >
           {props.selectionId}
         </span>
@@ -51,7 +46,7 @@ export default function Image(props: Asset) {
           src={imgObjectURL}
           alt="a cute kitten"
           style={props.isSelected ? { borderColor: "#9c8cdf" } : {}}
-          className="opacity-80 w-[150px] h-[200px] border-4 border-smoke rounded cursor-pointer"
+          className="w-[195px] h-[260px] border-4 border-smoke  cursor-pointer"
         />
       </div>
     </>
