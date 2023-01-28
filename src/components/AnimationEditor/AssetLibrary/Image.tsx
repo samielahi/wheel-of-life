@@ -1,4 +1,4 @@
-import { useContext, useRef, useEffect, useMemo } from "react";
+import { useContext, useRef } from "react";
 import {
   AnimationContext,
   AnimationDispatchContext,
@@ -37,10 +37,13 @@ export default function Image(props: Asset) {
 
   return (
     <>
-      <div onClick={handleSelection} className="relative">
+      <div
+        onClick={handleSelection}
+        className="relative ease-in-out duration-300"
+      >
         <span
           style={!props.isSelected ? { display: "none" } : {}}
-          className="bg-violet text-white rounded-full text-center w-6 h-6 absolute z-10 left-[90%] bottom-[92%]"
+          className="ease-in-out duration-100 bg-violet text-white rounded-full text-center w-6 h-6 absolute z-10 left-[90%] bottom-[92%]"
         >
           {props.selectionId}
         </span>

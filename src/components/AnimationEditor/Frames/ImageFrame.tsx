@@ -75,7 +75,7 @@ export default function ImageFrame(props: Frame) {
           <>
             <span
               onClick={deassignImage}
-              className="invisible group-hover:visible cursor-pointer absolute text-violet z-10 rounded p-2  bg-smoke h-fit left-[80%] bottom-[5%]"
+              className="ease-in-out duration-200 invisible group-hover:visible cursor-pointer absolute text-violet z-10 rounded p-2  bg-smoke h-fit left-[80%] bottom-[5%]"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

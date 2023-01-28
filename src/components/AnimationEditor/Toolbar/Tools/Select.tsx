@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import {
+  AnimationContext,
   AnimationDispatchContext,
   ToolbarDispatchContext,
 } from "../../../../state/context";
@@ -23,6 +24,12 @@ export default function Select(props: {
       dispatchToolbarAction({
         type: "startSelection",
       });
+
+      // dispatchToolbarAction({
+      //   type: "message",
+      //   message:
+      //     "To assign an image to a frame, select from below and click your frame of choice.",
+      // });
     } else {
       dispatchToolbarAction({
         type: "endSelection",
@@ -31,6 +38,11 @@ export default function Select(props: {
       dispatchAnimationAction({
         type: "deselectAll",
       });
+
+      // dispatchToolbarAction({
+      //   type: "message",
+      //   message: "",
+      // });
     }
   }
 

@@ -1,11 +1,14 @@
 import { useContext } from "react";
 import { v4 as uuid } from "uuid";
 import { FileWithHandle, fileOpen } from "browser-fs-access";
-import { AnimationDispatchContext } from "../../../../state/context";
+import {
+  AnimationContext,
+  AnimationDispatchContext,
+} from "../../../../state/context";
 import { Asset } from "../../../../types";
 import IconButton from "../../../../core/IconButton";
 
-function createAsset(file: FileWithHandle): Asset {
+function createAsset(animationName: string, file: FileWithHandle): Asset {
   const assetId = uuid();
   const asset: Asset = {
     animationId: "test",
@@ -19,6 +22,8 @@ function createAsset(file: FileWithHandle): Asset {
 }
 
 export default function AssetUpload(props: { isIdle: boolean }) {
+  const animation = useContext(AnimationContext);
+  const animationName = animation.name!;
   const dispatchAnimationAction = useContext(AnimationDispatchContext);
 
   async function uploadAssets() {
@@ -30,7 +35,7 @@ export default function AssetUpload(props: { isIdle: boolean }) {
 
     // Create and store assets
     images.forEach((image) => {
-      const asset = createAsset(image);
+      const asset = createAsset(animationName, image);
       dispatchAnimationAction({
         type: "uploadAsset",
         uploadedAsset: asset,
