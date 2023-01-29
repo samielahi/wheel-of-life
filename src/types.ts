@@ -19,7 +19,7 @@ export interface Frame {
   animationId?: string;
 }
 
-export interface Animation {
+export interface AnimationState {
   // A uuid
   id: string;
   // User defined name, defaults to id
@@ -35,59 +35,28 @@ export interface Animation {
   lastBuildTime?: Date;
 }
 
-// We'll just use one interface for all the actions for simplicity
-export interface AnimationAction {
-  type:
-    | "nameChange"
-    | "assignImage"
-    | "deassignImage"
-    | "uploadAsset"
-    | "deleteAsset"
-    | "deleteAssets"
-    | "selectAsset"
-    | "deselectAsset"
-    | "deselectAll"
-    | "rehydrate";
-  targetFrame?: number;
-  // For name change
-  newName?: string;
-  // For frame image add/delete/ AND asset add/delete/select/deselect
-  assetId?: string;
-  assetIds?: string[];
-  // Uploads
-  uploadedAsset?: Asset;
-  uploadedAssets?: Asset[];
-  selectionId?: number;
-  animationState?: Animation;
-}
+export type AnimationAction =
+  | { type: "NAME_CHANGE"; name: string }
+  | { type: "UPLOAD_ASSET"; asset: Asset }
+  | { type: "DELETE_ASSETS"; assetIds: string[] }
+  | { type: "ASSIGN_IMAGE"; assetId: string; targetFrame: number }
+  | { type: "DEASSIGN_IMAGE"; assetId: string; targetFrame: number }
+  | { type: "SELECT_ASSET"; assetId: string; selectionId: number }
+  | { type: "DESELECT_ASSET"; assetId: string }
+  | { type: "DESELECT_ALL" }
+  | { type: "REHYDRATE"; animation: AnimationState };
 
-export interface WorkerAction {
-  type:
-    | "getFrame"
-    | "getAllFrames"
-    | "setFrame"
-    | "deleteFrame"
-    | "getAsset"
-    | "getAllAssets"
-    | "setAsset"
-    | "deleteAsset";
-  key?: string | (string | number)[];
-  frame?: Frame;
-  asset?: Asset;
-  name?: string;
-  animationId?: string;
-}
+type ToolbarStatus = "idle" | "selecting" | "deleting" | "exporting" | "getting-help";
+
+export type ToolbarAction =
+  | { type: "STATUS_CHANGE"; newStatus: ToolbarStatus }
+  | { type: "MESSAGE"; message: string };
 
 export type AnimationDispatch = (action: AnimationAction) => void;
 
-export interface ToolbarType {
+export interface ToolbarState {
   currentTool?: "base";
-  status?: "idle" | "selecting";
-  message?: string;
-}
-
-export interface ToolbarAction {
-  type: "startSelection" | "endSelection" | "message";
+  status?: "idle" | "selecting" | "deleting" | "exporting" | "getting-help";
   message?: string;
 }
 
@@ -95,7 +64,7 @@ export type ToolbarDispatch = (action: ToolbarAction) => void;
 
 // For indexedDB
 
-export interface DbAnimation extends Animation {
+export interface DbAnimation extends AnimationState {
   build?: Blob | undefined;
 }
 

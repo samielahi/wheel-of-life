@@ -16,9 +16,9 @@ export default function AssetLibrary() {
             ? { backgroundColor: "#FCFBF4" }
             : {}
         }
-        className="w-full h-full flex overflow-auto wrapper justify-center flex-col"
+        className="w-full h-full flex overflow-auto pl-8 pr-8 justify-center flex-col"
       >
-        <div className="w-max flex gap-8">
+        <div className="w-full flex gap-8">
           {hasAssets ? (
             <>
               {assets.map((asset, i) => (
@@ -33,7 +33,11 @@ export default function AssetLibrary() {
             </>
           ) : (
             <>
-              <div>Upload some images to get started.</div>
+              <div className="w-full flex justify-center">
+                <div className="p-10 border-4 border-smoke rounded border-dashed">
+                  <span className="text-gray italic">Upload some images to get started.</span>
+                </div>
+              </div>
             </>
           )}
         </div>

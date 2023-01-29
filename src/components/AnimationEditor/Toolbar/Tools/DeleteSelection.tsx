@@ -12,12 +12,8 @@ export default function DeleteSelection(props: {
   hasSelectedAssets: boolean;
 }) {
   const animation = useContext(AnimationContext);
-  const dispatchAnimationAction = useContext<AnimationDispatch>(
-    AnimationDispatchContext
-  );
-  const dispatchToolbarAction = useContext<ToolbarDispatch>(
-    ToolbarDispatchContext
-  );
+  const dispatchAnimationAction = useContext<AnimationDispatch>(AnimationDispatchContext);
+  const dispatchToolbarAction = useContext<ToolbarDispatch>(ToolbarDispatchContext);
 
   function deleteAssets() {
     if (props.isSelecting) {

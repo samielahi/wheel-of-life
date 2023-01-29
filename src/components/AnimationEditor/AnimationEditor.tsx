@@ -7,19 +7,16 @@ import {
   ToolbarContext,
   ToolbarDispatchContext,
 } from "../../state/context";
-import { Animation, ToolbarType, Asset, Frame } from "../../types";
+import { AnimationState, ToolbarState, Asset, Frame } from "../../types";
 import Header from "../../core/Header";
 import Toolbar from "./Toolbar/Toolbar";
 import AssetLibrary from "./AssetLibrary/AssetLibrary";
 import ImageFrameList from "./Frames/ImageFrameList";
 import { getAllAssets, getAllFrames } from "../../state/idb";
 
-export default function AnimationEditor(props: {
-  animationId: string;
-  name: string;
-}) {
-  const toolbarState: ToolbarType = { currentTool: "base", status: "idle" };
-  let initialAnimationState: Animation = {
+export default function AnimationEditor(props: { animationId: string; name: string }) {
+  const toolbarState: ToolbarState = { currentTool: "base", status: "idle" };
+  let initialAnimationState: AnimationState = {
     id: props.animationId,
     name: props.name,
     assets: {},
@@ -31,10 +28,7 @@ export default function AnimationEditor(props: {
     AnimationReducer,
     initialAnimationState
   );
-  const [toolbar, dispatchToolbarAction] = useImmerReducer(
-    ToolbarReducer,
-    toolbarState
-  );
+  const [toolbar, dispatchToolbarAction] = useImmerReducer(ToolbarReducer, toolbarState);
 
   useEffect(() => {
     async function loadAnimationFromIdb() {

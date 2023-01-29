@@ -7,7 +7,7 @@ export default function ImageFrameList() {
   return (
     <>
       <div className="overflow-x-auto h-full overflow-y-hidden">
-        <div className="w-max flex">
+        <div className="w-max flex h-full">
           {animation.frames?.map((frame, i) => (
             <ImageFrame key={i} id={frame.id} assetId={frame.assetId} />
           ))}
