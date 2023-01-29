@@ -12,6 +12,7 @@ import Header from "../../core/Header";
 import Toolbar from "./Toolbar";
 import AssetList from "./AssetList";
 import FrameList from "./FrameList";
+import DeleteDialog from "./Tools/Delete/DeleteDialog";
 import { getAllAssets, getAllFrames } from "../../state/idb";
 
 export default function AnimationEditor(props: { animationId: string; name: string }) {
@@ -63,6 +64,7 @@ export default function AnimationEditor(props: { animationId: string; name: stri
               <FrameList />
               <Toolbar />
               <AssetList />
+              <DeleteDialog />
             </AnimationDispatchContext.Provider>
           </AnimationContext.Provider>
         </ToolbarDispatchContext.Provider>

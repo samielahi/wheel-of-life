@@ -30,7 +30,7 @@ export default function Toolbar() {
 
         <StatusMessage isSelecting={isSelecting} message={statusMessage!} />
 
-        <div className="flex gap-2 md:w-1/3 md:justify-end">
+        {/* <div className="flex gap-2 md:w-1/3 md:justify-end">
           <IconButton disabled={!isIdle}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -65,7 +65,7 @@ export default function Toolbar() {
               <line x1="12" y1="17" x2="12.01" y2="17"></line>
             </svg>
           </IconButton>
-        </div>
+        </div> */}
       </div>
     </>
   );

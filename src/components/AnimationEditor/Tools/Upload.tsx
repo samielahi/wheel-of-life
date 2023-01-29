@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { v4 as uuid } from "uuid";
 import { FileWithHandle, fileOpen } from "browser-fs-access";
 import { AnimationContext, AnimationDispatchContext } from "../../../state/context";
-import { Asset } from "../../../types";
+import { Asset, AnimationDispatch } from "../../../types";
 import IconButton from "../../../core/IconButton";
 
 function createAsset(animationName: string, file: FileWithHandle): Asset {
@@ -21,7 +21,7 @@ function createAsset(animationName: string, file: FileWithHandle): Asset {
 export default function AssetUpload(props: { isIdle: boolean }) {
   const animation = useContext(AnimationContext);
   const animationName = animation.name!;
-  const dispatchAnimationAction = useContext(AnimationDispatchContext);
+  const dispatchAnimationAction = useContext<AnimationDispatch>(AnimationDispatchContext);
 
   async function uploadAssets() {
     // Pick the file

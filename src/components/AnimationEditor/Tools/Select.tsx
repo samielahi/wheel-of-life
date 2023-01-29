@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import {
   AnimationContext,
+  ToolbarContext,
   AnimationDispatchContext,
   ToolbarDispatchContext,
 } from "../../../state/context";
@@ -36,7 +37,7 @@ export default function Select(props: {
   return (
     <>
       <Button onClick={toggleSelection} disabled={props.hasAssets ? false : true}>
-        {props.isSelecting && props.hasAssets ? (
+        {!props.isIdle && props.hasAssets ? (
           <span className="text-red">cancel</span>
         ) : (
           <span>select images</span>

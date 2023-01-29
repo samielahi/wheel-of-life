@@ -1,10 +1,6 @@
 import { useContext } from "react";
-import {
-  AnimationContext,
-  AnimationDispatchContext,
-  ToolbarDispatchContext,
-} from "../../../../state/context";
-import { AnimationDispatch, ToolbarDispatch } from "../../../../types";
+import { AnimationContext, ToolbarDispatchContext } from "../../../../state/context";
+import { ToolbarDispatch } from "../../../../types";
 import IconButton from "../../../../core/IconButton";
 
 export default function Delete(props: {
@@ -12,13 +8,13 @@ export default function Delete(props: {
   hasSelectedAssets: boolean;
 }) {
   const animation = useContext(AnimationContext);
-  const dispatchAnimationAction = useContext<AnimationDispatch>(AnimationDispatchContext);
   const dispatchToolbarAction = useContext<ToolbarDispatch>(ToolbarDispatchContext);
 
-  function deleteAssets() {
+  function startDeletion() {
     if (props.isSelecting) {
-      dispatchAnimationAction({
-        type: "DELETE_ASSETS",
+      dispatchToolbarAction({
+        type: "STATUS_CHANGE",
+        newStatus: "deleting",
       });
     }
 
@@ -35,7 +31,7 @@ export default function Delete(props: {
 
   return (
     <>
-      <IconButton onClick={deleteAssets} disabled={!props.hasSelectedAssets}>
+      <IconButton onClick={startDeletion} disabled={!props.hasSelectedAssets}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"

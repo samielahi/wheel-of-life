@@ -131,7 +131,7 @@ export function AnimationReducer(draft: AnimationState, action: AnimationAction)
 export function ToolbarReducer(draft: ToolbarState, action: ToolbarAction) {
   switch (action.type) {
     case "STATUS_CHANGE": {
-      console.log("Selection Started");
+      console.log(`Status Changed to : ${action.newStatus}`);
       draft.status = action.newStatus;
       break;
     }

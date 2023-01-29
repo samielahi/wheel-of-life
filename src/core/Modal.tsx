@@ -1,5 +1,4 @@
 export interface ModalProps {
-  isOpen?: boolean;
   closeModal?: () => void;
   children?: any;
 }
@@ -9,10 +8,9 @@ export default function Modal(props: ModalProps) {
     <>
       <div
         onClick={props.closeModal}
-        style={props.isOpen ? {} : { display: "none" }}
         className=" bg-smoke/50 w-screen h-screen z-20 bg-transparent fixed"
       >
-        <div className="drop-shadow-lg absolute w-[40rem] h-[400px] bg-active rounded left-[calc(50%_-_20rem)] top-[calc(50%_-_200px)]">
+        <div className="drop-shadow-lg absolute w-[30rem] h-[300px] bg-active rounded left-[calc(50%_-_15rem)] top-[calc(50%_-_150px)]">
           {props.children}
         </div>
       </div>

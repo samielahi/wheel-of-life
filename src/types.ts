@@ -56,7 +56,7 @@ type ToolbarStatus = "idle" | "selecting" | "deleting" | "exporting" | "getting-
 
 export interface ToolbarState {
   currentTool?: "base";
-  status?: "idle" | "selecting" | "deleting" | "exporting" | "getting-help";
+  status?: ToolbarStatus;
   message?: string;
 }
 export type ToolbarAction =

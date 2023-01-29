@@ -1,37 +1,50 @@
 import { useContext } from "react";
-import { ToolbarContext, ToolbarDispatchContext } from "../../../../state/context";
+import {
+  AnimationDispatchContext,
+  ToolbarContext,
+  ToolbarDispatchContext,
+} from "../../../../state/context";
+import { AnimationDispatch, ToolbarDispatch } from "../../../../types";
 import Modal from "../../../../core/Modal";
 import Button from "../../../../core/Button";
 
 export default function DeleteDialog() {
   const toolbar = useContext(ToolbarContext);
-  const dispatchToolbarAction = useContext(ToolbarDispatchContext);
+  const dispatchToolbarAction = useContext<ToolbarDispatch>(ToolbarDispatchContext);
+  const dispatchAnimationAction = useContext<AnimationDispatch>(AnimationDispatchContext);
+  const isDeleting = toolbar.status === "deleting";
 
   function closeDeleteDialog() {
-    if (toolbar.status === "deleting") {
+    console.log(toolbar.status!);
+    if (isDeleting) {
       dispatchToolbarAction({
-        type: "changeStatus",
-        status: "selecting",
+        type: "STATUS_CHANGE",
+        newStatus: "selecting",
       });
     }
   }
 
   function deleteSelectedAssets() {
-    
-
+    if (isDeleting) {
+      dispatchAnimationAction({
+        type: "DELETE_ASSETS",
+      });
+    }
   }
 
   return (
     <>
-      <Modal>
-        <div className="wrapper flex flex-col justify-center gap-8">
-          <span>Delete selected images?</span>
-          <div>
-            <Button>yes</Button>
-            <Button onClick={closeDeleteDialog}>cancel</Button>
+      {isDeleting ? (
+        <Modal closeModal={closeDeleteDialog}>
+          <div className="wrapper flex h-full flex-col items-center justify-center gap-8">
+            <h3>Delete selected images?</h3>
+            <div className="flex gap-4">
+              <Button onClick={deleteSelectedAssets}>yes</Button>
+              <Button onClick={closeDeleteDialog}>cancel</Button>
+            </div>
           </div>
-        </div>
-      </Modal>
+        </Modal>
+      ) : null}
     </>
   );
 }
