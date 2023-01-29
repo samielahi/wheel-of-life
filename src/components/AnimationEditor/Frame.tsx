@@ -1,10 +1,10 @@
-import { Frame, AnimationDispatch } from "../../../types";
+import { Frame, AnimationDispatch } from "../../types";
 import { useContext } from "react";
 import {
   AnimationContext,
   AnimationDispatchContext,
   ToolbarContext,
-} from "../../../state/context";
+} from "../../state/context";
 
 export default function ImageFrame(props: Frame) {
   const animation = useContext(AnimationContext);
@@ -26,13 +26,13 @@ export default function ImageFrame(props: Frame) {
 
     if (toolbar.status === "selecting" && currentAssetId) {
       dispatchAnimationAction({
-        type: "assignImage",
+        type: "ASSIGN_IMAGE",
         targetFrame: props.id,
         assetId: currentAssetId,
       });
 
       dispatchAnimationAction({
-        type: "deselectAsset",
+        type: "DESELECT_ASSET",
         assetId: currentAssetId,
       });
     }
@@ -40,9 +40,9 @@ export default function ImageFrame(props: Frame) {
 
   function deassignImage() {
     dispatchAnimationAction({
-      type: "deassignImage",
+      type: "DEASSIGN_IMAGE",
       targetFrame: props.id,
-      assetId: props.assetId,
+      assetId: props.assetId!,
     });
   }
 
@@ -53,15 +53,15 @@ export default function ImageFrame(props: Frame) {
         style={
           toolbar.status === "selecting" ? { cursor: "copy", pointerEvents: "auto" } : {}
         }
-        className="group -mt-[3px] -mb-[3px] -ml-[3px] w-[300px] h-[400px] relative border-[3px] border-smoke"
+        className="group relative -mt-[3px] -mb-[3px] -ml-[3px] h-[400px] w-[300px] border-[3px] border-smoke"
       >
-        <span className="absolute bg-smoke p-2 rounded h-fit left-[42%] top-4 z-10">
+        <span className="absolute left-[42%] top-4 z-10 h-fit rounded bg-smoke p-2">
           {props.id + 1 < 10 ? `00${props.id}` : `0${props.id}`}
         </span>
 
         {assetExists ? (
           <img
-            className="w-full h-full"
+            className="h-full w-full"
             src={assignedImageURL}
             alt={`Frame ${props.id}'s image`}
           />
@@ -71,7 +71,7 @@ export default function ImageFrame(props: Frame) {
           <>
             <span
               onClick={deassignImage}
-              className="ease-in-out duration-200 invisible group-hover:visible cursor-pointer absolute text-violet z-10 rounded p-2  bg-smoke h-fit left-[80%] bottom-[5%]"
+              className="invisible absolute left-[80%] bottom-[5%] z-10 h-fit cursor-pointer rounded bg-smoke p-2  text-violet duration-200 ease-in-out group-hover:visible"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

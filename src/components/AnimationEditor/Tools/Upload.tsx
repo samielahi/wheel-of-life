@@ -1,12 +1,9 @@
 import { useContext } from "react";
 import { v4 as uuid } from "uuid";
 import { FileWithHandle, fileOpen } from "browser-fs-access";
-import {
-  AnimationContext,
-  AnimationDispatchContext,
-} from "../../../../state/context";
-import { Asset } from "../../../../types";
-import IconButton from "../../../../core/IconButton";
+import { AnimationContext, AnimationDispatchContext } from "../../../state/context";
+import { Asset } from "../../../types";
+import IconButton from "../../../core/IconButton";
 
 function createAsset(animationName: string, file: FileWithHandle): Asset {
   const assetId = uuid();
@@ -37,8 +34,8 @@ export default function AssetUpload(props: { isIdle: boolean }) {
     images.forEach((image) => {
       const asset = createAsset(animationName, image);
       dispatchAnimationAction({
-        type: "uploadAsset",
-        uploadedAsset: asset,
+        type: "UPLOAD_ASSET",
+        asset: asset,
       });
     });
   }

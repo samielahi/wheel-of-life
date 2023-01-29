@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import { AnimationContext, ToolbarContext } from "../../../state/context";
-import IconButton from "../../../core/IconButton";
-import AssetUpload from "./Tools/AssetUpload";
+import { AnimationContext, ToolbarContext } from "../../state/context";
+import IconButton from "../../core/IconButton";
+import Upload from "./Tools/Upload";
 import Select from "./Tools/Select";
-import DeleteSelection from "./Tools/DeleteSelection";
+import Delete from "./Tools/Delete/Delete";
 import StatusMessage from "./StatusMessage";
 
 export default function Toolbar() {
@@ -21,14 +21,11 @@ export default function Toolbar() {
     <>
       <div className="wrapper flex items-center justify-center gap-2 border-b-[3px] border-smoke md:justify-between md:gap-0">
         <div className="flex gap-2 md:w-1/3">
-          <AssetUpload isIdle={isIdle} />
+          <Upload isIdle={isIdle} />
 
           <Select isSelecting={isSelecting} hasAssets={hasAssets} isIdle={isIdle} />
 
-          <DeleteSelection
-            isSelecting={isSelecting}
-            hasSelectedAssets={hasSelectedAssets}
-          />
+          <Delete isSelecting={isSelecting} hasSelectedAssets={hasSelectedAssets} />
         </div>
 
         <StatusMessage isSelecting={isSelecting} message={statusMessage!} />

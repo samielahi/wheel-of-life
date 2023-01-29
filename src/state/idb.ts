@@ -1,5 +1,5 @@
 import { openDB } from "idb";
-import { AnimationSchema, Asset, Frame, DbAnimation } from "../types";
+import { AnimationSchema, Asset, Frame, AnimationStateDB } from "../types";
 
 const animationDB = openDB<AnimationSchema>("animations", 1, {
   upgrade(db) {
@@ -22,7 +22,7 @@ export async function getAllAnimations() {
   return (await animationDB).getAll("animations");
 }
 
-export async function setAnimation(animation: DbAnimation) {
+export async function setAnimation(animation: AnimationStateDB) {
   return (await animationDB).put("animations", animation);
 }
 
@@ -36,11 +36,7 @@ export async function setFrame(val: Frame) {
 }
 
 export async function getAllFrames(animationId: string) {
-  return (await animationDB).getAllFromIndex(
-    "frames",
-    "by-animationId",
-    animationId
-  );
+  return (await animationDB).getAllFromIndex("frames", "by-animationId", animationId);
 }
 
 export async function deleteFrames(animationId: string) {
@@ -65,11 +61,7 @@ export async function setAsset(val: Asset) {
 }
 
 export async function getAllAssets(animationId: string) {
-  return (await animationDB).getAllFromIndex(
-    "assets",
-    "by-animationId",
-    animationId
-  );
+  return (await animationDB).getAllFromIndex("assets", "by-animationId", animationId);
 }
 
 export async function deleteAsset(key: string | (string | number)[]) {

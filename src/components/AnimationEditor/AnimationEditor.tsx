@@ -9,9 +9,9 @@ import {
 } from "../../state/context";
 import { AnimationState, ToolbarState, Asset, Frame } from "../../types";
 import Header from "../../core/Header";
-import Toolbar from "./Toolbar/Toolbar";
-import AssetLibrary from "./AssetLibrary/AssetLibrary";
-import ImageFrameList from "./Frames/ImageFrameList";
+import Toolbar from "./Toolbar";
+import AssetList from "./AssetList";
+import FrameList from "./FrameList";
 import { getAllAssets, getAllFrames } from "../../state/idb";
 
 export default function AnimationEditor(props: { animationId: string; name: string }) {
@@ -45,8 +45,8 @@ export default function AnimationEditor(props: { animationId: string; name: stri
       loadedAnimationState.frames = frames;
 
       dispatchAnimationAction({
-        type: "rehydrate",
-        animationState: loadedAnimationState,
+        type: "REHYDRATE",
+        animation: loadedAnimationState,
       });
     }
 
@@ -60,9 +60,9 @@ export default function AnimationEditor(props: { animationId: string; name: stri
           <AnimationContext.Provider value={animation}>
             <AnimationDispatchContext.Provider value={dispatchAnimationAction}>
               <Header />
-              <ImageFrameList />
+              <FrameList />
               <Toolbar />
-              <AssetLibrary />
+              <AssetList />
             </AnimationDispatchContext.Provider>
           </AnimationContext.Provider>
         </ToolbarDispatchContext.Provider>

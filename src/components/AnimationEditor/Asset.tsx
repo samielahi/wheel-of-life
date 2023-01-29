@@ -3,10 +3,11 @@ import {
   AnimationContext,
   AnimationDispatchContext,
   ToolbarContext,
-} from "../../../state/context";
-import { Asset, AnimationDispatch } from "../../../types";
+} from "../../state/context";
+import { Asset as AssetType } from "../../types";
+import { AnimationDispatch } from "../../types";
 
-export default function Image(props: Asset) {
+export default function Asset(props: AssetType) {
   const animation = useContext(AnimationContext);
   const dispatchAnimationAction = useContext<AnimationDispatch>(AnimationDispatchContext);
   const toolbar = useContext(ToolbarContext);
@@ -18,13 +19,13 @@ export default function Image(props: Asset) {
       if (!props.isSelected) {
         selectionId.current = numSelectedAssets + 1;
         dispatchAnimationAction({
-          type: "selectAsset",
+          type: "SELECT_ASSET",
           assetId: props.id,
           selectionId: selectionId.current,
         });
       } else {
         dispatchAnimationAction({
-          type: "deselectAsset",
+          type: "DESELECT_ASSET",
           assetId: props.id,
         });
       }
@@ -35,10 +36,10 @@ export default function Image(props: Asset) {
 
   return (
     <>
-      <div onClick={handleSelection} className="relative ease-in-out duration-300">
+      <div onClick={handleSelection} className="relative duration-300 ease-in-out">
         <span
           style={!props.isSelected ? { display: "none" } : {}}
-          className="ease-in-out duration-100 bg-violet text-white rounded-full text-center w-6 h-6 absolute z-10 left-[90%] bottom-[94%]"
+          className="absolute left-[90%] bottom-[94%] z-10 h-6 w-6 rounded-full bg-violet text-center text-white duration-100 ease-in-out"
         >
           {props.selectionId}
         </span>
@@ -46,7 +47,7 @@ export default function Image(props: Asset) {
           src={imgObjectURL}
           alt="a cute kitten"
           style={props.isSelected ? { borderColor: "#9c8cdf" } : {}}
-          className="opacity-80 w-[195px] h-[260px] border-4 border-smoke  cursor-pointer"
+          className="h-[260px] w-[195px] cursor-pointer border-4 border-smoke  opacity-80"
         />
       </div>
     </>

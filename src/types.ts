@@ -19,6 +19,8 @@ export interface Frame {
   animationId?: string;
 }
 
+// Animation
+
 export interface AnimationState {
   // A uuid
   id: string;
@@ -38,7 +40,7 @@ export interface AnimationState {
 export type AnimationAction =
   | { type: "NAME_CHANGE"; name: string }
   | { type: "UPLOAD_ASSET"; asset: Asset }
-  | { type: "DELETE_ASSETS"; assetIds: string[] }
+  | { type: "DELETE_ASSETS" }
   | { type: "ASSIGN_IMAGE"; assetId: string; targetFrame: number }
   | { type: "DEASSIGN_IMAGE"; assetId: string; targetFrame: number }
   | { type: "SELECT_ASSET"; assetId: string; selectionId: number }
@@ -46,25 +48,25 @@ export type AnimationAction =
   | { type: "DESELECT_ALL" }
   | { type: "REHYDRATE"; animation: AnimationState };
 
-type ToolbarStatus = "idle" | "selecting" | "deleting" | "exporting" | "getting-help";
-
-export type ToolbarAction =
-  | { type: "STATUS_CHANGE"; newStatus: ToolbarStatus }
-  | { type: "MESSAGE"; message: string };
-
 export type AnimationDispatch = (action: AnimationAction) => void;
+
+// Toolbar
+
+type ToolbarStatus = "idle" | "selecting" | "deleting" | "exporting" | "getting-help";
 
 export interface ToolbarState {
   currentTool?: "base";
   status?: "idle" | "selecting" | "deleting" | "exporting" | "getting-help";
   message?: string;
 }
+export type ToolbarAction =
+  | { type: "STATUS_CHANGE"; newStatus: ToolbarStatus }
+  | { type: "MESSAGE"; message: string };
 
 export type ToolbarDispatch = (action: ToolbarAction) => void;
 
-// For indexedDB
-
-export interface DbAnimation extends AnimationState {
+// IDB Schema
+export interface AnimationStateDB extends AnimationState {
   build?: Blob | undefined;
 }
 
@@ -72,7 +74,7 @@ export interface AnimationSchema extends DBSchema {
   animations: {
     key: string;
     // Name of animation
-    value: DbAnimation;
+    value: AnimationStateDB;
   };
 
   assets: {

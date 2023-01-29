@@ -1,8 +1,8 @@
-import Image from "./Image";
+import Asset from "./Asset";
 import { useContext } from "react";
-import { AnimationContext, ToolbarContext } from "../../../state/context";
+import { AnimationContext, ToolbarContext } from "../../state/context";
 
-export default function AssetLibrary() {
+export default function AssetList() {
   const animation = useContext(AnimationContext);
   const toolbar = useContext(ToolbarContext);
   const assets = Object.values(animation.assets!);
@@ -16,13 +16,13 @@ export default function AssetLibrary() {
             ? { backgroundColor: "#FCFBF4" }
             : {}
         }
-        className="w-full h-full flex overflow-auto pl-8 pr-8 justify-center flex-col"
+        className="flex h-full w-full flex-col justify-center overflow-auto pl-8 pr-8"
       >
-        <div className="w-full flex gap-8">
+        <div className="flex w-full gap-8">
           {hasAssets ? (
             <>
               {assets.map((asset, i) => (
-                <Image
+                <Asset
                   key={i}
                   id={asset.id}
                   data={asset.data}
@@ -33,9 +33,11 @@ export default function AssetLibrary() {
             </>
           ) : (
             <>
-              <div className="w-full flex justify-center">
-                <div className="p-10 border-4 border-smoke rounded border-dashed">
-                  <span className="text-gray italic">Upload some images to get started.</span>
+              <div className="flex w-full justify-center">
+                <div className="rounded border-4 border-dashed border-smoke p-10">
+                  <span className="italic text-gray">
+                    Upload some images to get started.
+                  </span>
                 </div>
               </div>
             </>

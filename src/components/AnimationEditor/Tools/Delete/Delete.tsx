@@ -7,7 +7,7 @@ import {
 import { AnimationDispatch, ToolbarDispatch } from "../../../../types";
 import IconButton from "../../../../core/IconButton";
 
-export default function DeleteSelection(props: {
+export default function Delete(props: {
   isSelecting: boolean;
   hasSelectedAssets: boolean;
 }) {
@@ -18,7 +18,7 @@ export default function DeleteSelection(props: {
   function deleteAssets() {
     if (props.isSelecting) {
       dispatchAnimationAction({
-        type: "deleteAssets",
+        type: "DELETE_ASSETS",
       });
     }
 
@@ -27,7 +27,8 @@ export default function DeleteSelection(props: {
 
     if (hasNoAssets) {
       dispatchToolbarAction({
-        type: "endSelection",
+        type: "STATUS_CHANGE",
+        newStatus: "idle",
       });
     }
   }
