@@ -21,7 +21,7 @@ export default function Toolbar() {
 
   return (
     <>
-      <div className="wrapper flex items-center justify-center gap-2 border-b-[3px] border-smoke md:justify-between md:gap-0">
+      <div className="wrapper flex items-center justify-center gap-2 border-b-[3px] border-t-[3px] border-smoke md:justify-between md:gap-0">
         <div className="flex gap-2 md:w-1/3">
           <Upload isIdle={isIdle} />
 

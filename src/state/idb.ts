@@ -28,7 +28,14 @@ export async function getAllAnimations() {
 
 export async function setAnimation(animation: AnimationStateDB) {
   const currentAnimation = await getAnimation(animation.id);
-  const newAnimation = Object.assign(animation, currentAnimation);
+  let newAnimation : AnimationStateDB;
+  
+  if (currentAnimation) {
+    newAnimation = Object.assign(animation, currentAnimation);
+  } else {
+    newAnimation = animation;
+  }
+
   return (await animationDB).put("animations", newAnimation);
 }
 

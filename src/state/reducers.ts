@@ -22,6 +22,14 @@ export function AnimationReducer(draft: AnimationState, action: AnimationAction)
       const newAnimationState = action.animation!;
       draft.assets = newAnimationState.assets;
       draft.frames = newAnimationState.frames;
+      // Check which frames are filled and update state
+      draft.frames?.forEach((frame) => {
+        const isAssigned = typeof frame.assetId! === "string";
+        if (isAssigned) {
+          draft.filledFrames?.add(frame.id);
+        }
+      });
+
       break;
     }
 

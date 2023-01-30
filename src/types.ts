@@ -5,7 +5,7 @@ export interface Asset {
   // A uuid for the uploaded image
   id: string;
   // Object URL for uploaded image
-  data: Blob;
+  data: Blob | File;
   isSelected?: boolean;
   assignedFrames?: number[];
   animationId?: string;
@@ -48,7 +48,7 @@ export type AnimationAction =
   | { type: "DESELECT_ASSET"; assetId: string }
   | { type: "DESELECT_ALL" }
   | { type: "REHYDRATE"; animation: AnimationState }
-  | { type: "BUILD"; strip: Blob };
+  | { type: "BUILD" };
 
 export type AnimationDispatch = (action: AnimationAction) => void;
 

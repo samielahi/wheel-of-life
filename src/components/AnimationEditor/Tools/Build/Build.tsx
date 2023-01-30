@@ -1,9 +1,5 @@
 import { useContext } from "react";
-import {
-  AnimationContext,
-  ToolbarContext,
-  AnimationDispatchContext,
-} from "../../../../state/context";
+import { AnimationContext, ToolbarContext } from "../../../../state/context";
 import IconButton from "../../../../core/IconButton";
 import { buildStrip } from "./buildStrip";
 
@@ -12,6 +8,8 @@ export default function Build() {
   const toolbar = useContext(ToolbarContext);
   // We check if size of the filled frames set is === to NUM_FRAMES
   const isBuildable = animation.filledFrames!.size === 16;
+
+  console.log(animation.filledFrames!);
 
   return (
     <>

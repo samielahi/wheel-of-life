@@ -1,11 +1,13 @@
 import Asset from "./Asset";
 import { useContext } from "react";
 import { AnimationContext, ToolbarContext } from "../../state/context";
+import { sortAssetsAlphaNumerically } from "../../utils";
 
 export default function AssetList() {
   const animation = useContext(AnimationContext);
   const toolbar = useContext(ToolbarContext);
-  const assets = Object.values(animation.assets!);
+  // Get asset list and sort in alphanumeric order
+  const assets = Object.values(animation.assets!).sort(sortAssetsAlphaNumerically);
   const hasAssets = assets.length !== 0;
 
   return (

@@ -1,9 +1,7 @@
 import { Frame } from "./types";
 import Button from "./core/Button";
-import { Suspense } from "react";
 import { setFrame, setAnimation } from "./state/idb";
 import AnimationEditor from "./components/AnimationEditor/AnimationEditor";
-import DeleteDialog from "./components/AnimationEditor/Tools/Delete/DeleteDialog";
 import { enableMapSet } from "immer";
 
 export default function App() {

@@ -1,5 +1,7 @@
 import { getAllFrames, getAllAssets, setAnimation } from "../../../../state/idb";
-import { AnimationState, AnimationStateDB, Asset, Frame } from "../../../../types";
+import { AnimationStateDB, Asset, Frame, AnimationDispatch } from "../../../../types";
+import { useContext } from "react";
+import { AnimationDispatchContext } from "../../../../state/context";
 
 const FRAME_WIDTH = 300;
 const NUM_FRAMES = 16;
@@ -32,6 +34,8 @@ function drawImageOntoCanvas(imgBlob: Blob, x: number, y = 0) {
 }
 
 export function buildStrip(animationId: string, name: string) {
+  const dispatch = useContext<AnimationDispatch>(AnimationDispatchContext);
+
   loadAnimationData(animationId).then((data) => {
     const frames = data[0] as Frame[];
     const assets = data[1] as Record<string, Asset>;
@@ -51,6 +55,10 @@ export function buildStrip(animationId: string, name: string) {
         build: blob,
         lastBuildTime: new Date(),
       };
+
+      dispatch({
+        type: "BUILD",
+      });
 
       setAnimation(strip);
     });
