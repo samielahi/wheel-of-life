@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import {
-  AnimationContext,
   AnimationDispatchContext,
   ToolbarContext,
   ToolbarDispatchContext,
@@ -10,14 +9,12 @@ import Modal from "../../../../core/Modal";
 import Button from "../../../../core/Button";
 
 export default function DeleteDialog() {
-  const animation = useContext(AnimationContext);
   const toolbar = useContext(ToolbarContext);
   const dispatchToolbarAction = useContext<ToolbarDispatch>(ToolbarDispatchContext);
   const dispatchAnimationAction = useContext<AnimationDispatch>(AnimationDispatchContext);
   const isDeleting = toolbar.status === "deleting";
 
   function closeDeleteDialog() {
-    console.log(toolbar.status!);
     if (isDeleting) {
       dispatchToolbarAction({
         type: "STATUS_CHANGE",
@@ -31,17 +28,12 @@ export default function DeleteDialog() {
       dispatchAnimationAction({
         type: "DELETE_ASSETS",
       });
+
+      dispatchToolbarAction({
+        type: "STATUS_CHANGE",
+        newStatus: "idle",
+      });
     }
-  }
-
-  // If there are no more assets left after deletion, end selection session
-  const hasNoAssets = Object.values(animation.assets!).length === 0;
-
-  if (hasNoAssets) {
-    dispatchToolbarAction({
-      type: "STATUS_CHANGE",
-      newStatus: "idle",
-    });
   }
 
   return (
@@ -49,7 +41,10 @@ export default function DeleteDialog() {
       {isDeleting ? (
         <Modal closeModal={closeDeleteDialog}>
           <div className="wrapper flex h-full flex-col items-center justify-center gap-8">
-            <h3>Delete selected images?</h3>
+            <span className="text-2xl">Delete selected images?</span>
+            <span className="italic">
+              This will also remove the images from any assigned frames.
+            </span>
             <div className="flex gap-4">
               <Button onClick={deleteSelectedAssets}>yes</Button>
               <Button onClick={closeDeleteDialog}>cancel</Button>

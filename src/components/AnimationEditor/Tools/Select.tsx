@@ -40,7 +40,7 @@ export default function Select(props: {
         {!props.isIdle && props.hasAssets ? (
           <span className="text-red">cancel</span>
         ) : (
-          <span>select images</span>
+          <span>select</span>
         )}
       </Button>
     </>

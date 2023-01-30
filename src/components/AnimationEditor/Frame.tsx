@@ -55,7 +55,7 @@ export default function ImageFrame(props: Frame) {
         }
         className="group relative -mt-[3px] -mb-[3px] -ml-[3px] h-[400px] w-[300px] border-[3px] border-smoke"
       >
-        <span className="absolute left-[42%] top-4 z-10 h-fit rounded bg-smoke p-2">
+        <span className="absolute left-[42%] top-4 z-10 h-fit rounded bg-smoke p-2 drop-shadow-sm">
           {props.id + 1 < 10 ? `00${props.id}` : `0${props.id}`}
         </span>
 
@@ -71,7 +71,7 @@ export default function ImageFrame(props: Frame) {
           <>
             <span
               onClick={deassignImage}
-              className="invisible absolute left-[80%] bottom-[5%] z-10 h-fit cursor-pointer rounded bg-smoke p-2  text-violet duration-200 ease-in-out group-hover:visible"
+              className="invisible absolute left-[80%] bottom-[5%] z-10 h-fit cursor-pointer rounded bg-smoke p-2  text-violet group-hover:visible"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

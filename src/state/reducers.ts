@@ -1,12 +1,23 @@
 import { AnimationState, AnimationAction, ToolbarState, ToolbarAction } from "../types";
-
-import { setFrame, deleteFrames, setAsset, deleteAsset, setAnimation } from "./idb";
+import {
+  setFrame,
+  deleteFrames,
+  setAsset,
+  deleteAsset,
+  setAnimation,
+  getAnimation,
+} from "./idb";
 
 export function AnimationReducer(draft: AnimationState, action: AnimationAction) {
   const currentAssets = draft.assets!;
   const frames = draft.frames!;
 
   switch (action.type) {
+    case "BUILD": {
+      draft.isBuilt = true;
+      break;
+    }
+
     case "REHYDRATE": {
       const newAnimationState = action.animation!;
       draft.assets = newAnimationState.assets;
@@ -17,18 +28,18 @@ export function AnimationReducer(draft: AnimationState, action: AnimationAction)
     case "NAME_CHANGE": {
       console.log(`Name changed to ${action.name}`);
       draft.name = action.name;
-      // Update record in idb, need to get animation first however
-      // setAnimation({
-      //   id: draft.id!,
-      //   name: draft.name!,
-      //   isBuilt: draft.isBuilt!,
-      //   build: undefined,
-      // });
+      // Update record in idb
+      setAnimation({
+        id: draft.id!,
+        name: draft.name!,
+      });
       break;
     }
 
     case "ASSIGN_IMAGE": {
       console.log(`Image assigned to frame ${action.targetFrame!}`);
+      // Add the target frames to the Set of filled frames
+      draft.filledFrames?.add(action.targetFrame!);
       const targetFrame = draft.frames?.find((frame) => frame.id === action.targetFrame);
       const assetId = action.assetId!;
       // Assign the asset to the target frame
@@ -43,6 +54,8 @@ export function AnimationReducer(draft: AnimationState, action: AnimationAction)
 
     case "DEASSIGN_IMAGE": {
       console.log(`Image deassigned from frame ${action.targetFrame!}`);
+      // Remove the target frames to the Set of filled frames
+      draft.filledFrames?.delete(action.targetFrame!);
       const targetFrame = draft.frames?.find((frame) => frame.id === action.targetFrame);
       const assetId = action.assetId!;
       targetFrame!.assetId = undefined;
@@ -73,6 +86,7 @@ export function AnimationReducer(draft: AnimationState, action: AnimationAction)
         const assignedFrames = currentAssets[assetId].assignedFrames;
         // Remove asset from frames
         assignedFrames?.forEach((frameId) => {
+          draft.filledFrames?.delete(frameId);
           const frameIdx = frameId - 1;
           frames[frameIdx].assetId = undefined;
           setFrame({ ...frames[frameIdx] });

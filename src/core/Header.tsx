@@ -1,20 +1,11 @@
 import Button from "./Button";
+import IconButton from "./IconButton";
 import Logo from "./Logo";
-
-/*
-TODO: 
-- accessibility
-  - skip link 
-  - aria roles
-- menu
-  - modal with options
-  - resize observer to avoid unreachable states
-*/
 
 export default function Header() {
   return (
     <>
-      <header className="wrapper flex justify-between items-center border-smoke border-b-[3px]">
+      <header className="wrapper flex items-center justify-between border-b-[3px] border-smoke">
         <div className="w-1/4 md:w-1/3">
           <Button>
             <svg
@@ -37,8 +28,8 @@ export default function Header() {
 
         <Logo showSubtitle subtitle="strip editor" />
 
-        <div className="flex justify-end w-1/4 md:w-1/3 gap-4">
-          <Button>
+        <div className="flex w-1/4 justify-end gap-4 md:w-1/3">
+          <IconButton>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -50,12 +41,11 @@ export default function Header() {
               strokeLinecap="round"
               strokeLinejoin="round"
             >
-              <path d="m15 12-8.5 8.5c-.83.83-2.17.83-3 0 0 0 0 0 0 0a2.12 2.12 0 0 1 0-3L12 9"></path>
-              <path d="M17.64 15 22 10.64"></path>
-              <path d="m20.91 11.7-1.25-1.25c-.6-.6-.93-1.4-.93-2.25v-.86L16.01 4.6a5.56 5.56 0 0 0-3.94-1.64H9l.92.82A6.18 6.18 0 0 1 12 8.4v1.56l2 2h2.47l2.26 1.91"></path>
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
             </svg>
-            <span className="hidden md:block">build</span>
-          </Button>
+          </IconButton>
         </div>
       </header>
     </>

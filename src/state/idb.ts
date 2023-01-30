@@ -18,12 +18,18 @@ const animationDB = openDB<AnimationSchema>("animations", 1, {
   },
 });
 
+export async function getAnimation(key: string) {
+  return (await animationDB).get("animations", key);
+}
+
 export async function getAllAnimations() {
   return (await animationDB).getAll("animations");
 }
 
 export async function setAnimation(animation: AnimationStateDB) {
-  return (await animationDB).put("animations", animation);
+  const currentAnimation = await getAnimation(animation.id);
+  const newAnimation = Object.assign(animation, currentAnimation);
+  return (await animationDB).put("animations", newAnimation);
 }
 
 export async function getFrame(key: string | any[]) {

@@ -16,9 +16,9 @@ export default function AssetList() {
             ? { backgroundColor: "#FCFBF4" }
             : {}
         }
-        className="flex h-full w-full flex-col justify-center overflow-auto pl-8 pr-8"
+        className="flex h-full w-full flex-col justify-center overflow-x-auto pl-8 pr-8"
       >
-        <div className="flex w-full gap-8">
+        <div className="flex w-max gap-8">
           {hasAssets ? (
             <>
               {assets.map((asset, i) => (
@@ -36,7 +36,7 @@ export default function AssetList() {
               <div className="flex w-full justify-center">
                 <div className="rounded border-4 border-dashed border-smoke p-10">
                   <span className="italic text-gray">
-                    Upload some images to get started.
+                    Upload some images to get started (png, jpg).
                   </span>
                 </div>
               </div>

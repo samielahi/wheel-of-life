@@ -8,11 +8,10 @@ export default function Modal(props: ModalProps) {
     <>
       <div
         onClick={props.closeModal}
-        className=" bg-smoke/50 w-screen h-screen z-20 bg-transparent fixed"
-      >
-        <div className="drop-shadow-lg absolute w-[30rem] h-[300px] bg-active rounded left-[calc(50%_-_15rem)] top-[calc(50%_-_150px)]">
-          {props.children}
-        </div>
+        className=" bg-transparent fixed z-20 h-screen w-screen bg-smoke/50"
+      ></div>
+      <div className="absolute left-[calc(50%_-_16rem)] top-[calc(50%_-_150px)] z-30 h-[300px] w-[32rem] rounded bg-active drop-shadow-lg">
+        {props.children}
       </div>
     </>
   );

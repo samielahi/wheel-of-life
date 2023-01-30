@@ -1,9 +1,10 @@
 import { useContext } from "react";
 import { AnimationContext, ToolbarContext } from "../../state/context";
-import IconButton from "../../core/IconButton";
 import Upload from "./Tools/Upload";
 import Select from "./Tools/Select";
 import Delete from "./Tools/Delete/Delete";
+import Export from "./Tools/Export/Export";
+import Build from "./Tools/Build/Build";
 import StatusMessage from "./StatusMessage";
 
 export default function Toolbar() {
@@ -14,6 +15,7 @@ export default function Toolbar() {
   const statusMessage = toolbar.message;
   const isIdle = status === "idle";
   const isSelecting = status === "selecting";
+  const isBuilt = animation.isBuilt;
   const hasAssets = Object.values(animation.assets!).length !== 0;
   const hasSelectedAssets = animation.selectedAssets?.length !== 0;
 
@@ -30,42 +32,10 @@ export default function Toolbar() {
 
         <StatusMessage isSelecting={isSelecting} message={statusMessage!} />
 
-        {/* <div className="flex gap-2 md:w-1/3 md:justify-end">
-          <IconButton disabled={!isIdle}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-              <polyline points="7 10 12 15 17 10"></polyline>
-              <line x1="12" y1="15" x2="12" y2="3"></line>
-            </svg>
-          </IconButton>
-          <IconButton disabled={!isIdle}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <circle cx="12" cy="12" r="10"></circle>
-              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
-              <line x1="12" y1="17" x2="12.01" y2="17"></line>
-            </svg>
-          </IconButton>
-        </div> */}
+        <div className="flex gap-2 md:w-1/3 md:justify-end">
+          <Build />
+          <Export isIdle={isIdle} isBuilt={isBuilt} />
+        </div>
       </div>
     </>
   );

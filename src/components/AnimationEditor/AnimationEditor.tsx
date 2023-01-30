@@ -13,6 +13,7 @@ import Toolbar from "./Toolbar";
 import AssetList from "./AssetList";
 import FrameList from "./FrameList";
 import DeleteDialog from "./Tools/Delete/DeleteDialog";
+import ExportDialog from "./Tools/Export/ExportDialog";
 import { getAllAssets, getAllFrames } from "../../state/idb";
 
 export default function AnimationEditor(props: { animationId: string; name: string }) {
@@ -23,6 +24,8 @@ export default function AnimationEditor(props: { animationId: string; name: stri
     assets: {},
     frames: [],
     selectedAssets: [],
+    filledFrames: new Set<number>(),
+    isBuilt: false,
   };
 
   const [animation, dispatchAnimationAction] = useImmerReducer(
@@ -64,6 +67,7 @@ export default function AnimationEditor(props: { animationId: string; name: stri
               <FrameList />
               <Toolbar />
               <AssetList />
+              <ExportDialog />
               <DeleteDialog />
             </AnimationDispatchContext.Provider>
           </AnimationContext.Provider>

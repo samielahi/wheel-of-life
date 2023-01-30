@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import { setFrame, setAnimation } from "./state/idb";
 import AnimationEditor from "./components/AnimationEditor/AnimationEditor";
 import DeleteDialog from "./components/AnimationEditor/Tools/Delete/DeleteDialog";
+import { enableMapSet } from "immer";
 
 export default function App() {
   // function setupAnimation() {
@@ -26,11 +27,10 @@ export default function App() {
   //     setFrame(frame);
   //   }
   // }
-
+  enableMapSet();
   return (
     <>
       <AnimationEditor animationId="test" name="test" />
-      {/* Modals for confirming user actions */}
       {/* <Button onClick={setupAnimation}>make</Button> */}
     </>
   );

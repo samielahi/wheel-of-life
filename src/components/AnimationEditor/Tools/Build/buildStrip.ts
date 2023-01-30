@@ -1,5 +1,5 @@
-import { getAllFrames, getAllAssets, setAnimation } from "./state/idb";
-import { Asset, Frame } from "./types";
+import { getAllFrames, getAllAssets, setAnimation } from "../../../../state/idb";
+import { AnimationState, AnimationStateDB, Asset, Frame } from "../../../../types";
 
 const FRAME_WIDTH = 300;
 const NUM_FRAMES = 16;
@@ -31,7 +31,7 @@ function drawImageOntoCanvas(imgBlob: Blob, x: number, y = 0) {
   img.src = URL.createObjectURL(imgBlob);
 }
 
-function buildStrip(animationId: string, name: string) {
+export function buildStrip(animationId: string, name: string) {
   loadAnimationData(animationId).then((data) => {
     const frames = data[0] as Frame[];
     const assets = data[1] as Record<string, Asset>;
@@ -43,13 +43,16 @@ function buildStrip(animationId: string, name: string) {
       drawImageOntoCanvas(imgBlob, FRAME_WIDTH * frameId - 1);
     });
 
-    offscreenCanvas.convertToBlob().then((blob) =>
-      setAnimation({
+    offscreenCanvas.convertToBlob().then((blob) => {
+      const strip: AnimationStateDB = {
         id: animationId,
         name: name,
         isBuilt: true,
         build: blob,
-      })
-    );
+        lastBuildTime: new Date(),
+      };
+
+      setAnimation(strip);
+    });
   });
 }

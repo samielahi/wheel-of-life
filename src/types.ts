@@ -32,7 +32,8 @@ export interface AnimationState {
   assets?: Record<string, Asset>;
   // A stack for selected assets from library
   selectedAssets?: string[];
-  // Whether or not Animation is ready to be played
+  filledFrames?: Set<number>;
+  // Whether or not Animation is ready to be played or exported
   isBuilt?: boolean;
   lastBuildTime?: Date;
 }
@@ -46,7 +47,8 @@ export type AnimationAction =
   | { type: "SELECT_ASSET"; assetId: string; selectionId: number }
   | { type: "DESELECT_ASSET"; assetId: string }
   | { type: "DESELECT_ALL" }
-  | { type: "REHYDRATE"; animation: AnimationState };
+  | { type: "REHYDRATE"; animation: AnimationState }
+  | { type: "BUILD"; strip: Blob };
 
 export type AnimationDispatch = (action: AnimationAction) => void;
 
@@ -66,6 +68,7 @@ export type ToolbarAction =
 export type ToolbarDispatch = (action: ToolbarAction) => void;
 
 // IDB Schema
+
 export interface AnimationStateDB extends AnimationState {
   build?: Blob | undefined;
 }
