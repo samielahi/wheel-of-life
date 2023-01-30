@@ -17,16 +17,6 @@ export default function Delete(props: {
         newStatus: "deleting",
       });
     }
-
-    // If there are no more assets left after deletion, end selection session
-    const hasNoAssets = Object.values(animation.assets!).length !== 0;
-
-    if (hasNoAssets) {
-      dispatchToolbarAction({
-        type: "STATUS_CHANGE",
-        newStatus: "idle",
-      });
-    }
   }
 
   return (
