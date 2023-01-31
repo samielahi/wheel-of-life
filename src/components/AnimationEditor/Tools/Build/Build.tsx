@@ -2,12 +2,13 @@ import { useContext } from "react";
 import { AnimationContext, ToolbarContext } from "../../../../state/context";
 import IconButton from "../../../../core/IconButton";
 import { buildStrip } from "./buildStrip";
+import { constants } from "../../../../utils";
 
 export default function Build() {
   const animation = useContext(AnimationContext);
   const toolbar = useContext(ToolbarContext);
   // We check if size of the filled frames set is === to NUM_FRAMES
-  const isBuildable = animation.filledFrames!.size === 16;
+  const isBuildable = animation.filledFrames!.size === constants.NUM_FRAMES;
 
   console.log(animation.filledFrames!);
 

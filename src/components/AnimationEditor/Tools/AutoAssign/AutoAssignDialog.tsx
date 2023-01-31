@@ -8,25 +8,25 @@ import { AnimationDispatch, ToolbarDispatch } from "../../../../types";
 import Modal from "../../../../core/Modal";
 import Button from "../../../../core/Button";
 
-export default function DeleteDialog() {
+export default function AutoAssignDialog() {
   const toolbar = useContext(ToolbarContext);
   const dispatchToolbarAction = useContext<ToolbarDispatch>(ToolbarDispatchContext);
   const dispatchAnimationAction = useContext<AnimationDispatch>(AnimationDispatchContext);
-  const isDeleting = toolbar.status === "deleting";
+  const isAssigning = toolbar.status === "auto-assigning";
 
   function closeDeleteDialog() {
-    if (isDeleting) {
+    if (isAssigning) {
       dispatchToolbarAction({
         type: "STATUS_CHANGE",
-        newStatus: "selecting",
+        newStatus: "idle",
       });
     }
   }
 
-  function deleteSelectedAssets() {
-    if (isDeleting) {
+  function autoAssign() {
+    if (isAssigning) {
       dispatchAnimationAction({
-        type: "DELETE_ASSETS",
+        type: "AUTO_ASSIGN",
       });
 
       dispatchToolbarAction({
@@ -38,15 +38,16 @@ export default function DeleteDialog() {
 
   return (
     <>
-      {isDeleting ? (
+      {isAssigning ? (
         <Modal closeModal={closeDeleteDialog}>
           <div className="wrapper flex h-full flex-col items-center justify-center gap-8">
-            <span className="text-2xl">Delete selected images?</span>
+            <span className="text-2xl">Auto assign images to frames?</span>
             <span className="italic">
-              This will also remove the images from any assigned frames.
+              Images assigned until all frames are filled (in alphanumerical order by file
+              name) and will replace images that are currently assigned.
             </span>
             <div className="flex gap-4">
-              <Button onClick={deleteSelectedAssets}>confirm</Button>
+              <Button onClick={autoAssign}>confirm</Button>
               <Button onClick={closeDeleteDialog}>cancel</Button>
             </div>
           </div>

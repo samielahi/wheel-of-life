@@ -47,7 +47,7 @@ export default function Asset(props: AssetType) {
           src={imgObjectURL}
           alt="a cute kitten"
           style={props.isSelected ? { borderColor: "#9c8cdf" } : {}}
-          className="h-[260px] w-[195px] cursor-pointer border-4 border-smoke  opacity-80"
+          className="h-[260px] w-[195px] cursor-pointer rounded border-[3px] border-smoke bg-white opacity-80"
         />
       </div>
     </>

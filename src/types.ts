@@ -44,6 +44,7 @@ export type AnimationAction =
   | { type: "DELETE_ASSETS" }
   | { type: "ASSIGN_IMAGE"; assetId: string; targetFrame: number }
   | { type: "DEASSIGN_IMAGE"; assetId: string; targetFrame: number }
+  | { type: "AUTO_ASSIGN" }
   | { type: "SELECT_ASSET"; assetId: string; selectionId: number }
   | { type: "DESELECT_ASSET"; assetId: string }
   | { type: "DESELECT_ALL" }
@@ -54,7 +55,13 @@ export type AnimationDispatch = (action: AnimationAction) => void;
 
 // Toolbar
 
-type ToolbarStatus = "idle" | "selecting" | "deleting" | "exporting" | "getting-help";
+type ToolbarStatus =
+  | "idle"
+  | "selecting"
+  | "deleting"
+  | "exporting"
+  | "auto-assigning"
+  | "getting-help";
 
 export interface ToolbarState {
   currentTool?: "base";

@@ -1,11 +1,7 @@
 import { useContext } from "react";
-import {
-  AnimationContext,
-  ToolbarContext,
-  AnimationDispatchContext,
-  ToolbarDispatchContext,
-} from "../../../state/context";
+import { AnimationDispatchContext, ToolbarDispatchContext } from "../../../state/context";
 import { AnimationDispatch, ToolbarDispatch } from "../../../types";
+import IconButton from "../../../core/IconButton";
 import Button from "../../../core/Button";
 
 export default function Select(props: {
@@ -36,13 +32,39 @@ export default function Select(props: {
 
   return (
     <>
-      <Button onClick={toggleSelection} disabled={props.hasAssets ? false : true}>
+      <IconButton onClick={toggleSelection} disabled={props.hasAssets ? false : true}>
         {!props.isIdle && props.hasAssets ? (
-          <span className="text-red">cancel</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#ff3d00"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
         ) : (
-          <span>select</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M21 11V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h6"></path>
+            <path d="m12 12 4 10 1.7-4.3L22 16Z"></path>
+          </svg>
         )}
-      </Button>
+      </IconButton>
     </>
   );
 }

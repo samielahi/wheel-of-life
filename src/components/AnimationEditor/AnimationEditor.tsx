@@ -14,6 +14,7 @@ import AssetList from "./AssetList";
 import FrameList from "./FrameList";
 import DeleteDialog from "./Tools/Delete/DeleteDialog";
 import ExportDialog from "./Tools/Export/ExportDialog";
+import AutoAssignDialog from "./Tools/AutoAssign/AutoAssignDialog";
 import { getAllAssets, getAllFrames } from "../../state/idb";
 
 export default function AnimationEditor(props: { animationId: string; name: string }) {
@@ -69,6 +70,7 @@ export default function AnimationEditor(props: { animationId: string; name: stri
               <AssetList />
               <ExportDialog />
               <DeleteDialog />
+              <AutoAssignDialog />
             </AnimationDispatchContext.Provider>
           </AnimationContext.Provider>
         </ToolbarDispatchContext.Provider>

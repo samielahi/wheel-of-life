@@ -1,4 +1,5 @@
 import { AnimationState, AnimationAction, ToolbarState, ToolbarAction } from "../types";
+import { sortAssetsAlphaNumerically } from "../utils";
 import {
   setFrame,
   deleteFrames,
@@ -14,6 +15,7 @@ export function AnimationReducer(draft: AnimationState, action: AnimationAction)
 
   switch (action.type) {
     case "BUILD": {
+      console.log("Strip built successfully");
       draft.isBuilt = true;
       break;
     }
@@ -73,6 +75,24 @@ export function AnimationReducer(draft: AnimationState, action: AnimationAction)
       ].assignedFrames?.filter((id) => id !== targetFrame?.id);
 
       setFrame({ ...targetFrame! });
+      break;
+    }
+
+    case "AUTO_ASSIGN": {
+      const assetsSortedByFilename = Object.values(currentAssets).sort(
+        sortAssetsAlphaNumerically
+      );
+
+      assetsSortedByFilename.forEach((asset, i) => {
+        draft.filledFrames?.add(i + 1);
+        const assignedFrames = [...asset.assignedFrames!, i + 1];
+        asset.assignedFrames = assignedFrames;
+        frames[i].assetId = asset.id;
+        // Update idb with new modified frame and asset
+        setFrame({ ...frames[i] });
+        setAsset({ ...asset });
+      });
+
       break;
     }
 

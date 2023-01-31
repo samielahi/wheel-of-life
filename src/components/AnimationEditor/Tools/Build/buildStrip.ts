@@ -1,14 +1,11 @@
 import { getAllFrames, getAllAssets, setAnimation } from "../../../../state/idb";
 import { AnimationStateDB, Asset, Frame, AnimationDispatch } from "../../../../types";
-import { useContext } from "react";
-import { AnimationDispatchContext } from "../../../../state/context";
+import { constants } from "../../../../utils";
 
-const FRAME_WIDTH = 300;
-const NUM_FRAMES = 16;
-const STRIP_HEIGHT = 400;
-const STRIP_WIDTH = FRAME_WIDTH * NUM_FRAMES;
-
-const offscreenCanvas = new OffscreenCanvas(STRIP_WIDTH, STRIP_HEIGHT);
+const offscreenCanvas = new OffscreenCanvas(
+  constants.STRIP_WIDTH,
+  constants.STRIP_HEIGHT
+);
 const ctx = offscreenCanvas.getContext("2d");
 
 async function loadAnimationData(animationId: string) {
@@ -34,8 +31,6 @@ function drawImageOntoCanvas(imgBlob: Blob, x: number, y = 0) {
 }
 
 export function buildStrip(animationId: string, name: string) {
-  const dispatch = useContext<AnimationDispatch>(AnimationDispatchContext);
-
   loadAnimationData(animationId).then((data) => {
     const frames = data[0] as Frame[];
     const assets = data[1] as Record<string, Asset>;
@@ -44,7 +39,7 @@ export function buildStrip(animationId: string, name: string) {
       const frameId = frame.id!;
       const assetId = frame.assetId!;
       const imgBlob = assets[assetId].data!;
-      drawImageOntoCanvas(imgBlob, FRAME_WIDTH * frameId - 1);
+      drawImageOntoCanvas(imgBlob, constants.FRAME_WIDTH * frameId - 1);
     });
 
     offscreenCanvas.convertToBlob().then((blob) => {
@@ -55,10 +50,6 @@ export function buildStrip(animationId: string, name: string) {
         build: blob,
         lastBuildTime: new Date(),
       };
-
-      dispatch({
-        type: "BUILD",
-      });
 
       setAnimation(strip);
     });
