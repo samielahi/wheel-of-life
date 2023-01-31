@@ -2,7 +2,7 @@ import { useContext, useRef } from "react";
 import { AnimationContext } from "../../../../state/context";
 import IconButton from "../../../../core/IconButton";
 import { constants } from "../../../../utils";
-import { saveStrip } from "./buildStrip";
+import { saveStrip } from "./saveStrip";
 
 export default function Build() {
   const animation = useContext(AnimationContext);
