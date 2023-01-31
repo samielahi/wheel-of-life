@@ -15,10 +15,12 @@ export default function AssetList() {
       <div
         style={
           toolbar.status === "selecting" && hasAssets
-            ? { backgroundColor: "#FCFBF4" }
-            : {}
+            ? { backgroundColor: "#FCFBF4", pointerEvents: "auto" }
+            : {
+                pointerEvents: "none",
+              }
         }
-        className="flex h-full w-full flex-col justify-center overflow-x-auto pl-8 pr-8"
+        className="flex h-full w-full flex-col justify-center overflow-x-auto pl-8 pr-8 duration-300 ease-in-out"
       >
         <div className="flex w-max gap-8">
           {hasAssets ? (

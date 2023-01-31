@@ -6,7 +6,7 @@ module.exports = {
       black: "#4f4c4c",
       gray: "#7c7979",
       smoke: "#f3f3f1",
-      white: "#ffffff",
+      white: "#FFFFFF",
       red: "#ff3d00",
       violet: "#9c8cdf",
       active: "#FCFBF4",

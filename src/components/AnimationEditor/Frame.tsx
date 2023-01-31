@@ -5,12 +5,14 @@ import {
   AnimationDispatchContext,
   ToolbarContext,
 } from "../../state/context";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 export default function ImageFrame(props: Frame) {
   const animation = useContext(AnimationContext);
   const dispatchAnimationAction = useContext<AnimationDispatch>(AnimationDispatchContext);
   const toolbar = useContext(ToolbarContext);
   const assets = animation.assets!;
+  const [animationParent] = useAutoAnimate();
 
   const assetExists = props.assetId! && assets[props.assetId];
   let assignedImage: Blob;
@@ -49,6 +51,7 @@ export default function ImageFrame(props: Frame) {
   return (
     <>
       <div
+        ref={animationParent}
         onClick={assignImage}
         style={
           toolbar.status === "selecting" ? { cursor: "copy", pointerEvents: "auto" } : {}
@@ -61,7 +64,7 @@ export default function ImageFrame(props: Frame) {
 
         {assetExists ? (
           <img
-            className="h-full w-full"
+            className="h-full w-full opacity-80"
             src={assignedImageURL}
             alt={`Frame ${props.id}'s image`}
           />

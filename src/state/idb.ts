@@ -27,16 +27,11 @@ export async function getAllAnimations() {
 }
 
 export async function setAnimation(animation: AnimationStateDB) {
-  const currentAnimation = await getAnimation(animation.id);
-  let newAnimation : AnimationStateDB;
-  
-  if (currentAnimation) {
-    newAnimation = Object.assign(animation, currentAnimation);
-  } else {
-    newAnimation = animation;
-  }
+  // const currentAnimation = await getAnimation(animation.id);
+  // let newAnimation: AnimationStateDB;
+  // newAnimation = Object.assign(animation, currentAnimation);
 
-  return (await animationDB).put("animations", newAnimation);
+  return (await animationDB).put("animations", animation);
 }
 
 export async function getFrame(key: string | any[]) {

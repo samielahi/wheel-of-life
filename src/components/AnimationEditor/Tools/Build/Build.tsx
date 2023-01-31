@@ -1,21 +1,20 @@
-import { useContext } from "react";
-import { AnimationContext, ToolbarContext } from "../../../../state/context";
+import { useContext, useRef } from "react";
+import { AnimationContext } from "../../../../state/context";
 import IconButton from "../../../../core/IconButton";
-import { buildStrip } from "./buildStrip";
 import { constants } from "../../../../utils";
+import { saveStrip } from "./buildStrip";
 
 export default function Build() {
   const animation = useContext(AnimationContext);
-  const toolbar = useContext(ToolbarContext);
   // We check if size of the filled frames set is === to NUM_FRAMES
   const isBuildable = animation.filledFrames!.size === constants.NUM_FRAMES;
-
-  console.log(animation.filledFrames!);
 
   return (
     <>
       <IconButton
-        onClick={() => buildStrip(animation.id, animation.name!)}
+        onClick={() => {
+          saveStrip(animation.id, animation.name!);
+        }}
         disabled={!isBuildable}
       >
         <svg

@@ -36,10 +36,13 @@ export default function Asset(props: AssetType) {
 
   return (
     <>
-      <div onClick={handleSelection} className="relative duration-300 ease-in-out">
+      <div
+        onClick={handleSelection}
+        className="ease-[cubic-bezier(1.7, 0, 0.84, 0)] relative duration-300 hover:-translate-y-3"
+      >
         <span
           style={!props.isSelected ? { display: "none" } : {}}
-          className="absolute left-[90%] bottom-[94%] z-10 h-6 w-6 rounded-full bg-violet text-center text-white duration-100 ease-in-out"
+          className="absolute left-[90%] bottom-[94%] z-10 h-6 w-6 rounded-full bg-violet text-center text-white duration-200 ease-in-out"
         >
           {props.selectionId}
         </span>
@@ -47,7 +50,7 @@ export default function Asset(props: AssetType) {
           src={imgObjectURL}
           alt="a cute kitten"
           style={props.isSelected ? { borderColor: "#9c8cdf" } : {}}
-          className="h-[260px] w-[195px] cursor-pointer rounded border-[3px] border-smoke bg-white opacity-80"
+          className="h-[260px] w-[195px] cursor-pointer rounded border-[3px] border-smoke bg-white opacity-80 drop-shadow-sm duration-300 ease-in-out"
         />
       </div>
     </>
