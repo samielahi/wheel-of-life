@@ -1,5 +1,8 @@
 import { useContext } from "react";
-import { AnimationDispatchContext, ToolbarDispatchContext } from "../../../state/context";
+import {
+  AnimationDispatchContext,
+  ToolbarDispatchContext,
+} from "../../../state/context";
 import { AnimationDispatch, ToolbarDispatch } from "../../../types";
 import IconButton from "../../../core/IconButton";
 import Button from "../../../core/Button";
@@ -9,8 +12,12 @@ export default function Select(props: {
   isSelecting: boolean;
   hasAssets: boolean;
 }) {
-  const dispatchAnimationAction = useContext<AnimationDispatch>(AnimationDispatchContext);
-  const dispatchToolbarAction = useContext<ToolbarDispatch>(ToolbarDispatchContext);
+  const dispatchAnimationAction = useContext<AnimationDispatch>(
+    AnimationDispatchContext
+  );
+  const dispatchToolbarAction = useContext<ToolbarDispatch>(
+    ToolbarDispatchContext
+  );
 
   function toggleSelection() {
     if (props.isIdle && props.hasAssets) {
@@ -32,7 +39,11 @@ export default function Select(props: {
 
   return (
     <>
-      <IconButton onClick={toggleSelection} disabled={props.hasAssets ? false : true}>
+      <IconButton
+        onClick={toggleSelection}
+        disabled={props.hasAssets ? false : true}
+        tooltip={!props.isIdle && props.hasAssets ? "cancel" : "select"}
+      >
         {!props.isIdle && props.hasAssets ? (
           <svg
             xmlns="http://www.w3.org/2000/svg"

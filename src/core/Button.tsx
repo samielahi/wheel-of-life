@@ -4,6 +4,7 @@ export interface ButtonProps {
   onClick?: (e: MouseEvent) => void;
   children?: any;
   disabled?: boolean;
+  tooltip?: string;
 }
 
 export default function Button(props: ButtonProps) {

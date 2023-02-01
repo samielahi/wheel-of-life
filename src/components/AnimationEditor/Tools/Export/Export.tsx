@@ -4,7 +4,9 @@ import { ToolbarDispatch } from "../../../../types";
 import IconButton from "../../../../core/IconButton";
 
 export default function Export(props: { isIdle?: boolean; isBuilt?: boolean }) {
-  const dispatchToolbarAction = useContext<ToolbarDispatch>(ToolbarDispatchContext);
+  const dispatchToolbarAction = useContext<ToolbarDispatch>(
+    ToolbarDispatchContext
+  );
 
   function startExport() {
     if (props.isIdle) {
@@ -17,7 +19,11 @@ export default function Export(props: { isIdle?: boolean; isBuilt?: boolean }) {
 
   return (
     <>
-      <IconButton onClick={startExport} disabled={props.isBuilt}>
+      <IconButton
+        tooltip="export"
+        onClick={startExport}
+        disabled={props.isBuilt}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"

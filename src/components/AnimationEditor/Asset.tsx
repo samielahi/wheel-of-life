@@ -9,7 +9,9 @@ import { AnimationDispatch } from "../../types";
 
 export default function Asset(props: AssetType) {
   const animation = useContext(AnimationContext);
-  const dispatchAnimationAction = useContext<AnimationDispatch>(AnimationDispatchContext);
+  const dispatchAnimationAction = useContext<AnimationDispatch>(
+    AnimationDispatchContext
+  );
   const toolbar = useContext(ToolbarContext);
   const numSelectedAssets = animation.selectedAssets?.length!;
   const selectionId = useRef<number>();
@@ -50,7 +52,7 @@ export default function Asset(props: AssetType) {
           src={imgObjectURL}
           alt="a cute kitten"
           style={props.isSelected ? { borderColor: "#9c8cdf" } : {}}
-          className="h-[260px] w-[195px] cursor-pointer rounded border-[3px] border-smoke bg-white opacity-80 drop-shadow-sm duration-300 ease-in-out"
+          className="h-[200px] w-[150px] cursor-pointer rounded border-[3px] border-smoke bg-white opacity-80 drop-shadow-sm duration-300 ease-in-out"
         />
       </div>
     </>

@@ -9,7 +9,9 @@ import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 export default function ImageFrame(props: Frame) {
   const animation = useContext(AnimationContext);
-  const dispatchAnimationAction = useContext<AnimationDispatch>(AnimationDispatchContext);
+  const dispatchAnimationAction = useContext<AnimationDispatch>(
+    AnimationDispatchContext
+  );
   const toolbar = useContext(ToolbarContext);
   const assets = animation.assets!;
   const [animationParent] = useAutoAnimate();
@@ -54,12 +56,14 @@ export default function ImageFrame(props: Frame) {
         ref={animationParent}
         onClick={assignImage}
         style={
-          toolbar.status === "selecting" ? { cursor: "copy", pointerEvents: "auto" } : {}
+          toolbar.status === "selecting"
+            ? { cursor: "copy", pointerEvents: "auto" }
+            : {}
         }
-        className="group relative -mt-[3px] -mb-[3px] -ml-[3px] h-[400px] w-[300px] border-[3px] border-smoke"
+        className="group relative -mt-[3px] -mb-[3px] -ml-[3px] h-[260px] w-[195px] border-[3px] border-smoke"
       >
-        <span className="drop-shadow-sms absolute left-[42%] top-4 z-10 h-fit rounded bg-smoke p-2 opacity-60">
-          {props.id + 1 < 10 ? `00${props.id}` : `0${props.id}`}
+        <span className="absolute left-[5%] top-2 z-10 h-fit rounded bg-smoke p-2 text-sm opacity-60 drop-shadow-sm">
+          {props.id + 1 < 10 ? `0${props.id}` : `${props.id}`}
         </span>
 
         {assetExists ? (
@@ -74,7 +78,7 @@ export default function ImageFrame(props: Frame) {
           <>
             <span
               onClick={deassignImage}
-              className="invisible absolute left-[80%] bottom-[5%] z-10 h-fit cursor-pointer rounded bg-smoke p-2 text-violet  drop-shadow-sm group-hover:visible"
+              className="invisible absolute left-[70%] top-2 z-10 h-fit cursor-pointer rounded bg-smoke p-2 text-violet  drop-shadow-sm group-hover:visible"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

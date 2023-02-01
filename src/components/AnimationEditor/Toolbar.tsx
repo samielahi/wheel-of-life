@@ -28,9 +28,16 @@ export default function Toolbar() {
 
           <AutoAssign isIdle={isIdle} hasAssets={hasAssets} />
 
-          <Select isSelecting={isSelecting} hasAssets={hasAssets} isIdle={isIdle} />
+          <Select
+            isSelecting={isSelecting}
+            hasAssets={hasAssets}
+            isIdle={isIdle}
+          />
 
-          <Delete isSelecting={isSelecting} hasSelectedAssets={hasSelectedAssets} />
+          <Delete
+            isSelecting={isSelecting}
+            hasSelectedAssets={hasSelectedAssets}
+          />
         </div>
 
         <StatusMessage isSelecting={isSelecting} message={statusMessage!} />

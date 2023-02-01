@@ -29,7 +29,7 @@ export default function Header() {
         <Logo showSubtitle subtitle="strip editor" />
 
         <div className="flex w-1/4 justify-end gap-4 md:w-1/3">
-          <IconButton>
+          <IconButton tooltip="help">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"

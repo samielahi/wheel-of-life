@@ -7,7 +7,9 @@ export default function AssetList() {
   const animation = useContext(AnimationContext);
   const toolbar = useContext(ToolbarContext);
   // Get asset list and sort in alphanumeric order
-  const assets = Object.values(animation.assets!).sort(sortAssetsAlphaNumerically);
+  const assets = Object.values(animation.assets!).sort(
+    sortAssetsAlphaNumerically
+  );
   const hasAssets = assets.length !== 0;
 
   return (
@@ -20,7 +22,7 @@ export default function AssetList() {
                 pointerEvents: "none",
               }
         }
-        className="flex h-full w-full flex-col justify-center overflow-x-auto pl-8 pr-8 duration-300 ease-in-out"
+        className="z-1 flex h-full w-full flex-col justify-center overflow-x-auto pl-8 pr-8 duration-300 ease-in-out"
       >
         <div className="flex w-max gap-8">
           {hasAssets ? (

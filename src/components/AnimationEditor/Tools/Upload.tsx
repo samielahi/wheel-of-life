@@ -1,7 +1,10 @@
 import { useContext } from "react";
 import { v4 as uuid } from "uuid";
 import { FileWithHandle, fileOpen } from "browser-fs-access";
-import { AnimationContext, AnimationDispatchContext } from "../../../state/context";
+import {
+  AnimationContext,
+  AnimationDispatchContext,
+} from "../../../state/context";
 import { Asset, AnimationDispatch } from "../../../types";
 import IconButton from "../../../core/IconButton";
 
@@ -21,7 +24,9 @@ function createAsset(animationName: string, file: FileWithHandle): Asset {
 export default function AssetUpload(props: { isIdle: boolean }) {
   const animation = useContext(AnimationContext);
   const animationName = animation.name!;
-  const dispatchAnimationAction = useContext<AnimationDispatch>(AnimationDispatchContext);
+  const dispatchAnimationAction = useContext<AnimationDispatch>(
+    AnimationDispatchContext
+  );
 
   async function uploadAssets() {
     // Pick the file
@@ -42,7 +47,11 @@ export default function AssetUpload(props: { isIdle: boolean }) {
 
   return (
     <>
-      <IconButton onClick={uploadAssets} disabled={!props.isIdle}>
+      <IconButton
+        tooltip="upload"
+        onClick={uploadAssets}
+        disabled={!props.isIdle}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
