@@ -1,12 +1,9 @@
-import { useContext } from "react";
+import { useContext, memo } from "react";
 import { ToolbarDispatchContext } from "../../../../state/context";
 import { ToolbarDispatch } from "../../../../types";
 import IconButton from "../../../../core/IconButton";
 
-export default function Delete(props: {
-  isSelecting: boolean;
-  hasSelectedAssets: boolean;
-}) {
+function Delete(props: { isSelecting: boolean; hasSelectedAssets: boolean }) {
   const dispatchToolbarAction = useContext<ToolbarDispatch>(ToolbarDispatchContext);
 
   function startDeletion() {
@@ -46,3 +43,5 @@ export default function Delete(props: {
     </>
   );
 }
+
+export default memo(Delete);

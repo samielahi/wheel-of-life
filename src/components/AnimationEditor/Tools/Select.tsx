@@ -1,23 +1,11 @@
-import { useContext } from "react";
-import {
-  AnimationDispatchContext,
-  ToolbarDispatchContext,
-} from "../../../state/context";
+import { useContext, memo } from "react";
+import { AnimationDispatchContext, ToolbarDispatchContext } from "../../../state/context";
 import { AnimationDispatch, ToolbarDispatch } from "../../../types";
 import IconButton from "../../../core/IconButton";
-import Button from "../../../core/Button";
 
-export default function Select(props: {
-  isIdle: boolean;
-  isSelecting: boolean;
-  hasAssets: boolean;
-}) {
-  const dispatchAnimationAction = useContext<AnimationDispatch>(
-    AnimationDispatchContext
-  );
-  const dispatchToolbarAction = useContext<ToolbarDispatch>(
-    ToolbarDispatchContext
-  );
+function Select(props: { isIdle: boolean; isSelecting: boolean; hasAssets: boolean }) {
+  const dispatchAnimationAction = useContext<AnimationDispatch>(AnimationDispatchContext);
+  const dispatchToolbarAction = useContext<ToolbarDispatch>(ToolbarDispatchContext);
 
   function toggleSelection() {
     if (props.isIdle && props.hasAssets) {
@@ -79,3 +67,5 @@ export default function Select(props: {
     </>
   );
 }
+
+export default memo(Select);

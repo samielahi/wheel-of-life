@@ -5,8 +5,8 @@ import {
   ToolbarDispatchContext,
 } from "../../../../state/context";
 import { AnimationDispatch, ToolbarDispatch } from "../../../../types";
-import Modal from "../../../../core/Modal";
 import Button from "../../../../core/Button";
+import Modal from "../../../../core/Modal";
 
 export default function DeleteDialog() {
   const toolbar = useContext(ToolbarContext);

@@ -55,7 +55,7 @@ export type AnimationDispatch = (action: AnimationAction) => void;
 
 // Toolbar
 
-type ToolbarStatus =
+export type ToolbarStatus =
   | "idle"
   | "selecting"
   | "deleting"
@@ -66,11 +66,8 @@ type ToolbarStatus =
 export interface ToolbarState {
   currentTool?: "base";
   status?: ToolbarStatus;
-  message?: string;
 }
-export type ToolbarAction =
-  | { type: "STATUS_CHANGE"; newStatus: ToolbarStatus }
-  | { type: "MESSAGE"; message: string };
+export type ToolbarAction = { type: "STATUS_CHANGE"; newStatus: ToolbarStatus };
 
 export type ToolbarDispatch = (action: ToolbarAction) => void;
 

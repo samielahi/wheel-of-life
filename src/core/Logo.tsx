@@ -6,10 +6,10 @@ export interface LogoProps {
 export default function Logo(props: LogoProps) {
   return (
     <>
-      <div className="w-fit flex flex-col justify-center items-center">
-        <h2 className="text-red text-2xl lg:text-4xl">Wheel Of Life</h2>
+      <div className="flex w-fit flex-col items-center justify-center">
+        <h2 className="text-red text-md lg:text-4xl">Wheel Of Life</h2>
         {props.showSubtitle ? (
-          <span className="text-violet italic lg:text-lg">
+          <span className="hidden text-lg italic text-violet sm:block">
             {props.subtitle}
           </span>
         ) : null}

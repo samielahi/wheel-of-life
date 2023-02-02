@@ -1,14 +1,13 @@
 import { useContext } from "react";
 import {
   AnimationContext,
-  AnimationDispatchContext,
   ToolbarContext,
   ToolbarDispatchContext,
 } from "../../../../state/context";
-import { AnimationDispatch, ToolbarDispatch } from "../../../../types";
+import { getAnimation } from "../../../../state/idb";
+import { ToolbarDispatch } from "../../../../types";
 import Modal from "../../../../core/Modal";
 import Button from "../../../../core/Button";
-import { getAnimation } from "../../../../state/idb";
 import { fileSave } from "browser-fs-access";
 
 export default function ExportDialog() {
@@ -45,8 +44,22 @@ export default function ExportDialog() {
           <div className="wrapper flex h-full flex-col items-center justify-center gap-8">
             <span className="text-2xl">Export your strip as a:</span>
             <div className="flex gap-4">
-              <Button onClick={() => exportStrip("jpg")}>jpg</Button>
-              <Button onClick={() => exportStrip("png")}>png</Button>
+              <Button
+                onClick={() => {
+                  exportStrip("jpg");
+                  closeExportDialog();
+                }}
+              >
+                jpg
+              </Button>
+              <Button
+                onClick={() => {
+                  exportStrip("png");
+                  closeExportDialog();
+                }}
+              >
+                png
+              </Button>
             </div>
           </div>
         </Modal>

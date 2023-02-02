@@ -1,10 +1,5 @@
 import { useContext } from "react";
-import {
-  AnimationContext,
-  AnimationDispatchContext,
-  ToolbarContext,
-  ToolbarDispatchContext,
-} from "../../../../state/context";
+import { ToolbarDispatchContext } from "../../../../state/context";
 import { ToolbarDispatch } from "../../../../types";
 import Button from "../../../../core/Button";
 
@@ -23,7 +18,8 @@ export default function AutoAssign(props: { isIdle: boolean; hasAssets: boolean 
   return (
     <>
       <Button onClick={startAutoAssign} disabled={props.hasAssets ? false : true}>
-        auto assign
+        <span className="sm:hidden">auto</span>
+        <span className="hidden sm:block">auto assign</span>
       </Button>
     </>
   );

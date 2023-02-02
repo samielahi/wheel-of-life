@@ -13,7 +13,6 @@ export default function Toolbar() {
   const toolbar = useContext(ToolbarContext);
 
   const status = toolbar.status;
-  const statusMessage = toolbar.message;
   const isIdle = status === "idle";
   const isSelecting = status === "selecting";
   const isBuilt = animation.isBuilt;
@@ -22,27 +21,20 @@ export default function Toolbar() {
 
   return (
     <>
-      <div className="wrapper flex items-center justify-center gap-2 border-b-[3px] border-t-[3px] border-smoke md:justify-between md:gap-0">
-        <div className="flex gap-2 md:w-1/3">
+      <div className="wrapper flex items-center justify-center gap-4 border-b-[3px] border-t-[3px] border-smoke sm:gap-2 md:justify-between md:gap-0">
+        <div className="flex items-center gap-4 sm:gap-2 md:w-1/3">
           <Upload isIdle={isIdle} />
 
           <AutoAssign isIdle={isIdle} hasAssets={hasAssets} />
 
-          <Select
-            isSelecting={isSelecting}
-            hasAssets={hasAssets}
-            isIdle={isIdle}
-          />
+          <Select isSelecting={isSelecting} hasAssets={hasAssets} isIdle={isIdle} />
 
-          <Delete
-            isSelecting={isSelecting}
-            hasSelectedAssets={hasSelectedAssets}
-          />
+          <Delete isSelecting={isSelecting} hasSelectedAssets={hasSelectedAssets} />
         </div>
 
-        <StatusMessage isSelecting={isSelecting} message={statusMessage!} />
+        <StatusMessage />
 
-        <div className="flex gap-2 md:w-1/3 md:justify-end">
+        <div className="flex gap-4 sm:gap-2 md:w-1/3 md:justify-end">
           <Build />
           <Export isIdle={isIdle} isBuilt={isBuilt} />
         </div>

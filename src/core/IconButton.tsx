@@ -1,18 +1,16 @@
 import { ButtonProps } from "./Button";
-import { useRef, useState } from "react";
-import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { useState } from "react";
 
 export default function IconButton(props: ButtonProps) {
   const [showTooltip, setShowTooltip] = useState(false);
-  const [animationParent] = useAutoAnimate();
 
   return (
     <>
-      <div ref={animationParent}>
+      <div>
         <button
           disabled={props.disabled}
           style={props.disabled ? { color: "#D8D0D0" } : { color: "#9c8cdf" }}
-          className="flex h-[50px] w-[50px] items-center justify-center rounded  bg-smoke duration-300 ease-in-out hover:text-red"
+          className="flex h-[30px] w-[30px] items-center justify-center rounded bg-smoke hover:text-red sm:p-0 lg:h-[50px] lg:w-[50px]"
           onClick={props.onClick}
           onMouseEnter={() => setShowTooltip(true)}
           onMouseLeave={() => setShowTooltip(false)}
@@ -23,7 +21,7 @@ export default function IconButton(props: ButtonProps) {
         </button>
 
         {showTooltip ? (
-          <div className="absolute z-30 text-center italic text-white drop-shadow-sm">
+          <div className="invisible absolute z-30 text-center italic text-white drop-shadow-sm sm:visible">
             <span
               className={`absolute top-2
              rounded bg-gray p-2 text-sm`}

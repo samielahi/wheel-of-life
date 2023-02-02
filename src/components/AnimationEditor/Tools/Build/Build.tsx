@@ -1,20 +1,23 @@
-import { useContext, useRef } from "react";
+import { useContext, useMemo } from "react";
 import { AnimationContext } from "../../../../state/context";
 import IconButton from "../../../../core/IconButton";
 import { constants } from "../../../../utils";
-import { saveStrip } from "./saveStrip";
+import { buildStrip } from "./buildUtils";
 
 export default function Build() {
   const animation = useContext(AnimationContext);
   // We check if size of the filled frames set is === to NUM_FRAMES
-  const isBuildable = animation.filledFrames!.size === constants.NUM_FRAMES;
+  const isBuildable = useMemo(
+    () => animation.filledFrames!.size === constants.NUM_FRAMES,
+    [animation.filledFrames]
+  );
 
   return (
     <>
       <IconButton
         tooltip="build"
         onClick={() => {
-          saveStrip(animation.id, animation.name!);
+          buildStrip(animation.id, animation.name!);
         }}
         disabled={!isBuildable}
       >

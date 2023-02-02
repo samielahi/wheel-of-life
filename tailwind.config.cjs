@@ -18,6 +18,10 @@ module.exports = {
     },
     extend: {
       display: ["group-hover"],
+      screens: {
+        air: { raw: "(min-height : 850px)" },
+        // 'pro-14': {'raw': '(max-height)' }
+      },
     },
   },
   plugins: [],
