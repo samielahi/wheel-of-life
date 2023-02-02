@@ -16,12 +16,14 @@ export default function IconButton(props: ButtonProps) {
           onClick={props.onClick}
           onMouseEnter={() => setShowTooltip(true)}
           onMouseLeave={() => setShowTooltip(false)}
+          onFocus={() => setShowTooltip(true)}
+          onBlur={() => setShowTooltip(false)}
         >
           {props.children}
         </button>
 
         {showTooltip ? (
-          <div className="absolute z-10 text-center italic text-white drop-shadow-sm">
+          <div className="absolute z-30 text-center italic text-white drop-shadow-sm">
             <span
               className={`absolute top-2
              rounded bg-gray p-2 text-sm`}

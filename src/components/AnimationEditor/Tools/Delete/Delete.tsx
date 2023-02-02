@@ -20,7 +20,11 @@ export default function Delete(props: {
 
   return (
     <>
-      <IconButton onClick={startDeletion} disabled={!props.hasSelectedAssets}>
+      <IconButton
+        onClick={startDeletion}
+        disabled={!props.hasSelectedAssets}
+        tooltip="delete"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"

@@ -7,9 +7,7 @@ export default function AssetList() {
   const animation = useContext(AnimationContext);
   const toolbar = useContext(ToolbarContext);
   // Get asset list and sort in alphanumeric order
-  const assets = Object.values(animation.assets!).sort(
-    sortAssetsAlphaNumerically
-  );
+  const assets = Object.values(animation.assets!).sort(sortAssetsAlphaNumerically);
   const hasAssets = assets.length !== 0;
 
   return (
@@ -19,7 +17,7 @@ export default function AssetList() {
           toolbar.status === "selecting" && hasAssets
             ? { backgroundColor: "#FCFBF4", pointerEvents: "auto" }
             : {
-                pointerEvents: "none",
+                // pointerEvents: "none",
               }
         }
         className="z-1 flex h-full w-full flex-col justify-center overflow-x-auto pl-8 pr-8 duration-300 ease-in-out"
