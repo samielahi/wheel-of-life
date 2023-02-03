@@ -1,14 +1,14 @@
 import { useContext, useMemo } from "react";
-import { AnimationContext, ToolbarContext } from "../../state/context";
+import { AnimationEditorContext, ToolbarContext } from "../../state/context";
 import Asset from "./Asset";
 import { sortAssetsAlphaNumerically } from "../../utils";
 
 // Renders a horizontally scrollable section of the current Assets in the animation
 export default function AssetList() {
-  const animation = useContext(AnimationContext);
+  const animation = useContext(AnimationEditorContext);
   const toolbar = useContext(ToolbarContext);
   const isSelecting = toolbar.status === "selecting";
-  const assets = useMemo(() => Object.values(animation.assets!), [animation.assets!]);
+  const assets = useMemo(() => Object.values(animation!.assets!), [animation!.assets!]);
   const animationHasAssets = assets.length !== 0;
   // Get asset list and sort in alphanumeric order
   const sortedAssets = assets.sort(sortAssetsAlphaNumerically);

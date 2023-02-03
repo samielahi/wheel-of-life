@@ -1,7 +1,7 @@
 import { useContext, useMemo, memo } from "react";
 import {
-  AnimationContext,
-  AnimationDispatchContext,
+  AnimationEditorContext,
+  AnimationEditorDispatchContext,
   ToolbarContext,
 } from "../../state/context";
 import { AnimationDispatch } from "../../types";
@@ -42,13 +42,15 @@ const DeassignButton = (props: { deassignImage: () => void }) => (
 );
 
 function Frame(props: FrameType) {
-  const animation = useContext(AnimationContext);
-  const dispatchAnimationAction = useContext<AnimationDispatch>(AnimationDispatchContext);
+  const animation = useContext(AnimationEditorContext);
+  const dispatchAnimationAction = useContext<AnimationDispatch>(
+    AnimationEditorDispatchContext
+  );
   const toolbar = useContext(ToolbarContext);
   const isSelecting = toolbar.status === "selecting";
-  const assets = animation.assets!;
+  const assets = animation!.assets!;
   const assetExists = props.assetId! && assets[props.assetId];
-  const currentAssetId = animation.selectedAssets![0];
+  const currentAssetId = animation!.selectedAssets![0];
   let assignedImage: Blob;
   let assignedImageURL;
 

@@ -9,8 +9,11 @@ module.exports = {
       white: "#FFFFFF",
       red: "#ff3d00",
       violet: "#9c8cdf",
+      pink: "#FCC8D3",
+      blue: "#1C2E69",
+      silver: "#E4E4E4",
+      inactive: "#D8D0D0",
       active: "#FCFBF4",
-      pink: "#D8D0D0",
     },
     fontFamily: {
       main: ["Atkinson Hyperlegible", "sans-serif"],
@@ -20,7 +23,6 @@ module.exports = {
       display: ["group-hover"],
       screens: {
         air: { raw: "(min-height : 850px)" },
-        // 'pro-14': {'raw': '(max-height)' }
       },
     },
   },

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AnimationContext, ToolbarContext } from "../../state/context";
+import { AnimationEditorContext, ToolbarContext } from "../../state/context";
 import Upload from "./Tools/Upload";
 import Select from "./Tools/Select";
 import Delete from "./Tools/Delete/Delete";
@@ -9,7 +9,7 @@ import AutoAssign from "./Tools/AutoAssign/AutoAssign";
 import StatusMessage from "./StatusMessage";
 
 export default function Toolbar() {
-  const animation = useContext(AnimationContext);
+  const animation = useContext(AnimationEditorContext)!;
   const toolbar = useContext(ToolbarContext);
 
   const status = toolbar.status;

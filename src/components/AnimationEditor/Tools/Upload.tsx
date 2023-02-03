@@ -2,8 +2,8 @@ import { useContext } from "react";
 import { v4 as uuid } from "uuid";
 import { FileWithHandle, fileOpen } from "browser-fs-access";
 import {
-  AnimationContext,
-  AnimationDispatchContext,
+  AnimationEditorContext,
+  AnimationEditorDispatchContext,
 } from "../../../state/context";
 import { Asset, AnimationDispatch } from "../../../types";
 import IconButton from "../../../core/IconButton";
@@ -22,10 +22,10 @@ function createAsset(animationName: string, file: FileWithHandle): Asset {
 }
 
 export default function AssetUpload(props: { isIdle: boolean }) {
-  const animation = useContext(AnimationContext);
+  const animation = useContext(AnimationEditorContext)!;
   const animationName = animation.name!;
   const dispatchAnimationAction = useContext<AnimationDispatch>(
-    AnimationDispatchContext
+    AnimationEditorDispatchContext
   );
 
   async function uploadAssets() {
@@ -47,11 +47,7 @@ export default function AssetUpload(props: { isIdle: boolean }) {
 
   return (
     <>
-      <IconButton
-        tooltip="upload"
-        onClick={uploadAssets}
-        disabled={!props.isIdle}
-      >
+      <IconButton tooltip="upload" onClick={uploadAssets} disabled={!props.isIdle}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"

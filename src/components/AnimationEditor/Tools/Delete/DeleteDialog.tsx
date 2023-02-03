@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import {
-  AnimationDispatchContext,
+  AnimationEditorDispatchContext,
   ToolbarContext,
   ToolbarDispatchContext,
 } from "../../../../state/context";
@@ -11,7 +11,9 @@ import Modal from "../../../../core/Modal";
 export default function DeleteDialog() {
   const toolbar = useContext(ToolbarContext);
   const dispatchToolbarAction = useContext<ToolbarDispatch>(ToolbarDispatchContext);
-  const dispatchAnimationAction = useContext<AnimationDispatch>(AnimationDispatchContext);
+  const dispatchAnimationAction = useContext<AnimationDispatch>(
+    AnimationEditorDispatchContext
+  );
   const isDeleting = toolbar.status === "deleting";
 
   function closeDeleteDialog() {

@@ -1,11 +1,11 @@
 import { useContext, useMemo } from "react";
-import { AnimationContext } from "../../../../state/context";
+import { AnimationEditorContext } from "../../../../state/context";
 import IconButton from "../../../../core/IconButton";
 import { constants } from "../../../../utils";
 import { buildStrip } from "./buildUtils";
 
 export default function Build() {
-  const animation = useContext(AnimationContext);
+  const animation = useContext(AnimationEditorContext)!;
   // We check if size of the filled frames set is === to NUM_FRAMES
   const isBuildable = useMemo(
     () => animation.filledFrames!.size === constants.NUM_FRAMES,

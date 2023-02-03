@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AnimationContext, ToolbarContext } from "../../state/context";
+import { AnimationEditorContext, ToolbarContext } from "../../state/context";
 import { ToolbarStatus } from "../../types";
 
 function determineStatusMessage(status: ToolbarStatus, numSelectedElements: number) {
@@ -17,7 +17,7 @@ function determineStatusMessage(status: ToolbarStatus, numSelectedElements: numb
 }
 
 export default function StatusMessage() {
-  const animation = useContext(AnimationContext);
+  const animation = useContext(AnimationEditorContext)!;
   const toolbar = useContext(ToolbarContext);
   const numSelectedElements = animation.selectedAssets?.length!;
   const status = toolbar.status!;

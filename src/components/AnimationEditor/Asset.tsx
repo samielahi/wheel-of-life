@@ -1,17 +1,19 @@
 import { useContext, useRef, memo } from "react";
 import {
-  AnimationContext,
-  AnimationDispatchContext,
+  AnimationEditorContext,
+  AnimationEditorDispatchContext,
   ToolbarContext,
 } from "../../state/context";
 import { Asset as AssetType } from "../../types";
 import { AnimationDispatch } from "../../types";
 
 function Asset(props: AssetType) {
-  const animation = useContext(AnimationContext);
-  const dispatchAnimationAction = useContext<AnimationDispatch>(AnimationDispatchContext);
+  const animation = useContext(AnimationEditorContext);
+  const dispatchAnimationAction = useContext<AnimationDispatch>(
+    AnimationEditorDispatchContext
+  );
   const toolbar = useContext(ToolbarContext);
-  const numSelectedAssets = animation.selectedAssets?.length!;
+  const numSelectedAssets = animation!.selectedAssets?.length!;
   const selectionId = useRef<number>();
   // No need for useMemo since we prevent rerenders with same props using memo
   const imgObjectURL = URL.createObjectURL(props.data);

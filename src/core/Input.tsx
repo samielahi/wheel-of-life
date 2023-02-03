@@ -1,6 +1,5 @@
 import { useState, useContext } from "react";
-import { AnimationContext, AnimationDispatchContext } from "../state/context";
-import IconButton from "./IconButton";
+import { AnimationEditorContext, AnimationDispatchContext } from "../state/context";
 
 export interface InputProps {
   name?: string;
@@ -39,22 +38,42 @@ export default function Input(props: InputProps) {
       {!isEditing ? (
         <Name name={value!} onClick={() => setIsEditing(true)} />
       ) : (
-        <input
-          className="w-[20ch] p-2"
-          type="text"
-          autoFocus
-          placeholder="Name your strip..."
-          value={value}
-          maxLength={20}
-          onChange={(event) => {
-            setValue(event.target.value);
-          }}
-          onKeyUp={(event) => {
-            if (event.key === "Enter") {
-              setIsEditing(false);
-            }
-          }}
-        />
+        <div className="flex w-fit items-center gap-2 rounded bg-smoke">
+          <input
+            className="w-[15ch] p-2"
+            type="text"
+            autoFocus
+            placeholder="Name your strip..."
+            value={value}
+            maxLength={15}
+            onChange={(event) => {
+              setValue(event.target.value);
+            }}
+            onKeyUp={(event) => {
+              if (event.key === "Enter") {
+                setIsEditing(false);
+              }
+            }}
+          />
+          <span
+            className="flex w-[5ch] cursor-pointer items-center justify-center"
+            onClick={() => setIsEditing(false)}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#A6C2A1"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </span>
+        </div>
       )}
     </>
   );

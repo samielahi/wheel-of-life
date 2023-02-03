@@ -9,7 +9,7 @@ import {
   getAnimation,
 } from "./idb";
 
-export function AnimationReducer(draft: AnimationState, action: AnimationAction) {
+export function AnimationEditorReducer(draft: AnimationState, action: AnimationAction) {
   const currentAssets = draft.assets!;
   const frames = draft.frames!;
 
@@ -138,7 +138,6 @@ export function AnimationReducer(draft: AnimationState, action: AnimationAction)
     case "DESELECT_ASSET": {
       console.log("Asset Deselected");
       const selectedAssets = draft.selectedAssets!;
-      const numSelectedAssets = selectedAssets.length;
       const assetId = action.assetId!;
 
       draft.selectedAssets = selectedAssets?.filter(
@@ -175,11 +174,6 @@ export function ToolbarReducer(draft: ToolbarState, action: ToolbarAction) {
     case "STATUS_CHANGE": {
       console.log(`Status Changed to : ${action.newStatus}`);
       draft.status = action.newStatus;
-      break;
-    }
-
-    case "MESSAGE": {
-      draft.message = action.message;
       break;
     }
 

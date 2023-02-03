@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import {
-  AnimationContext,
+  AnimationEditorContext,
   ToolbarContext,
   ToolbarDispatchContext,
 } from "../../../../state/context";
@@ -11,7 +11,7 @@ import Button from "../../../../core/Button";
 import { fileSave } from "browser-fs-access";
 
 export default function ExportDialog() {
-  const animation = useContext(AnimationContext);
+  const animation = useContext(AnimationEditorContext)!;
   const toolbar = useContext(ToolbarContext);
   const dispatchToolbarAction = useContext<ToolbarDispatch>(ToolbarDispatchContext);
   const isExporting = toolbar.status === "exporting";

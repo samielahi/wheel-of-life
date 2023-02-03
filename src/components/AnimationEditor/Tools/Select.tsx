@@ -1,10 +1,15 @@
 import { useContext, memo } from "react";
-import { AnimationDispatchContext, ToolbarDispatchContext } from "../../../state/context";
+import {
+  AnimationEditorDispatchContext,
+  ToolbarDispatchContext,
+} from "../../../state/context";
 import { AnimationDispatch, ToolbarDispatch } from "../../../types";
 import IconButton from "../../../core/IconButton";
 
 function Select(props: { isIdle: boolean; isSelecting: boolean; hasAssets: boolean }) {
-  const dispatchAnimationAction = useContext<AnimationDispatch>(AnimationDispatchContext);
+  const dispatchAnimationAction = useContext<AnimationDispatch>(
+    AnimationEditorDispatchContext
+  );
   const dispatchToolbarAction = useContext<ToolbarDispatch>(ToolbarDispatchContext);
 
   function toggleSelection() {

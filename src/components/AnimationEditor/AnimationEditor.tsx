@@ -1,13 +1,13 @@
 import { useImmerReducer } from "use-immer";
 import { useEffect } from "react";
-import { AnimationReducer, ToolbarReducer } from "../../state/reducers";
+import { AnimationEditorReducer, ToolbarReducer } from "../../state/reducers";
 import {
-  AnimationContext,
-  AnimationDispatchContext,
+  AnimationEditorContext,
+  AnimationEditorDispatchContext,
   ToolbarContext,
   ToolbarDispatchContext,
 } from "../../state/context";
-import { AnimationState, ToolbarState, Asset, Frame } from "../../types";
+import { AnimationState, ToolbarState, Asset } from "../../types";
 import Header from "../../core/Header";
 import Toolbar from "./Toolbar";
 import AssetList from "./AssetList";
@@ -30,7 +30,7 @@ export default function AnimationEditor(props: { animationId: string; name: stri
   };
 
   const [animation, dispatchAnimationAction] = useImmerReducer(
-    AnimationReducer,
+    AnimationEditorReducer,
     initialAnimationState
   );
   const [toolbar, dispatchToolbarAction] = useImmerReducer(ToolbarReducer, toolbarState);
@@ -62,17 +62,17 @@ export default function AnimationEditor(props: { animationId: string; name: stri
     <>
       <ToolbarContext.Provider value={toolbar}>
         <ToolbarDispatchContext.Provider value={dispatchToolbarAction}>
-          <AnimationContext.Provider value={animation}>
-            <AnimationDispatchContext.Provider value={dispatchAnimationAction}>
-              <Header />
+          <AnimationEditorContext.Provider value={animation}>
+            <AnimationEditorDispatchContext.Provider value={dispatchAnimationAction}>
+              <Header type="editor" />
               <FrameList />
               <Toolbar />
               <AssetList />
               <ExportDialog />
               <DeleteDialog />
               <AutoAssignDialog />
-            </AnimationDispatchContext.Provider>
-          </AnimationContext.Provider>
+            </AnimationEditorDispatchContext.Provider>
+          </AnimationEditorContext.Provider>
         </ToolbarDispatchContext.Provider>
       </ToolbarContext.Provider>
     </>
