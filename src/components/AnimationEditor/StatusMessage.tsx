@@ -6,7 +6,7 @@ function determineStatusMessage(status: ToolbarStatus, numSelectedElements: numb
   switch (status) {
     case "selecting":
       if (numSelectedElements) {
-        return "Click on a frame to assign/replace with selected image.";
+        return "Click on a frame to assign/replace with selected images.";
       } else {
         return "Click an image below to select it.";
       }
@@ -26,7 +26,7 @@ export default function StatusMessage() {
   return (
     <>
       <div className="hidden rounded  md:block">
-        {message !== "" ? <p className="italic px-4 py-2">{message}</p> : null}
+        {message !== "" ? <p className="px-4 py-2 italic">{message}</p> : null}
       </div>
     </>
   );

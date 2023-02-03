@@ -8,18 +8,18 @@ import { AnimationDispatch } from "../../types";
 import { Frame as FrameType } from "../../types";
 import IconButton from "../../core/IconButton";
 
-const FrameCount = (frameId: number) => (
+const FrameCount = (props: { frameId: number }) => (
   <>
     <span className="absolute left-[5%] top-2 z-10 h-fit rounded bg-smoke p-2 text-sm opacity-60 drop-shadow-sm">
-      {frameId + 1 <= 10 ? `0${frameId}` : `${frameId}`}
+      {props.frameId + 1 <= 10 ? `0${props.frameId}` : `${props.frameId}`}
     </span>
   </>
 );
 
-const DeassignButton = (deassignImage: () => void) => (
+const DeassignButton = (props: { deassignImage: () => void }) => (
   <>
     <div className="absolute left-[calc(95%_-_30px)] top-2 z-10 h-fit cursor-pointer group-hover:visible sm:invisible lg:left-[calc(95%_-_50px)] ">
-      <IconButton onClick={deassignImage} tooltip="remove">
+      <IconButton onClick={props.deassignImage} tooltip="remove">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -91,8 +91,7 @@ function Frame(props: FrameType) {
         className="group relative -mt-[3px] -mb-[3px] -ml-[3px] h-[260px] w-[195px] border-[3px] border-smoke air:h-[400px] air:w-[300px] "
       >
         {/* Render the frame id (between 1 - 16) */}
-        <>{FrameCount(props.id)}</>
-
+        <FrameCount frameId={props.id} />
         {/* Render the asset if there is one assigned and it exists */}
         {assetExists ? (
           <img
@@ -103,7 +102,9 @@ function Frame(props: FrameType) {
         ) : null}
 
         {/* Button to deassign/remove the image from the frame */}
-        {assetExists && !isSelecting ? <>{DeassignButton(deassignImage)}</> : null}
+        {assetExists && !isSelecting ? (
+          <DeassignButton deassignImage={deassignImage} />
+        ) : null}
       </div>
     </>
   );
