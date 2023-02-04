@@ -23,9 +23,9 @@ export const initialAnimationState: AnimationState = {
 };
 
 // Animation Menu Context
-export const AnimationMenuContext = createContext<AnimationStateDB[] | null>(null);
+export const AnimationMenuContext = createContext<AnimationStateDB[]>([]);
 export const AnimationMenuDispatchContext =
-  createContext<Dispatch<AnimationMenuAction> | null>(null);
+  createContext<Dispatch<AnimationMenuAction> | any>(null);
 
 // Animation Editor Context
 export const AnimationEditorContext = createContext<AnimationState | null>(null);
