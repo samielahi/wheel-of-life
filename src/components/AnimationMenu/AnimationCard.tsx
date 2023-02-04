@@ -1,5 +1,5 @@
-import { useState, useEffect, memo } from "react";
-import { getAllAssets } from "../../state/idb";
+import { memo } from "react";
+import placeholderImage from "../../assets/file-image.svg";
 import Input from "../../core/Input";
 
 interface AnimationCardProps {
@@ -9,17 +9,7 @@ interface AnimationCardProps {
 }
 
 function AnimationCard(props: AnimationCardProps) {
-  const [thumbnailURL, setThumbnailURL] = useState<string | null>(null);
-
-  useEffect(() => {
-    async function getThumbnail() {
-      const assets = await getAllAssets(props.animationId!);
-      const url = URL.createObjectURL(assets[0].data!);
-      setThumbnailURL(url);
-    }
-
-    getThumbnail();
-  }, []);
+  // const thumbnailURL = URL.createObjectURL(props.thumbnail!);
 
   return (
     <>
@@ -27,7 +17,7 @@ function AnimationCard(props: AnimationCardProps) {
         <div className="h-[300px] w-[225px]">
           <img
             className="h-full w-full opacity-75"
-            src={thumbnailURL! || "http://placekitten.com/300/400"}
+            src={placeholderImage}
             alt="animation thumbnail placeholder"
           />
         </div>

@@ -2,9 +2,9 @@ import Button from "./Button";
 import IconButton from "./IconButton";
 import Logo from "./Logo";
 
-const AnimationSelectionHeader = () => (
+const AnimationMenuHeader = (props: { children?: any }) => (
   <>
-    <div className="w-1/4 md:w-1/3"></div>
+    <div className="w-1/4 md:w-1/3">{props.children}</div>
 
     <Logo />
 
@@ -75,11 +75,15 @@ const AnimationEditorHeader = () => (
     </div>
   </>
 );
-export default function Header(props: { type: "menu" | "editor" }) {
+export default function Header(props: { type: "menu" | "editor"; children?: any }) {
   return (
     <>
       <header className="wrapper flex items-center justify-between border-b-[3px] border-smoke">
-        {props.type === "menu" ? <AnimationSelectionHeader /> : <AnimationEditorHeader />}
+        {props.type === "menu" ? (
+          <AnimationMenuHeader>{props.children}</AnimationMenuHeader>
+        ) : (
+          <AnimationEditorHeader />
+        )}
       </header>
     </>
   );

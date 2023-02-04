@@ -19,6 +19,7 @@ import { getAllAssets, getAllFrames } from "../../state/idb";
 
 export default function AnimationEditor(props: { animationId: string; name: string }) {
   const toolbarState: ToolbarState = { currentTool: "base", status: "idle" };
+  // Replace with imported initialAnimationState from context and Object.assign with props
   let initialAnimationState: AnimationState = {
     id: props.animationId,
     name: props.name,
@@ -36,6 +37,7 @@ export default function AnimationEditor(props: { animationId: string; name: stri
   const [toolbar, dispatchToolbarAction] = useImmerReducer(ToolbarReducer, toolbarState);
 
   useEffect(() => {
+    // Async actions not allowed so we load in idb data and rehydrate as a side effect
     async function loadAnimationFromIdb() {
       const loadedAnimationState = { ...initialAnimationState };
       const assetList = await getAllAssets(props.animationId);

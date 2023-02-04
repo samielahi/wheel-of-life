@@ -19,7 +19,17 @@ export interface Frame {
   animationId?: string;
 }
 
-// Animation
+// Animation Menu
+
+export type AnimationMenuAction =
+  | { type: "REHYDRATE"; animations: AnimationStateDB[] }
+  | { type: "NAME_CHANGE"; name: string }
+  | { type: "NEW_ANIMATION"; animation: AnimationStateDB }
+  | { type: "DELETE_ANIMATION"; animationId: string };
+
+export type AnimationMenuDispatch = (action: AnimationMenuAction) => void;
+
+// Animation Editor
 
 export interface AnimationState {
   // A uuid
@@ -36,10 +46,10 @@ export interface AnimationState {
   // Whether or not Animation is ready to be played or exported
   isBuilt?: boolean;
   lastBuildTime?: Date;
+  thumbnail?: Blob | File;
 }
 
-export type AnimationAction =
-  | { type: "NAME_CHANGE"; name: string }
+export type AnimationEditorAction =
   | { type: "UPLOAD_ASSET"; asset: Asset }
   | { type: "DELETE_ASSETS" }
   | { type: "ASSIGN_IMAGE"; assetId: string; targetFrame: number }
@@ -51,7 +61,7 @@ export type AnimationAction =
   | { type: "REHYDRATE"; animation: AnimationState }
   | { type: "BUILD" };
 
-export type AnimationDispatch = (action: AnimationAction) => void;
+export type AnimationDispatch = (action: AnimationEditorAction) => void;
 
 // Toolbar
 

@@ -34,6 +34,10 @@ export async function setAnimation(animation: AnimationStateDB) {
   return (await animationDB).put("animations", animation);
 }
 
+export async function deleteAnimation(key: string) {
+  return (await animationDB).delete("animations", key);
+}
+
 export async function getFrame(key: string | any[]) {
   // @ts-ignore
   return (await animationDB).get("frames", key);
@@ -72,7 +76,16 @@ export async function getAllAssets(animationId: string) {
   return (await animationDB).getAllFromIndex("assets", "by-animationId", animationId);
 }
 
-export async function deleteAsset(key: string | (string | number)[]) {
-  // @ts-ignore
+export async function deleteAsset(key: string) {
   return (await animationDB).delete("assets", key);
+}
+
+export async function deleteAssets(key: string) {
+  const idx = (await animationDB)
+    .transaction("assets", "readwrite")
+    .store.index("by-animationId");
+
+  for await (const cursor of idx.iterate(key)) {
+    cursor.delete();
+  }
 }

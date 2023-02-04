@@ -1,33 +1,42 @@
-import { useState, useEffect } from "react";
-import { setFrame, setAnimation } from "../../state/idb";
-import { AnimationStateDB, Asset, Frame } from "../../types";
+import { useEffect } from "react";
+import { useImmerReducer } from "use-immer";
 import Header from "../../core/Header";
-import AnimationCard from "./AnimationCard";
+import AnimationCards from "./AnimationCards";
 import AddAnimation from "./AddAnimation";
+import { AnimationMenuReducer } from "../../state/reducers";
+import { AnimationMenuContext, AnimationMenuDispatchContext } from "../../state/context";
 import { getAllAnimations } from "../../state/idb";
 
 export default function AnimationMenu() {
-  const [animations, setAnimations] = useState<AnimationStateDB[]>([]);
+  const [animationMenu, dispatchAnimationMenuAction] = useImmerReducer(
+    // @ts-ignore
+    AnimationMenuReducer!,
+    []
+  );
 
   useEffect(() => {
     async function loadAnimations() {
-      const loadedAnimations = await getAllAnimations();
-      setAnimations(loadedAnimations);
+      const animations = await getAllAnimations();
+
+      dispatchAnimationMenuAction({
+        type: "REHYDRATE",
+        animations: animations,
+      });
     }
 
     loadAnimations();
-  });
+  }, []);
 
   return (
     <>
-      <Header type="menu"></Header>
-
-      <div className="wrapper flex items-center gap-8">
-        {animations.map((animation, i) => (
-          <AnimationCard key={i} animationId={animation.id} name={animation.name} />
-        ))}
-        <AddAnimation />
-      </div>
+      <AnimationMenuContext.Provider value={animationMenu!}>
+        <AnimationMenuDispatchContext.Provider value={dispatchAnimationMenuAction}>
+          <Header type="menu">
+            <AddAnimation />
+          </Header>
+          <AnimationCards />
+        </AnimationMenuDispatchContext.Provider>
+      </AnimationMenuContext.Provider>
     </>
   );
 }

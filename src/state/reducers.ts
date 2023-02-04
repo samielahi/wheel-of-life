@@ -1,15 +1,58 @@
-import { AnimationState, AnimationAction, ToolbarState, ToolbarAction } from "../types";
+import {
+  AnimationState,
+  AnimationEditorAction,
+  ToolbarState,
+  ToolbarAction,
+  AnimationMenuAction,
+  AnimationStateDB,
+} from "../types";
 import { sortAssetsAlphaNumerically } from "../utils";
 import {
   setFrame,
   deleteFrames,
   setAsset,
   deleteAsset,
+  deleteAssets,
   setAnimation,
-  getAnimation,
+  deleteAnimation,
 } from "./idb";
 
-export function AnimationEditorReducer(draft: AnimationState, action: AnimationAction) {
+export function AnimationMenuReducer(
+  draft: AnimationStateDB[],
+  action: AnimationMenuAction
+) {
+  switch (action.type) {
+    case "REHYDRATE": {
+      return [...action.animations];
+    }
+
+    case "NEW_ANIMATION": {
+      draft.push(action.animation);
+      setAnimation(action.animation);
+      break;
+    }
+
+    case "DELETE_ANIMATION": {
+      deleteAnimation(action.animationId);
+      deleteFrames(action.animationId);
+      deleteAssets(action.animationId);
+      break;
+    }
+
+    case "NAME_CHANGE": {
+      break;
+    }
+
+    default: {
+      throw Error("Unknown action: " + action);
+    }
+  }
+}
+
+export function AnimationEditorReducer(
+  draft: AnimationState,
+  action: AnimationEditorAction
+) {
   const currentAssets = draft.assets!;
   const frames = draft.frames!;
 
@@ -32,17 +75,6 @@ export function AnimationEditorReducer(draft: AnimationState, action: AnimationA
         }
       });
 
-      break;
-    }
-
-    case "NAME_CHANGE": {
-      console.log(`Name changed to ${action.name}`);
-      draft.name = action.name;
-      // Update record in idb
-      setAnimation({
-        id: draft.id!,
-        name: draft.name!,
-      });
       break;
     }
 
