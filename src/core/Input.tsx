@@ -1,8 +1,10 @@
 import { useState, useContext } from "react";
-import { AnimationEditorContext, AnimationDispatchContext } from "../state/context";
+import { AnimationMenuDispatch } from "../types";
+import { AnimationMenuDispatchContext } from "../state/context";
 
 export interface InputProps {
   name?: string;
+  animationId?: string;
 }
 
 const Name = (props: { name: string; onClick?: () => void }) => (
@@ -32,6 +34,15 @@ const Name = (props: { name: string; onClick?: () => void }) => (
 export default function Input(props: InputProps) {
   const [value, setValue] = useState(props.name);
   const [isEditing, setIsEditing] = useState(false);
+  const dispatch = useContext(AnimationMenuDispatchContext);
+
+  function confirmNameChange() {
+    dispatch({
+      type: "NAME_CHANGE",
+      name: value,
+      animationId: props.animationId,
+    });
+  }
 
   return (
     <>
@@ -57,7 +68,10 @@ export default function Input(props: InputProps) {
           />
           <span
             className="flex w-[5ch] cursor-pointer items-center justify-center"
-            onClick={() => setIsEditing(false)}
+            onClick={() => {
+              confirmNameChange();
+              setIsEditing(false);
+            }}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

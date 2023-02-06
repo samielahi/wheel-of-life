@@ -8,10 +8,10 @@ import {
 import { Asset, AnimationDispatch } from "../../../types";
 import IconButton from "../../../core/IconButton";
 
-function createAsset(animationName: string, file: FileWithHandle): Asset {
+function createAsset(animationId: string, file: FileWithHandle): Asset {
   const assetId = uuid();
   const asset: Asset = {
-    animationId: "test",
+    animationId: animationId,
     id: assetId,
     data: file,
     isSelected: false,
@@ -23,8 +23,9 @@ function createAsset(animationName: string, file: FileWithHandle): Asset {
 
 export default function AssetUpload(props: { isIdle: boolean }) {
   const animation = useContext(AnimationEditorContext)!;
-  const animationName = animation.name!;
+  const animationId = animation.id!;
   const dispatchAnimationAction = useContext<AnimationDispatch>(
+    // @ts-ignore
     AnimationEditorDispatchContext
   );
 
@@ -37,7 +38,7 @@ export default function AssetUpload(props: { isIdle: boolean }) {
 
     // Create and store assets
     images.forEach((image) => {
-      const asset = createAsset(animationName, image);
+      const asset = createAsset(animationId, image);
       dispatchAnimationAction({
         type: "UPLOAD_ASSET",
         asset: asset,

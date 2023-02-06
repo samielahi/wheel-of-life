@@ -1,5 +1,5 @@
 import { useImmerReducer } from "use-immer";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import { AnimationEditorReducer, ToolbarReducer } from "../../state/reducers";
 import {
   AnimationEditorContext,
@@ -16,8 +16,11 @@ import DeleteDialog from "./Tools/Delete/DeleteDialog";
 import ExportDialog from "./Tools/Export/ExportDialog";
 import AutoAssignDialog from "./Tools/AutoAssign/AutoAssignDialog";
 import { getAllAssets, getAllFrames } from "../../state/idb";
+import { AnimationMenuDispatchContext } from "../../state/context";
+import Button from "../../core/Button";
 
 export default function AnimationEditor(props: { animationId: string; name: string }) {
+  const dispatchMenuAction = useContext(AnimationMenuDispatchContext);
   const toolbarState: ToolbarState = { currentTool: "base", status: "idle" };
   // Replace with imported initialAnimationState from context and Object.assign with props
   let initialAnimationState: AnimationState = {
@@ -41,6 +44,7 @@ export default function AnimationEditor(props: { animationId: string; name: stri
     async function loadAnimationFromIdb() {
       const loadedAnimationState = { ...initialAnimationState };
       const assetList = await getAllAssets(props.animationId);
+      console.log(assetList);
       const frames = await getAllFrames(props.animationId);
       const assets: Record<string, Asset> = {};
 
@@ -66,7 +70,25 @@ export default function AnimationEditor(props: { animationId: string; name: stri
         <ToolbarDispatchContext.Provider value={dispatchToolbarAction}>
           <AnimationEditorContext.Provider value={animation}>
             <AnimationEditorDispatchContext.Provider value={dispatchAnimationAction}>
-              <Header type="editor" />
+              <Header type="editor">
+                <Button onClick={() => dispatchMenuAction({ type: "CLOSE_ANIMATION" })}>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                  </svg>
+                  <span className="hidden md:block">all strips</span>
+                </Button>
+              </Header>
               <FrameList />
               <Toolbar />
               <AssetList />

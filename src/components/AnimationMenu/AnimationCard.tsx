@@ -1,8 +1,9 @@
 import { memo } from "react";
 import placeholderImage from "../../assets/file-image.svg";
-import IconButton from "../../core/IconButton";
 import Input from "../../core/Input";
-import { deleteAnimation } from "../../state/idb";
+import DeleteAnimation from "./DeleteAnimation";
+import { useContext } from "react";
+import { AnimationMenuDispatchContext } from "../../state/context";
 
 interface AnimationCardProps {
   animationId?: string;
@@ -11,35 +12,29 @@ interface AnimationCardProps {
 }
 
 function AnimationCard(props: AnimationCardProps) {
+  const dispatch = useContext(AnimationMenuDispatchContext);
+
+  function openAnimation() {
+    dispatch({
+      type: "OPEN_ANIMATION",
+      animationId: props.animationId,
+      name: props.name,
+    });
+  }
 
   return (
     <>
       <div className="group relative cursor-pointer rounded border-[3px] border-smoke p-4 hover:border-violet">
-        <span className="invisible absolute top-3 left-[80%] rounded-full bg-smoke p-2 group-hover:visible ">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="#ff3d00"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        </span>
+        <DeleteAnimation animationId={props.animationId!} />
 
-        <div className="h-[300px] w-[225px]">
+        <div onClick={openAnimation} className="h-[300px] w-[225px]">
           <img
             className="h-full w-full opacity-75"
             src={placeholderImage}
             alt="animation thumbnail placeholder"
           />
         </div>
-        <Input name={props.name} />
+        <Input name={props.name} animationId={props.animationId} />
       </div>
     </>
   );

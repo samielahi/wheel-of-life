@@ -44,9 +44,10 @@ const DeassignButton = (props: { deassignImage: () => void }) => (
 function Frame(props: FrameType) {
   const animation = useContext(AnimationEditorContext);
   const dispatchAnimationAction = useContext<AnimationDispatch>(
+    // @ts-ignore
     AnimationEditorDispatchContext
   );
-  const toolbar = useContext(ToolbarContext);
+  const toolbar = useContext(ToolbarContext)!;
   const isSelecting = toolbar.status === "selecting";
   const assets = animation!.assets!;
   const assetExists = props.assetId! && assets[props.assetId];
@@ -54,16 +55,14 @@ function Frame(props: FrameType) {
   let assignedImage: Blob;
   let assignedImageURL;
 
+  // Don't use hook in conditional
   if (assetExists) {
     assignedImage = assets[props.assetId!].data;
-    assignedImageURL = useMemo(
-      () => URL.createObjectURL(assignedImage),
-      [props.assetId!]
-    );
+    assignedImageURL = URL.createObjectURL(assignedImage);
   }
 
   function assignImage() {
-    if (toolbar.status === "selecting" && currentAssetId) {
+    if (isSelecting && currentAssetId) {
       dispatchAnimationAction({
         type: "ASSIGN_IMAGE",
         targetFrame: props.id,

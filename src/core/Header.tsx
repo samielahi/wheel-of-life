@@ -30,27 +30,9 @@ const AnimationMenuHeader = (props: { children?: any }) => (
   </>
 );
 
-const AnimationEditorHeader = () => (
+const AnimationEditorHeader = (props: { children?: any }) => (
   <>
-    <div className="w-1/4 md:w-1/3">
-      <Button>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <line x1="19" y1="12" x2="5" y2="12"></line>
-          <polyline points="12 19 5 12 12 5"></polyline>
-        </svg>
-        <span className="hidden md:block">all strips</span>
-      </Button>
-    </div>
+    <div className="w-1/4 md:w-1/3">{props.children}</div>
 
     <Logo showSubtitle subtitle="strip editor" />
 
@@ -82,7 +64,7 @@ export default function Header(props: { type: "menu" | "editor"; children?: any 
         {props.type === "menu" ? (
           <AnimationMenuHeader>{props.children}</AnimationMenuHeader>
         ) : (
-          <AnimationEditorHeader />
+          <AnimationEditorHeader>{props.children}</AnimationEditorHeader>
         )}
       </header>
     </>

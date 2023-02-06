@@ -6,6 +6,7 @@ import AddAnimation from "./AddAnimation";
 import { AnimationMenuReducer } from "../../state/reducers";
 import { AnimationMenuContext, AnimationMenuDispatchContext } from "../../state/context";
 import { getAllAnimations } from "../../state/idb";
+import AnimationEditor from "../AnimationEditor/AnimationEditor";
 
 export default function AnimationMenu() {
   const [animationMenu, dispatchAnimationMenuAction] = useImmerReducer(
@@ -31,10 +32,19 @@ export default function AnimationMenu() {
     <>
       <AnimationMenuContext.Provider value={animationMenu!}>
         <AnimationMenuDispatchContext.Provider value={dispatchAnimationMenuAction}>
-          <Header type="menu">
-            <AddAnimation />
-          </Header>
-          <AnimationCards />
+          {!animationMenu?.animationSelected! ? (
+            <>
+              <Header type="menu">
+                <AddAnimation />
+              </Header>
+              <AnimationCards />
+            </>
+          ) : (
+            <AnimationEditor
+              name={animationMenu.selectedAnimationName!}
+              animationId={animationMenu.selectedAnimationId!}
+            />
+          )}
         </AnimationMenuDispatchContext.Provider>
       </AnimationMenuContext.Provider>
     </>

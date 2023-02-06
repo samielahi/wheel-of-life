@@ -5,7 +5,7 @@ import {
   AnimationEditorAction,
   ToolbarAction,
   AnimationMenuAction,
-  AnimationStateDB,
+  AnimationMenuState,
 } from "../types";
 
 // Initial States
@@ -23,9 +23,10 @@ export const initialAnimationState: AnimationState = {
 };
 
 // Animation Menu Context
-export const AnimationMenuContext = createContext<AnimationStateDB[]>([]);
-export const AnimationMenuDispatchContext =
-  createContext<Dispatch<AnimationMenuAction> | any>(null);
+export const AnimationMenuContext = createContext<AnimationMenuState | null>(null);
+export const AnimationMenuDispatchContext = createContext<
+  Dispatch<AnimationMenuAction> | any
+>(null);
 
 // Animation Editor Context
 export const AnimationEditorContext = createContext<AnimationState | null>(null);

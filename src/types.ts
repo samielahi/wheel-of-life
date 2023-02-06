@@ -23,11 +23,20 @@ export interface Frame {
 
 export type AnimationMenuAction =
   | { type: "REHYDRATE"; animations: AnimationStateDB[] }
-  | { type: "NAME_CHANGE"; name: string }
+  | { type: "NAME_CHANGE"; animationId: string; name: string }
   | { type: "NEW_ANIMATION"; animation: AnimationStateDB }
-  | { type: "DELETE_ANIMATION"; animationId: string };
+  | { type: "DELETE_ANIMATION"; animationId: string }
+  | { type: "OPEN_ANIMATION"; animationId: string; name: string }
+  | { type: "CLOSE_ANIMATION" };
 
 export type AnimationMenuDispatch = (action: AnimationMenuAction) => void;
+
+export interface AnimationMenuState {
+  animations: AnimationStateDB[];
+  animationSelected?: boolean;
+  selectedAnimationId?: string | null;
+  selectedAnimationName?: string | null;
+}
 
 // Animation Editor
 
