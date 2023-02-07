@@ -8,7 +8,7 @@ import Header from "../../core/Header";
 import AddAnimation from "./AddAnimation";
 import AnimationCards from "./AnimationCards";
 
-export default function AnimationMenu() {
+function AnimationMenu() {
   const [animationMenu, dispatchAnimationMenuAction] = useImmerReducer(
     AnimationMenuReducer!,
     [] as AnimationStateDB[]
@@ -40,3 +40,5 @@ export default function AnimationMenu() {
     </>
   );
 }
+
+export default AnimationMenu;

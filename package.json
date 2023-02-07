@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/react-router": "^5.1.20",
     "@types/uuid": "^9.0.0",
     "browser-fs-access": "^0.31.2",
     "idb": "^7.1.1",
@@ -16,6 +17,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router": "^6.8.1",
+    "react-router-dom": "^6.8.1",
     "use-immer": "^0.8.1",
     "uuid": "^9.0.0"
   },

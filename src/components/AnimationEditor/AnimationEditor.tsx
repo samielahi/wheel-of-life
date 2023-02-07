@@ -1,5 +1,6 @@
-import { useImmerReducer } from "use-immer";
 import { useEffect, useContext } from "react";
+import { useImmerReducer } from "use-immer";
+import { useParams, useLocation } from "react-router";
 import { AnimationEditorReducer, ToolbarReducer } from "../../state/reducers";
 import {
   AnimationEditorContext,
@@ -18,14 +19,21 @@ import AutoAssignDialog from "./Tools/AutoAssign/AutoAssignDialog";
 import { getAllAssets, getAllFrames } from "../../state/idb";
 import { AnimationMenuDispatchContext } from "../../state/context";
 import Button from "../../core/Button";
+import { Link } from "react-router-dom";
 
-export default function AnimationEditor(props: { animationId: string; name: string }) {
+export default function AnimationEditor() {
+  // Get the animation name from the url
+  const params = useParams();
+  // Get the animation id from state sent from link
+  const location = useLocation();
+  const name = params.name;
+  const animationId = location.state.animationId;
   const dispatchMenuAction = useContext(AnimationMenuDispatchContext);
   const toolbarState: ToolbarState = { currentTool: "base", status: "idle" };
   // Replace with imported initialAnimationState from context and Object.assign with props
   let initialAnimationState: AnimationState = {
-    id: props.animationId,
-    name: props.name,
+    id: animationId,
+    name: name,
     assets: {},
     frames: [],
     selectedAssets: [],
@@ -43,9 +51,8 @@ export default function AnimationEditor(props: { animationId: string; name: stri
     // Async actions not allowed so we load in idb data and rehydrate as a side effect
     async function loadAnimationFromIdb() {
       const loadedAnimationState = { ...initialAnimationState };
-      const assetList = await getAllAssets(props.animationId);
-      console.log(assetList);
-      const frames = await getAllFrames(props.animationId);
+      const assetList = await getAllAssets(animationId);
+      const frames = await getAllFrames(animationId);
       const assets: Record<string, Asset> = {};
 
       assetList.forEach((asset) => {
@@ -71,23 +78,25 @@ export default function AnimationEditor(props: { animationId: string; name: stri
           <AnimationEditorContext.Provider value={animation}>
             <AnimationEditorDispatchContext.Provider value={dispatchAnimationAction}>
               <Header type="editor">
-                <Button onClick={() => dispatchMenuAction({ type: "CLOSE_ANIMATION" })}>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <line x1="19" y1="12" x2="5" y2="12"></line>
-                    <polyline points="12 19 5 12 12 5"></polyline>
-                  </svg>
-                  <span className="hidden md:block">all strips</span>
-                </Button>
+                <Link to="/animations">
+                  <Button>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <line x1="19" y1="12" x2="5" y2="12"></line>
+                      <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    <span className="hidden md:block">all strips</span>
+                  </Button>
+                </Link>
               </Header>
               <FrameList />
               <Toolbar />

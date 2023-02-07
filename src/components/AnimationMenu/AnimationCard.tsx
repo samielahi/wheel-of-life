@@ -2,6 +2,7 @@ import { memo } from "react";
 import placeholderImage from "../../assets/file-image.svg";
 import Input from "../../core/Input";
 import DeleteAnimation from "./DeleteAnimation";
+import { Link } from "react-router-dom";
 
 interface AnimationCardProps {
   animationId?: string;
@@ -16,11 +17,16 @@ function AnimationCard(props: AnimationCardProps) {
         <DeleteAnimation animationId={props.animationId!} />
 
         <div className="h-[300px] w-[225px]">
-          <img
-            className="h-full w-full opacity-75"
-            src={placeholderImage}
-            alt="animation thumbnail placeholder"
-          />
+          <Link
+            to={`/animation-editor/${props.name}`}
+            state={{ animationId: props.animationId }}
+          >
+            <img
+              className="h-full w-full opacity-75"
+              src={placeholderImage}
+              alt="animation thumbnail placeholder"
+            />
+          </Link>
         </div>
         <Input name={props.name} animationId={props.animationId} />
       </div>

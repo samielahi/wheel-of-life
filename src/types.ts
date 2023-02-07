@@ -28,7 +28,6 @@ export type AnimationMenuAction =
   | { type: "NEW_ANIMATION"; animation: AnimationStateDB }
   | { type: "DELETE_ANIMATION"; animationId: string };
 
-
 // Animation Editor
 
 export interface AnimationState {
@@ -88,6 +87,7 @@ export interface AnimationSchema extends DBSchema {
     key: string;
     // Name of animation
     value: AnimationStateDB;
+    indexes: { "by-name": string };
   };
 
   assets: {

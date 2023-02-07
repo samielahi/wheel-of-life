@@ -3,7 +3,7 @@ import { AnimationSchema, Asset, Frame, AnimationStateDB } from "../types";
 
 const animationDB = openDB<AnimationSchema>("animations", 1, {
   upgrade(db) {
-    db.createObjectStore("animations", { keyPath: "id" });
+    const animationStore = db.createObjectStore("animations", { keyPath: "id" });
     const compoundIdx = ["animationId", "id"];
     const assetStore = db.createObjectStore("assets", {
       keyPath: "id",
@@ -13,10 +13,15 @@ const animationDB = openDB<AnimationSchema>("animations", 1, {
       keyPath: compoundIdx,
     });
 
+    animationStore.createIndex("by-name", "name");
     assetStore.createIndex("by-animationId", "animationId");
     frameStore.createIndex("by-animationId", "animationId");
   },
 });
+
+export async function getAnimationByIdx(name: string) {
+  return (await animationDB).getFromIndex("animations", "by-name", name);
+}
 
 export async function getAnimation(key: string) {
   return (await animationDB).get("animations", key);

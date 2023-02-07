@@ -5,15 +5,14 @@ import {
   ToolbarDispatchContext,
 } from "../../../../state/context";
 import { getAnimation } from "../../../../state/idb";
-import { ToolbarDispatch } from "../../../../types";
 import Modal from "../../../../core/Modal";
 import Button from "../../../../core/Button";
 import { fileSave } from "browser-fs-access";
 
 export default function ExportDialog() {
   const animation = useContext(AnimationEditorContext)!;
-  const toolbar = useContext(ToolbarContext);
-  const dispatchToolbarAction = useContext<ToolbarDispatch>(ToolbarDispatchContext);
+  const toolbar = useContext(ToolbarContext)!;
+  const dispatchToolbarAction = useContext(ToolbarDispatchContext)!;
   const isExporting = toolbar.status === "exporting";
   const animationId = animation.id!;
   const animationName = animation.name!;
