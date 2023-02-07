@@ -1,10 +1,9 @@
-import { useContext, useMemo, memo } from "react";
+import { useContext, memo } from "react";
 import {
   AnimationEditorContext,
   AnimationEditorDispatchContext,
   ToolbarContext,
 } from "../../state/context";
-import { AnimationDispatch } from "../../types";
 import { Frame as FrameType } from "../../types";
 import IconButton from "../../core/IconButton";
 
@@ -43,10 +42,7 @@ const DeassignButton = (props: { deassignImage: () => void }) => (
 
 function Frame(props: FrameType) {
   const animation = useContext(AnimationEditorContext);
-  const dispatchAnimationAction = useContext<AnimationDispatch>(
-    // @ts-ignore
-    AnimationEditorDispatchContext
-  );
+  const dispatchAnimationAction = useContext(AnimationEditorDispatchContext)!;
   const toolbar = useContext(ToolbarContext)!;
   const isSelecting = toolbar.status === "selecting";
   const assets = animation!.assets!;

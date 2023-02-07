@@ -2,8 +2,6 @@ import { memo } from "react";
 import placeholderImage from "../../assets/file-image.svg";
 import Input from "../../core/Input";
 import DeleteAnimation from "./DeleteAnimation";
-import { useContext } from "react";
-import { AnimationMenuDispatchContext } from "../../state/context";
 
 interface AnimationCardProps {
   animationId?: string;
@@ -12,22 +10,12 @@ interface AnimationCardProps {
 }
 
 function AnimationCard(props: AnimationCardProps) {
-  const dispatch = useContext(AnimationMenuDispatchContext);
-
-  function openAnimation() {
-    dispatch({
-      type: "OPEN_ANIMATION",
-      animationId: props.animationId,
-      name: props.name,
-    });
-  }
-
   return (
     <>
       <div className="group relative cursor-pointer rounded border-[3px] border-smoke p-4 hover:border-violet">
         <DeleteAnimation animationId={props.animationId!} />
 
-        <div onClick={openAnimation} className="h-[300px] w-[225px]">
+        <div className="h-[300px] w-[225px]">
           <img
             className="h-full w-full opacity-75"
             src={placeholderImage}

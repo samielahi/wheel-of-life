@@ -7,9 +7,9 @@ export default function AnimationCards() {
 
   return (
     <>
-      {animationMenu.animations && animationMenu.animations.length ? (
+      {animationMenu.length ? (
         <div className="wrapper flex gap-4">
-          {animationMenu.animations.map((animation, i) => (
+          {animationMenu.map((animation, i) => (
             <AnimationCard
               key={i}
               name={animation.name}

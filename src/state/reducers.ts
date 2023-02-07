@@ -4,7 +4,6 @@ import {
   ToolbarState,
   ToolbarAction,
   AnimationMenuAction,
-  AnimationStateDB,
   AnimationMenuState,
 } from "../types";
 import { sortAssetsAlphaNumerically } from "../utils";
@@ -24,16 +23,11 @@ export function AnimationMenuReducer(
 ) {
   switch (action.type) {
     case "REHYDRATE": {
-      return {
-        animations: [...action.animations],
-        animationSelected: false,
-        selectedAnimationId: null,
-        selectedAnimationName: null,
-      };
+      return [...action.animations];
     }
 
     case "NEW_ANIMATION": {
-      draft.animations.push(action.animation);
+      draft.push(action.animation);
       setAnimation(action.animation);
       break;
     }
@@ -42,28 +36,14 @@ export function AnimationMenuReducer(
       deleteAnimation(action.animationId);
       deleteFrames(action.animationId);
       deleteAssets(action.animationId);
-      return { animations: [] };
-    }
-
-    case "OPEN_ANIMATION": {
-      draft.selectedAnimationId = action.animationId;
-      draft.selectedAnimationName = action.name;
-      draft.animationSelected = true;
-      break;
-    }
-
-    case "CLOSE_ANIMATION": {
-      draft.selectedAnimationId = null;
-      draft.selectedAnimationName = null;
-      draft.animationSelected = false;
-      break;
+      return draft.filter((animation) => animation.id !== action.animationId);
     }
 
     case "NAME_CHANGE": {
-      const targetAnimation = draft.animations.find(
+      const targetAnimation = draft.find(
         (animation) => action.animationId === animation.id
       )!;
-
+      // Don't set if name is the same as before
       if (targetAnimation.name !== action.name) {
         targetAnimation.name = action.name;
         setAnimation({ ...targetAnimation! });

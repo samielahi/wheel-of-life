@@ -5,7 +5,7 @@ import {
   AnimationEditorContext,
   AnimationEditorDispatchContext,
 } from "../../../state/context";
-import { Asset, AnimationDispatch } from "../../../types";
+import { Asset } from "../../../types";
 import IconButton from "../../../core/IconButton";
 
 function createAsset(animationId: string, file: FileWithHandle): Asset {
@@ -24,10 +24,7 @@ function createAsset(animationId: string, file: FileWithHandle): Asset {
 export default function AssetUpload(props: { isIdle: boolean }) {
   const animation = useContext(AnimationEditorContext)!;
   const animationId = animation.id!;
-  const dispatchAnimationAction = useContext<AnimationDispatch>(
-    // @ts-ignore
-    AnimationEditorDispatchContext
-  );
+  const dispatchAnimationAction = useContext(AnimationEditorDispatchContext)!;
 
   async function uploadAssets() {
     // Pick the file
