@@ -9,15 +9,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@formkit/auto-animate": "^1.0.0-beta.6",
-    "@types/sharedworker": "^0.0.90",
     "@types/uuid": "^9.0.0",
     "browser-fs-access": "^0.31.2",
-    "gif.js.optimized": "^1.0.1",
     "idb": "^7.1.1",
     "immer": "^9.0.18",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router": "^6.8.1",
     "use-immer": "^0.8.1",
     "uuid": "^9.0.0"
   },
