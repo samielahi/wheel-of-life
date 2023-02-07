@@ -4,16 +4,13 @@ import {
   ToolbarContext,
   ToolbarDispatchContext,
 } from "../../../../state/context";
-import { AnimationDispatch, ToolbarDispatch } from "../../../../types";
 import Modal from "../../../../core/Modal";
 import Button from "../../../../core/Button";
 
 export default function AutoAssignDialog() {
-  const toolbar = useContext(ToolbarContext);
-  const dispatchToolbarAction = useContext<ToolbarDispatch>(ToolbarDispatchContext);
-  const dispatchAnimationAction = useContext<AnimationDispatch>(
-    AnimationEditorDispatchContext
-  );
+  const toolbar = useContext(ToolbarContext)!;
+  const dispatchToolbarAction = useContext(ToolbarDispatchContext)!;
+  const dispatchAnimationAction = useContext(AnimationEditorDispatchContext)!;
   const isAssigning = toolbar.status === "auto-assigning";
 
   function closeDeleteDialog() {

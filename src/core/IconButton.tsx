@@ -10,7 +10,7 @@ export default function IconButton(props: ButtonProps) {
         <button
           disabled={props.disabled}
           style={props.disabled ? { color: "#D8D0D0" } : { color: "#9c8cdf" }}
-          className="flex h-[30px] w-[30px] items-center justify-center rounded bg-smoke hover:text-red sm:p-0 lg:h-[50px] lg:w-[50px]"
+          className="flex h-[35px] w-[35px] items-center justify-center rounded bg-smoke hover:text-red sm:p-0 lg:h-[50px] lg:w-[50px]"
           onClick={props.onClick}
           onMouseEnter={() => setShowTooltip(true)}
           onMouseLeave={() => setShowTooltip(false)}

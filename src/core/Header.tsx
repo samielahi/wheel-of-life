@@ -6,7 +6,7 @@ const AnimationMenuHeader = (props: { children?: any }) => (
   <>
     <div className="w-1/4 md:w-1/3">{props.children}</div>
 
-    <Logo />
+    <Logo showSubtitle subtitle="select strip" />
 
     <div className="flex w-1/4 justify-end gap-4 md:w-1/3">
       <IconButton tooltip="help">
@@ -34,7 +34,7 @@ const AnimationEditorHeader = (props: { children?: any }) => (
   <>
     <div className="w-1/4 md:w-1/3">{props.children}</div>
 
-    <Logo showSubtitle subtitle="strip editor" />
+    <Logo showSubtitle subtitle="edit strip" />
 
     <div className="flex w-1/4 justify-end gap-4 md:w-1/3">
       <IconButton tooltip="help">

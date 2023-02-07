@@ -9,6 +9,7 @@ import {
 } from "../types";
 
 // Initial States
+export const initialToolbarState: ToolbarState = { currentTool: "base", status: "idle" };
 
 export const initialAnimationState: AnimationState = {
   id: "",

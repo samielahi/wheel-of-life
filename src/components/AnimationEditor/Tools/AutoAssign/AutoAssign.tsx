@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { ToolbarDispatchContext } from "../../../../state/context";
 import Button from "../../../../core/Button";
+import AutoAssignDialog from "./AutoAssignDialog";
 
 export default function AutoAssign(props: { isIdle: boolean; hasAssets: boolean }) {
   const dispatchToolbarAction = useContext(ToolbarDispatchContext)!;
@@ -16,6 +17,7 @@ export default function AutoAssign(props: { isIdle: boolean; hasAssets: boolean 
 
   return (
     <>
+      <AutoAssignDialog />
       <Button onClick={startAutoAssign} disabled={props.hasAssets ? false : true}>
         <span className="sm:hidden">auto</span>
         <span className="hidden sm:block">auto assign</span>

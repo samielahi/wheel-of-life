@@ -1,12 +1,10 @@
 import { useContext } from "react";
 import { ToolbarDispatchContext } from "../../../../state/context";
-import { ToolbarDispatch } from "../../../../types";
 import IconButton from "../../../../core/IconButton";
+import ExportDialog from "./ExportDialog";
 
 export default function Export(props: { isIdle?: boolean; isBuilt?: boolean }) {
-  const dispatchToolbarAction = useContext<ToolbarDispatch>(
-    ToolbarDispatchContext
-  );
+  const dispatchToolbarAction = useContext(ToolbarDispatchContext)!;
 
   function startExport() {
     if (props.isIdle) {
@@ -19,11 +17,8 @@ export default function Export(props: { isIdle?: boolean; isBuilt?: boolean }) {
 
   return (
     <>
-      <IconButton
-        tooltip="export"
-        onClick={startExport}
-        disabled={props.isBuilt}
-      >
+      <ExportDialog />
+      <IconButton tooltip="export" onClick={startExport} disabled={props.isBuilt}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"

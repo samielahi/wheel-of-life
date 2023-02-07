@@ -8,18 +8,37 @@ import {
   ToolbarContext,
   ToolbarDispatchContext,
 } from "../../state/context";
+import { initialToolbarState } from "../../state/context";
 import { AnimationState, ToolbarState, Asset } from "../../types";
 import Header from "../../core/Header";
 import Toolbar from "./Toolbar";
 import AssetList from "./AssetList";
 import FrameList from "./FrameList";
-import DeleteDialog from "./Tools/Delete/DeleteDialog";
-import ExportDialog from "./Tools/Export/ExportDialog";
-import AutoAssignDialog from "./Tools/AutoAssign/AutoAssignDialog";
 import { getAllAssets, getAllFrames } from "../../state/idb";
-import { AnimationMenuDispatchContext } from "../../state/context";
 import Button from "../../core/Button";
 import { Link } from "react-router-dom";
+
+const AllStripsLink = () => (
+  <Link to="/animations">
+    <Button>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      <span className="hidden md:block">all strips</span>
+    </Button>
+  </Link>
+);
 
 export default function AnimationEditor() {
   // Get the animation name from the url
@@ -28,8 +47,7 @@ export default function AnimationEditor() {
   const location = useLocation();
   const name = params.name;
   const animationId = location.state.animationId;
-  const dispatchMenuAction = useContext(AnimationMenuDispatchContext);
-  const toolbarState: ToolbarState = { currentTool: "base", status: "idle" };
+  const toolbarState: ToolbarState = initialToolbarState;
   // Replace with imported initialAnimationState from context and Object.assign with props
   let initialAnimationState: AnimationState = {
     id: animationId,
@@ -78,32 +96,11 @@ export default function AnimationEditor() {
           <AnimationEditorContext.Provider value={animation}>
             <AnimationEditorDispatchContext.Provider value={dispatchAnimationAction}>
               <Header type="editor">
-                <Link to="/animations">
-                  <Button>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <line x1="19" y1="12" x2="5" y2="12"></line>
-                      <polyline points="12 19 5 12 12 5"></polyline>
-                    </svg>
-                    <span className="hidden md:block">all strips</span>
-                  </Button>
-                </Link>
+                <AllStripsLink />
               </Header>
               <FrameList />
               <Toolbar />
               <AssetList />
-              <ExportDialog />
-              <DeleteDialog />
-              <AutoAssignDialog />
             </AnimationEditorDispatchContext.Provider>
           </AnimationEditorContext.Provider>
         </ToolbarDispatchContext.Provider>
