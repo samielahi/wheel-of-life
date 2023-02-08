@@ -32,10 +32,6 @@ export async function getAllAnimations() {
 }
 
 export async function setAnimation(animation: AnimationStateDB) {
-  // const currentAnimation = await getAnimation(animation.id);
-  // let newAnimation: AnimationStateDB;
-  // newAnimation = Object.assign(animation, currentAnimation);
-
   return (await animationDB).put("animations", animation);
 }
 
@@ -86,11 +82,15 @@ export async function deleteAsset(key: string) {
 }
 
 export async function deleteAssets(key: string) {
-  const idx = (await animationDB)
-    .transaction("assets", "readwrite")
-    .store.index("by-animationId");
+  const tx = (await animationDB).transaction("assets", "readwrite");
+  const idx = tx.store.index("by-animationId");
+  const destroy = idx.openCursor(key);
+  destroy.then(async (cursor) => {
+    while (cursor) {
+      cursor.delete();
+      cursor = await cursor.continue();
+    }
+  });
 
-  for await (const cursor of idx.iterate(key)) {
-    cursor.delete();
-  }
+  return await tx.done;
 }

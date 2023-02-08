@@ -1,18 +1,12 @@
 import Zoetrope from "./Zoetrope";
 import Table from "./Table";
-import { OrbitControls } from "@react-three/drei";
+import { OrbitControls, Environment } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Suspense, useEffect, FormEvent, MouseEvent } from "react";
 import jessica from "../../assets/example_strips/Jessica.png";
 import { useState } from "react";
 import { blobToDataURL } from "../../utils";
 import { getAllAnimations } from "../../state/idb";
-
-const Dropdown = () => (
-  <>
-    <label htmlFor="strip-select">Choose a Strip: </label>
-  </>
-);
 
 export default function Scene() {
   const [animations, setAnimations] = useState<Record<string, string>>({});
@@ -78,9 +72,9 @@ export default function Scene() {
         </div>
       </div>
 
-      <Canvas className="z-1 h-full w-full" camera={{ position: [10, 5, 3] }}>
+      <Canvas className="z-1 h-full w-full bg-active" camera={{ position: [10, 5, 3] }}>
+        <ambientLight intensity={0.5} />
         <Suspense>
-          <ambientLight intensity={0.7} />
           <OrbitControls
             maxDistance={8}
             minDistance={2}
