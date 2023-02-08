@@ -2,53 +2,97 @@ import Zoetrope from "./Zoetrope";
 import Table from "./Table";
 import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { Suspense, useEffect } from "react";
-import { useControls } from "leva";
+import { Suspense, useEffect, FormEvent, MouseEvent } from "react";
 import jessica from "../../assets/example_strips/Jessica.png";
 import { useState } from "react";
-import { AnimationStateDB } from "../../types";
+import { blobToDataURL } from "../../utils";
 import { getAllAnimations } from "../../state/idb";
+
+const Dropdown = () => (
+  <>
+    <label htmlFor="strip-select">Choose a Strip: </label>
+  </>
+);
 
 export default function Scene() {
   const [animations, setAnimations] = useState<Record<string, string>>({});
+  const [speed, setSpeed] = useState(0);
+  const [currentStrip, setCurrentStrip] = useState(jessica);
+
+  function changeZoetropeSpinSpeed(e: FormEvent<HTMLInputElement>) {
+    const target = e.target as HTMLInputElement;
+    const speed = parseFloat(target.value);
+    setSpeed(speed);
+  }
+
+  function selectStrip(e: MouseEvent) {
+    const target = e.target as HTMLOptionElement;
+    const strip = target.value;
+    setCurrentStrip(strip);
+  }
 
   useEffect(() => {
     async function loadAnimations() {
-      const loadedAnimations = await getAllAnimations();
-      const animationImageURLs: Record<string, string> = {};
-      loadedAnimations.forEach((animation) => {
+      const animationDataURLs: Record<string, string> = {};
+
+      for (const animation of await getAllAnimations()) {
         const name = animation.name!;
-        const objectURL = URL.createObjectURL(animation.build!);
-
-        animationImageURLs[name] = objectURL;
-      });
-
-      setAnimations(animationImageURLs);
+        const blob = animation.build!;
+        const dataURL = await blobToDataURL(blob);
+        animationDataURLs[name] = dataURL;
+      }
+      setAnimations(animationDataURLs);
     }
-
     loadAnimations();
   }, []);
 
-  const { Speed, Strip } = useControls({
-    Speed: { value: 0, min: 0, max: 0.05 },
-    Strip: { options: { Jessica: jessica, ...animations } },
-  });
-
   return (
-    <Canvas className="h-full w-full" camera={{ position: [10, 5, 3] }}>
-      <Suspense>
-        <ambientLight intensity={0.7} />
-        <OrbitControls
-          maxDistance={8}
-          minDistance={2}
-          minAzimuthAngle={0}
-          maxAzimuthAngle={0}
-          minPolarAngle={0}
-          maxPolarAngle={Math.PI / 2.5}
-        />
-        <Zoetrope speed={Speed} image={Strip} />
-        <Table />
-      </Suspense>
-    </Canvas>
+    <>
+      <div className="absolute left-[90%] top-8 z-20 flex h-max w-max flex-col gap-2 rounded bg-smoke p-4 drop-shadow-sm">
+        <div className="flex flex-col gap-2">
+          <label htmlFor="speed-select">Set spin speed :</label>
+          <input
+            id="speed-select"
+            type="range"
+            min="0"
+            max="0.05"
+            step="0.01"
+            onChange={changeZoetropeSpinSpeed}
+          />
+        </div>
+        <div className="flex flex-col gap-2">
+          <label htmlFor="strip-select">Choose a strip : </label>
+          <select
+            name="strips"
+            id="strip-select"
+            className="cursor-pointer"
+            onClick={selectStrip}
+          >
+            <option defaultValue="">--select strip--</option>
+            {Object.entries(animations).map((animation, i) => (
+              <option key={i} value={animation[1]}>
+                {animation[0]}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+
+      <Canvas className="z-1 h-full w-full" camera={{ position: [10, 5, 3] }}>
+        <Suspense>
+          <ambientLight intensity={0.7} />
+          <OrbitControls
+            maxDistance={8}
+            minDistance={2}
+            minAzimuthAngle={0}
+            maxAzimuthAngle={0}
+            minPolarAngle={0}
+            maxPolarAngle={Math.PI / 2.5}
+          />
+          <Zoetrope speed={speed} image={currentStrip} />
+          <Table />
+        </Suspense>
+      </Canvas>
+    </>
   );
 }

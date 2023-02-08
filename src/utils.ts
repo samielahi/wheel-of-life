@@ -11,9 +11,27 @@ export const constants = {
   STRIP_HEIGHT: STRIP_HEIGHT,
   STRIP_WIDTH: STRIP_WIDTH,
 };
-
-export function sortAssetsAlphaNumerically(a: Asset, b: Asset) {
+/**
+ * @param  {Asset} a
+ * @param  {Asset} b
+ * @returns number
+ */
+export function sortAssetsAlphaNumerically(a: Asset, b: Asset): number {
   const fileAName = a.data.name.toLocaleUpperCase();
   const fileBName = b.data.name.toLocaleUpperCase();
   return fileAName.localeCompare(fileBName, "en", { numeric: true });
+}
+
+/**
+ * @param  {Blob|File} blob
+ * @returns Promise<string>
+ */
+export function blobToDataURL(blob: Blob | File): Promise<string> {
+  return new Promise<string>((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = (e) => resolve(reader.result as string);
+    reader.onerror = (e) => reject(reader.error);
+    reader.onabort = (e) => reject(new Error("Read aborted"));
+    reader.readAsDataURL(blob);
+  });
 }

@@ -10,7 +10,7 @@ export interface StripProps {
 
 export default function Strip(props: StripProps) {
   const ref = useRef<Mesh>(null!);
-  let stripTexture = createTexture(props.image!);
+  let stripTexture = useMemo(() => createTexture(props.image!), [props.image!]);
   let stripPoints = createStripPoints();
 
   const geometry = useMemo(

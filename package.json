@@ -14,7 +14,6 @@
     "browser-fs-access": "^0.31.2",
     "idb": "^7.1.1",
     "immer": "^9.0.18",
-    "leva": "^0.9.34",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router": "^6.8.1",
