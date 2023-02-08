@@ -7,11 +7,17 @@ import ErrorPage from "./error-page";
 import AnimationEditor from "./components/AnimationEditor/AnimationEditor";
 import { enableMapSet } from "immer";
 import { getAnimationByIdx } from "./state/idb";
+import Scene from "./components/Zoetrope/Scene";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <div>Hello world!</div>,
+  },
+  {
+    path: "/zoetrope",
+    element: <Scene />,
+    errorElement: <ErrorPage />,
   },
   {
     path: "/animations",

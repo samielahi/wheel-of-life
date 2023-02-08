@@ -1,5 +1,5 @@
 import { memo } from "react";
-import placeholderImage from "../../assets/file-image.svg";
+import placeholderImage from "../../assets/icons/file-image.svg";
 import Input from "../../core/Input";
 import DeleteAnimation from "./DeleteAnimation";
 import { Link } from "react-router-dom";
