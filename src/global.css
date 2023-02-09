@@ -75,31 +75,83 @@ h6 {
   isolation: isolate;
 }
 
-:root {
-  /* Colors */
-  --black: #4f4c4c;
-  --gray: #7c7979;
-  --light-gray: #f3f3f1;
-  --white: #ffffff;
-  --red: #ff3d00;
-  --violet: #9c8cdf;
-  --light-violet: rgba(#9c8cdf, 0.3);
-  /* Fonts */
-  --main: "Atkinson Hyperlegible", sans-serif;
-  --heading: "Krona One", sans-serif;
+/**
+ * @license
+ *
+ * Font Family: Clash Display
+ * Designed by: Indian Type Foundry
+ * URL: https://www.fontshare.com/fonts/clash-display
+ * © 2023 Indian Type Foundry
+ *
+ * Font Styles:
+ * Clash Display Semibold
+ *
+*/
+
+@layer base {
+  @font-face {
+    font-family: "Archivo-Regular";
+    src: url("/fonts/Archivo-Regular.woff2") format("woff2"),
+      url("/fonts/Archivo-Regular.woff") format("woff"),
+      url("/fonts/Archivo-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-display: swap;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Archivo-Italic";
+    src: url("/fonts/Archivo-Italic.woff2") format("woff2"),
+      url("/fonts/Archivo-Italic.woff") format("woff"),
+      url("/fonts/Archivo-Italic.ttf") format("truetype");
+    font-weight: 400;
+    font-display: swap;
+    font-style: italic;
+  }
+
+  @font-face {
+    font-family: "Archivo-Medium";
+    src: url("/fonts/Archivo-Medium.woff2") format("woff2"),
+      url("/fonts/Archivo-Medium.woff") format("woff"),
+      url("/fonts/Archivo-Medium.ttf") format("truetype");
+    font-weight: 500;
+    font-display: swap;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Archivo-MediumItalic";
+    src: url("/fonts/Archivo-MediumItalic.woff2") format("woff2"),
+      url("/fonts/Archivo-MediumItalic.woff") format("woff"),
+      url("/fonts/Archivo-MediumItalic.ttf") format("truetype");
+    font-weight: 500;
+    font-display: swap;
+    font-style: italic;
+  }
+
+  @font-face {
+    font-family: "Clash";
+    src: url("/fonts/ClashDisplay-Semibold.woff2") format("woff2"),
+      url("/fonts/ClashDisplay-Semibold.woff") format("woff"),
+      url("/fonts/ClashDisplay-Semibold.ttf") format("truetype");
+    font-weight: 600;
+    font-display: swap;
+    font-style: normal;
+  }
 }
 
 body {
-  font-family: var(--main);
-  color: var(--gray);
-  /* background: #FCFBF4; */
+  font-family: "Archivo-Regular";
+  color: #4f4c4c;
 }
 
 h1,
 h2,
-h3 {
-  font-family: var(--heading);
+h2 {
+  font-family: Clash;
 }
+
+/* UTILS */
 
 /* Great for debugging layouts */
 .bordered {

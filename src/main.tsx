@@ -1,27 +1,28 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, redirect, RouterProvider } from "react-router-dom";
-import AnimationMenu from "./components/AnimationMenu/AnimationMenu";
 import "./global.css";
-import ErrorPage from "./error-page";
-import AnimationEditor from "./components/AnimationEditor/AnimationEditor";
+import { createBrowserRouter, redirect, RouterProvider } from "react-router-dom";
 import { enableMapSet } from "immer";
 import { getAnimationByIdx } from "./state/idb";
-import Scene from "./components/Zoetrope/Scene";
+import Home from "./routes/home";
+import Menu from "./routes/menu";
+import Editor from "./routes/editor";
+import Zoetrope from "./routes/zoetrope";
+import ErrorPage from "./error-page";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Hello world!</div>,
+    element: <Home />,
   },
   {
     path: "/zoetrope",
-    element: <Scene />,
+    element: <Zoetrope />,
     errorElement: <ErrorPage />,
   },
   {
     path: "/animations",
-    element: <AnimationMenu />,
+    element: <Menu />,
     errorElement: <ErrorPage />,
   },
   {
@@ -31,7 +32,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/animation-editor/:name",
-    element: <AnimationEditor />,
+    element: <Editor />,
     loader: async ({ params }) => {
       const animation = await getAnimationByIdx(params.name!);
       if (!animation) {
