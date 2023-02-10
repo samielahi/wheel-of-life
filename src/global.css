@@ -141,8 +141,8 @@ h6 {
 }
 
 body {
-  font-family: "Archivo-Regular";
-  color: #4f4c4c;
+  /* font-family: "Archivo-Regular"; */
+  color: gray;
 }
 
 h1,
@@ -161,4 +161,13 @@ h2 {
 /* Generic wrapper */
 .wrapper {
   padding: 1rem 2rem;
+}
+
+.scrollbar::-webkit-scrollbar {
+  background-color: rgb(216, 211, 211);
+  height: 7px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  background: wheat;
 }

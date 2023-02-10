@@ -7,9 +7,12 @@ import {
 import { Frame as FrameType } from "../../types";
 import IconButton from "../../core/IconButton";
 
-const FrameCount = (props: { frameId: number }) => (
+const FrameCount = (props: { frameId: number; onClick: () => void }) => (
   <>
-    <span className="absolute left-[5%] top-2 z-10 h-fit rounded bg-smoke p-2 text-sm opacity-60 drop-shadow-sm">
+    <span
+      onClick={props.onClick}
+      className="text-md absolute left-[calc(100%_-_60px)] top-4 z-10 h-[40px] w-[40px] cursor-pointer rounded-full bg-yellow pt-2 text-center text-gray drop-shadow-md"
+    >
       {props.frameId + 1 <= 10 ? `0${props.frameId}` : `${props.frameId}`}
     </span>
   </>
@@ -85,23 +88,28 @@ function Frame(props: FrameType) {
       <div
         onClick={assignImage}
         style={isSelecting ? { cursor: "copy", pointerEvents: "auto" } : {}}
-        className="group relative -mt-[3px] -mb-[3px] -ml-[3px] h-[260px] w-[195px] border-[3px] border-smoke air:h-[400px] air:w-[300px] "
+        className="relative h-[260px] w-[195px] rounded-xl bg-white drop-shadow-sm air:h-[400px] air:w-[300px]"
       >
         {/* Render the frame id (between 1 - 16) */}
-        <FrameCount frameId={props.id} />
+        <FrameCount onClick={deassignImage} frameId={props.id} />
         {/* Render the asset if there is one assigned and it exists */}
         {assetExists ? (
           <img
-            className="h-full w-full opacity-80"
+            draggable={false}
+            className="h-full w-full rounded-lg opacity-80"
             src={assignedImageURL}
             alt={`Frame ${props.id}'s image`}
           />
-        ) : null}
+        ) : (
+          <div className="h-full w-full p-8">
+            <div className="h-full w-full rounded-xl border-2 border-dashed border-silver"></div>
+          </div>
+        )}
 
         {/* Button to deassign/remove the image from the frame */}
-        {assetExists && !isSelecting ? (
+        {/* {assetExists && !isSelecting ? (
           <DeassignButton deassignImage={deassignImage} />
-        ) : null}
+        ) : null} */}
       </div>
     </>
   );

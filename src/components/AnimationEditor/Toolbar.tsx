@@ -10,7 +10,7 @@ import StatusMessage from "./StatusMessage";
 
 export default function Toolbar() {
   const animation = useContext(AnimationEditorContext)!;
-  const toolbar = useContext(ToolbarContext);
+  const toolbar = useContext(ToolbarContext)!;
 
   const status = toolbar.status;
   const isIdle = status === "idle";
@@ -21,7 +21,7 @@ export default function Toolbar() {
 
   return (
     <>
-      <div className="wrapper flex items-center justify-center gap-4 border-b-[3px] border-t-[3px] border-smoke sm:gap-2 md:justify-between md:gap-0">
+      <div className="wrapper flex items-center justify-center gap-4 sm:gap-2 md:justify-between md:gap-0 bg-white">
         <div className="flex items-center gap-4 sm:gap-2 md:w-1/3">
           <Upload isIdle={isIdle} />
 

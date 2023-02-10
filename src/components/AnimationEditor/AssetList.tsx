@@ -6,7 +6,7 @@ import { sortAssetsAlphaNumerically } from "../../utils";
 // Renders a horizontally scrollable section of the current Assets in the animation
 export default function AssetList() {
   const animation = useContext(AnimationEditorContext);
-  const toolbar = useContext(ToolbarContext);
+  const toolbar = useContext(ToolbarContext)!;
   const isSelecting = toolbar.status === "selecting";
   const assets = useMemo(() => Object.values(animation!.assets!), [animation!.assets!]);
   const animationHasAssets = assets.length !== 0;
@@ -21,7 +21,7 @@ export default function AssetList() {
             ? { backgroundColor: "#FCFBF4", pointerEvents: "auto", cursor: "pointer" }
             : {}
         }
-        className="z-1 flex h-full w-full flex-col justify-center overflow-x-auto pl-8 pr-8 duration-300 ease-in-out"
+        className="scrollbar flex h-max w-full flex-col justify-center overflow-x-auto bg-bg p-8 duration-300 ease-in-out"
       >
         <div className="flex w-max gap-8">
           {animationHasAssets ? (
