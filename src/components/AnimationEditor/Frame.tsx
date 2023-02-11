@@ -1,47 +1,47 @@
-import { useContext, memo } from "react";
+import { useContext, memo, useState } from "react";
 import {
   AnimationEditorContext,
   AnimationEditorDispatchContext,
   ToolbarContext,
 } from "../../state/context";
 import { Frame as FrameType } from "../../types";
-import IconButton from "../../core/IconButton";
 
-const FrameCount = (props: { frameId: number; onClick: () => void }) => (
-  <>
-    <span
-      onClick={props.onClick}
-      className="text-md absolute left-[calc(100%_-_60px)] top-4 z-10 h-[40px] w-[40px] cursor-pointer rounded-full bg-yellow pt-2 text-center text-gray drop-shadow-md"
-    >
-      {props.frameId + 1 <= 10 ? `0${props.frameId}` : `${props.frameId}`}
-    </span>
-  </>
-);
-
-const DeassignButton = (props: { deassignImage: () => void }) => (
-  <>
-    <div className="absolute left-[calc(95%_-_30px)] top-2 z-10 h-fit cursor-pointer group-hover:visible sm:invisible lg:left-[calc(95%_-_50px)] ">
-      <IconButton onClick={props.deassignImage} tooltip="remove">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="M21 9v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7"></path>
-          <line x1="16" y1="5" x2="22" y2="5"></line>
-          <circle cx="9" cy="9" r="2"></circle>
-          <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path>
-        </svg>
-      </IconButton>
-    </div>
-  </>
-);
+const FrameCount = (props: { frameId: number; onClick: () => void }) => {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <>
+      <div
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        onClick={props.onClick}
+        className="text-md absolute left-[calc(100%_-_60px)] top-4 z-10 h-[40px] w-[40px] cursor-pointer rounded-full bg-yellow pt-2 text-center text-gray drop-shadow-md hover:bg-orange"
+      >
+        {hovered ? (
+          <span className="flex items-center justify-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="white"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </span>
+        ) : (
+          <span>
+            {props.frameId + 1 <= 10 ? `0${props.frameId}` : `${props.frameId}`}
+          </span>
+        )}
+      </div>
+    </>
+  );
+};
 
 function Frame(props: FrameType) {
   const animation = useContext(AnimationEditorContext);
@@ -105,11 +105,6 @@ function Frame(props: FrameType) {
             <div className="h-full w-full rounded-xl border-2 border-dashed border-silver"></div>
           </div>
         )}
-
-        {/* Button to deassign/remove the image from the frame */}
-        {/* {assetExists && !isSelecting ? (
-          <DeassignButton deassignImage={deassignImage} />
-        ) : null} */}
       </div>
     </>
   );
