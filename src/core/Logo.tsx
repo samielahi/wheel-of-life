@@ -10,7 +10,7 @@ export default function Logo(props: LogoProps) {
     <>
       <div className="flex w-fit flex-col items-center justify-center">
         <Link to="/">
-          <h2 className="text-md text-heading text-red lg:text-4xl">Wheel Of Life</h2>
+          <h2 className="text-md text-heading text-red lg:text-5xl">Wheel Of Life</h2>
         </Link>
 
         {props.showSubtitle ? (

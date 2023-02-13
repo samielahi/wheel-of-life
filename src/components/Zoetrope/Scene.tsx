@@ -3,7 +3,7 @@ import Table from "./Table";
 import { OrbitControls, Environment } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Suspense, useEffect, FormEvent, MouseEvent } from "react";
-import empty from "../../assets/example_strips/empty.png";
+import jessica from "../../assets/example_strips/Jessica.png";
 import { useState } from "react";
 import { blobToDataURL } from "../../utils";
 import { getAllAnimations } from "../../state/idb";
@@ -11,7 +11,7 @@ import { getAllAnimations } from "../../state/idb";
 export default function Scene() {
   const [animations, setAnimations] = useState<Record<string, string>>({});
   const [speed, setSpeed] = useState(0);
-  const [currentStrip, setCurrentStrip] = useState(empty);
+  const [currentStrip, setCurrentStrip] = useState(jessica);
 
   function changeZoetropeSpinSpeed(e: FormEvent<HTMLInputElement>) {
     const target = e.target as HTMLInputElement;
@@ -62,7 +62,7 @@ export default function Scene() {
             className="cursor-pointer"
             onClick={selectStrip}
           >
-            <option defaultValue={empty}>--select strip--</option>
+            <option defaultValue={jessica}>--select strip--</option>
             {Object.entries(animations).map((animation, i) => (
               <option key={i} value={animation[1]}>
                 {animation[0]}
@@ -84,6 +84,7 @@ export default function Scene() {
             maxPolarAngle={Math.PI / 2.5}
           />
           <Zoetrope speed={speed} image={currentStrip} />
+          <Environment preset="apartment" />
           <Table />
         </Suspense>
       </Canvas>

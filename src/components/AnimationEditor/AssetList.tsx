@@ -18,12 +18,12 @@ export default function AssetList() {
       <div
         style={
           isSelecting && animationHasAssets
-            ? { backgroundColor: "#FCFBF4", pointerEvents: "auto", cursor: "pointer" }
+            ? { pointerEvents: "auto", cursor: "pointer" }
             : {}
         }
-        className="scrollbar flex h-max w-full flex-col justify-center overflow-x-auto bg-bg p-8 duration-300 ease-in-out"
+        className="z-1 scrollbar flex h-max w-full flex-col justify-center overflow-x-auto bg-bg p-8 duration-300 ease-in-out"
       >
-        <div className="flex w-max gap-8">
+        <div className="z-1 flex w-max gap-8">
           {animationHasAssets ? (
             <>
               {sortedAssets.map((asset, i) => (
@@ -39,8 +39,8 @@ export default function AssetList() {
           ) : (
             <>
               {/* If the animation has no assets show a message */}
-              <div className="flex w-full justify-center">
-                <div className="rounded border-4 border-dashed border-smoke p-10">
+              <div className="flex w-full">
+                <div className="rounded border-4 border-dashed border-lightViolet bg-white p-10">
                   <span className="italic text-gray">
                     Upload some images to get started (png, jpg).
                   </span>

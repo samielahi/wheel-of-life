@@ -99,8 +99,8 @@ export default function AnimationEditor() {
                 <AllStripsLink />
               </Header>
               <FrameList />
-              <AssetList />
               <Toolbar />
+              <AssetList />
             </AnimationEditorDispatchContext.Provider>
           </AnimationEditorContext.Provider>
         </ToolbarDispatchContext.Provider>
