@@ -16,13 +16,12 @@ export default function Toolbar() {
   const isIdle = status === "idle";
   const isSelecting = status === "selecting";
   const isBuilt = animation.isBuilt;
-  console.log(isBuilt);
   const hasAssets = Object.values(animation.assets!).length !== 0;
   const hasSelectedAssets = animation.selectedAssets?.length !== 0;
 
   return (
     <>
-      <div className="z-1 wrapper flex items-center justify-center gap-4 bg-white sm:gap-2 md:justify-between md:gap-0">
+      <div className="dotted-bg z-1 wrapper flex items-center justify-center gap-4 bg-white sm:gap-2 md:justify-between md:gap-0">
         <div className="flex items-center gap-4 sm:gap-2 md:w-1/3">
           <Upload isIdle={isIdle} />
           <Select isSelecting={isSelecting} hasAssets={hasAssets} isIdle={isIdle} />

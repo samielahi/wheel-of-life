@@ -172,6 +172,14 @@ h2 {
   background: wheat;
 }
 
+.dotted-bg {
+  background: linear-gradient(90deg, white calc(25px - 1px), transparent 2%) center,
+    linear-gradient(white calc(25px - 1px), transparent 2%) center, gray;
+  background-size: 25px 25px;
+}
+
+/* Animations */
+
 .expand {
   animation: expand-in;
   animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
@@ -179,8 +187,6 @@ h2 {
   animation-fill-mode: forwards;
   transform-origin: center;
 }
-
-/* Animations */
 
 @keyframes expand-in {
   from {

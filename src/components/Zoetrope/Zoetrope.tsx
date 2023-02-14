@@ -12,7 +12,7 @@ export default function Zoetrope(props: ZoetropeProps) {
   const mesh = useRef<any>();
   // If a result.scene prop is found useGLTF will automatically create a object & material collection: { nodes, materials }
   // @ts-ignore
-  const { nodes, materials } = useGLTF("./zoetrope.glb");
+  const { nodes, materials } = useGLTF("/public/zoetrope.glb");
   useFrame(() => (mesh.current!.rotation.y -= props.speed!));
   return (
     <group ref={mesh} {...props} dispose={null}>

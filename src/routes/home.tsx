@@ -98,7 +98,7 @@ const LearnLink = () => (
 export default function Home() {
   return (
     <>
-      <div className="absolute top-0 left-0 h-full w-full overflow-hidden bg-bg">
+      <div className="absolute top-0 left-0 h-full w-full overflow-hidden">
         <Heading />
         <Description />
         <Images />

@@ -28,7 +28,7 @@ export default function Scene() {
 
   useEffect(() => {
     async function loadAnimations() {
-      const animationDataURLs: Record<string, string> = {};
+      const animationDataURLs: Record<string, string> = { Jessica: jessica };
 
       for (const animation of await getAllAnimations()) {
         const name = animation.name!;
@@ -45,7 +45,7 @@ export default function Scene() {
 
   return (
     <>
-      <div className="absolute left-[90%] top-8 z-20 flex h-max w-max flex-col gap-2 rounded bg-smoke p-4 drop-shadow-sm">
+      <div className="absolute left-[85%] top-8 z-20 flex h-max w-max flex-col gap-2 rounded bg-active p-4 drop-shadow-sm">
         <div className="flex flex-col gap-2">
           <label htmlFor="speed-select">Set spin speed :</label>
           <input
@@ -75,7 +75,7 @@ export default function Scene() {
         </div>
       </div>
 
-      <Canvas className="z-1 h-full w-full bg-active" camera={{ position: [10, 5, 3] }}>
+      <Canvas className="z-1 h-full w-full" camera={{ position: [10, 5, 3] }}>
         <ambientLight intensity={0.5} />
         <Suspense>
           <OrbitControls
