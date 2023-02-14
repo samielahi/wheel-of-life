@@ -13,7 +13,7 @@ interface AnimationCardProps {
 function AnimationCard(props: AnimationCardProps) {
   return (
     <>
-      <div className="group relative cursor-pointer rounded border-[3px] border-smoke p-4 hover:border-violet">
+      <div className="group relative bg-white cursor-pointer rounded border-2 drop-shadow-sm border-silver p-4 hover:border-violet">
         <DeleteAnimation animationId={props.animationId!} />
 
         <div className="h-[300px] w-[225px]">

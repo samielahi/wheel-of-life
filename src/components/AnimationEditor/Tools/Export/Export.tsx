@@ -18,7 +18,7 @@ export default function Export(props: { isIdle?: boolean; isBuilt?: boolean }) {
   return (
     <>
       <ExportDialog />
-      <IconButton tooltip="export" onClick={startExport} disabled={props.isBuilt}>
+      <IconButton tooltip="export" onClick={startExport} disabled={!props.isBuilt}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"

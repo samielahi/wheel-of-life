@@ -14,7 +14,7 @@ const FrameCount = (props: { frameId: number; onClick: () => void }) => {
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         onClick={props.onClick}
-        className="text-md absolute left-[calc(100%_-_60px)] top-4 z-10 h-[40px] w-[40px] cursor-pointer rounded-full bg-yellow pt-2 text-center text-gray drop-shadow-md hover:bg-orange"
+        className="text-md absolute left-[calc(100%_-_60px)] top-4 z-10 h-[40px] w-[40px] cursor-pointer rounded-full bg-yellow pt-2 text-center text-gray drop-shadow-sm hover:bg-orange"
       >
         {hovered ? (
           <span className="flex items-center justify-center">

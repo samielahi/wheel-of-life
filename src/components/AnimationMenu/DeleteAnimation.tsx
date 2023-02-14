@@ -33,7 +33,7 @@ export default function DeleteAnimation(props: { animationId: string }) {
 
       <span
         onClick={() => setIsDeletingAnimation(true)}
-        className="invisible absolute top-3 left-[80%] z-10 rounded-full bg-smoke p-2 group-hover:visible "
+        className="invisible absolute top-3 left-[80%] z-10 rounded-full bg-orange p-2 group-hover:visible "
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +41,7 @@ export default function DeleteAnimation(props: { animationId: string }) {
           height="24"
           viewBox="0 0 24 24"
           fill="none"
-          stroke="#ff3d00"
+          stroke="white"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"

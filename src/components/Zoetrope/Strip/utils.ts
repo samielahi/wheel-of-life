@@ -1,34 +1,41 @@
 import * as THREE from "three";
 
-/**
- * Generates the points for custom plane buffer geometry
- * @returns THREE.Vector3[]
- */
-function createStripPoints(): THREE.Vector3[] {
-  // Define a custom buffer geometry for Zoetrope strip
-  const numPoints = 200;
-  const curvePoints: THREE.Vector3[] = [];
-  const stripPoints: THREE.Vector3[] = [];
-  const bounds = [-0.25, 0.25];
+export function createPointsAlongSphere(numPoints: number = 5): THREE.Vector3[] {
+  let points = [];
+  let phi = Math.PI / 2;
 
-  // Create an array of points that make up a circle curve
   for (let i = 0; i < numPoints; i++) {
-    let angle = (i / numPoints) * 2 * Math.PI;
-    curvePoints.push(new THREE.Vector3().setFromSphericalCoords(1, Math.PI / 2, angle));
+    let theta = (i / numPoints) * 2 * Math.PI;
+    points.push(new THREE.Vector3().setFromSphericalCoords(1, phi, theta));
   }
+  return points;
+}
 
-  // Make the set of points above into a curve
-  const curve = new THREE.CatmullRomCurve3(curvePoints, true);
-  // Generate orthogonal unit vectors for each point on the curve
-  const frenetFrames = curve.computeFrenetFrames(numPoints, true);
-  const spacedPoints = curve.getSpacedPoints(numPoints);
-  // An offset in the direction the curve is turning that we'll add to our spaced points
-  let normalShift = new THREE.Vector3();
+export function createCurveFromPoints(points: THREE.Vector3[]): THREE.CatmullRomCurve3 {
+  const curve = new THREE.CatmullRomCurve3(points, true);
+  return curve;
+}
+
+export function createStripGeometryPointsFromCurve(
+  curve: THREE.CatmullRomCurve3,
+  numFrames: number,
+  scale: number
+): THREE.Vector3[] {
+  // Generate orthogonal unit vectors for the curve
+  const frenetFrames = curve.computeFrenetFrames(numFrames);
+  // Generate some evenly spaces points along the curve
+  const spacedPoints = curve.getSpacedPoints(numFrames);
+  const stripPoints: THREE.Vector3[] = [];
+  const bounds = [-scale, scale];
+
+  // Offset we add to every spaced point to generate two new points above it and below it
+  // This is why we define bounds as we do
+  let offset = new THREE.Vector3();
   bounds.forEach((bound) => {
-    for (let i = 0; i <= numPoints; i++) {
-      // Take the unit normal to each point scale it and add it to create the top and bottom of strip
-      normalShift.copy(frenetFrames.normals[i]).multiplyScalar(bound);
-      stripPoints.push(new THREE.Vector3().copy(spacedPoints[i]).add(normalShift));
+    for (let i = 0; i <= numFrames; i++) {
+      // Take the unit normal to each point scale it and add it to create points that will be the top and bottom of strip geometry
+      offset.copy(frenetFrames.normals[i]).multiplyScalar(bound);
+      stripPoints.push(new THREE.Vector3().copy(spacedPoints[i]).add(offset));
     }
   });
 
@@ -36,11 +43,31 @@ function createStripPoints(): THREE.Vector3[] {
 }
 
 /**
+ * Generates the points for custom plane buffer geometry
+ * @returns THREE.Vector3[]
+ */
+export function createStripPoints(
+  numPoints: number = 200,
+  numFrames: number = 200,
+  offset: number = 0.35
+): THREE.Vector3[] {
+  // Define a custom buffer geometry for Zoetrope strip
+  const curvePoints = createPointsAlongSphere(numPoints);
+  const curve = createCurveFromPoints(curvePoints);
+  const stripGeometryPoints = createStripGeometryPointsFromCurve(
+    curve,
+    numFrames,
+    offset
+  );
+  return stripGeometryPoints;
+}
+
+/**
  * Loads specified image path and creates a threejs Texture object
  * @param  {string} image
  * @returns THREE.Texture
  */
-function createTexture(image: string): THREE.Texture {
+export function createTexture(image: string): THREE.Texture {
   let texture = new THREE.TextureLoader().load(image);
   texture.wrapS = 1000;
   texture.wrapT = 1000;
@@ -48,5 +75,3 @@ function createTexture(image: string): THREE.Texture {
   texture.offset.setX(0.5);
   return texture;
 }
-
-export { createStripPoints, createTexture };

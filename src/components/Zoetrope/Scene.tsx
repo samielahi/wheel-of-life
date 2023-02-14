@@ -7,6 +7,7 @@ import jessica from "../../assets/example_strips/Jessica.png";
 import { useState } from "react";
 import { blobToDataURL } from "../../utils";
 import { getAllAnimations } from "../../state/idb";
+import Strip from "./Strip/Strip";
 
 export default function Scene() {
   const [animations, setAnimations] = useState<Record<string, string>>({});
@@ -32,8 +33,10 @@ export default function Scene() {
       for (const animation of await getAllAnimations()) {
         const name = animation.name!;
         const blob = animation.build!;
-        const dataURL = await blobToDataURL(blob);
-        animationDataURLs[name] = dataURL;
+        if (blob) {
+          const dataURL = await blobToDataURL(blob);
+          animationDataURLs[name] = dataURL;
+        }
       }
       setAnimations(animationDataURLs);
     }
@@ -83,6 +86,7 @@ export default function Scene() {
             minPolarAngle={0}
             maxPolarAngle={Math.PI / 2.5}
           />
+          <Strip></Strip>
           <Zoetrope speed={speed} image={currentStrip} />
           <Environment preset="apartment" />
           <Table />

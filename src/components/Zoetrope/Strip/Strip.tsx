@@ -9,23 +9,24 @@ export interface StripProps {
 }
 
 export default function Strip(props: StripProps) {
-  const ref = useRef<Mesh>(null!);
-  let stripTexture = useMemo(() => createTexture(props.image!), [props.image!]);
+  const ref = useRef<Mesh>(null);
+  let texture = useMemo(() => createTexture(props.image), [props.image]);
   let stripPoints = createStripPoints();
 
   const geometry = useMemo(
     () => new THREE.PlaneGeometry(1, 1, 200, 1).setFromPoints(stripPoints),
-    stripPoints
+    [stripPoints]
   );
 
   return (
     <>
-      <mesh scale={1.52} position={[0, 3, 0]} geometry={geometry} ref={ref}>
+      <mesh scale={1.52} position={[0, 2.75, 0]} geometry={geometry} ref={ref}>
         <meshStandardMaterial
-          map={stripTexture}
+          map={texture}
           side={THREE.BackSide}
           roughness={1}
           metalness={0.25}
+          alphaTest={true}
         />
       </mesh>
     </>

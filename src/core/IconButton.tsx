@@ -9,8 +9,12 @@ export default function IconButton(props: ButtonProps) {
       <div>
         <button
           disabled={props.disabled}
-          style={props.disabled ? { color: "#D8D0D0" } : { color: "#9c8cdf" }}
-          className="flex h-[35px] w-[35px] items-center justify-center rounded bg-smoke hover:text-red sm:p-0 lg:h-[50px] lg:w-[50px]"
+          style={
+            props.disabled
+              ? { color: "#D8D0D0", pointerEvents: "none" }
+              : { color: "#9c8cdf" }
+          }
+          className="flex h-[35px] w-[35px] items-center justify-center rounded border-2 border-silver bg-white drop-shadow-sm hover:bg-smoke sm:p-0 lg:h-[50px] lg:w-[50px]"
           onClick={props.onClick}
           onMouseEnter={() => setShowTooltip(true)}
           onMouseLeave={() => setShowTooltip(false)}
