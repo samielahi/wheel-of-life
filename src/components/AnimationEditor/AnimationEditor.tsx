@@ -20,6 +20,7 @@ import AutoAssignDialog from "./Tools/AutoAssign/AutoAssignDialog";
 import DeleteDialog from "./Tools/Delete/DeleteDialog";
 import ExportDialog from "./Tools/Export/ExportDialog";
 import ClearFramesDialog from "./Tools/ClearFrames/ClearFramesDialog";
+import BuildDialog from "./Tools/Build/BuildDialog";
 
 const AllStripsLink = () => (
   <Link
@@ -110,6 +111,7 @@ export default function AnimationEditor() {
               <DeleteDialog />
               <ExportDialog />
               <ClearFramesDialog />
+              <BuildDialog name={animation.name!} />
             </AnimationEditorDispatchContext.Provider>
           </AnimationEditorContext.Provider>
         </ToolbarDispatchContext.Provider>

@@ -70,7 +70,8 @@ export type ToolbarStatus =
   | "exporting"
   | "auto-assigning"
   | "clearing"
-  | "getting-help";
+  | "getting-help"
+  | "building";
 
 export interface ToolbarState {
   currentTool?: "base";

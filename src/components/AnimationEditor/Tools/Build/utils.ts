@@ -75,7 +75,7 @@ async function drawFrameDataOntoCanvas(animationId: string): Promise<OffscreenCa
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(canvas);
-    }, 1000);
+    }, 2000);
   });
 }
 /**
@@ -88,7 +88,6 @@ export async function buildStrip(animationId: string, name: string): Promise<voi
   const canvas = await drawFrameDataOntoCanvas(animationId);
 
   canvas.convertToBlob().then((blob) => {
-    console.log(blob);
     const strip: AnimationStateDB = {
       id: animationId,
       name: name,

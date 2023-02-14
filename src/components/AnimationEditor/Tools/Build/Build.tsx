@@ -1,25 +1,31 @@
 import { useContext, useMemo } from "react";
-import { AnimationEditorContext } from "../../../../state/context";
+import {
+  AnimationEditorContext,
+  ToolbarDispatchContext,
+} from "../../../../state/context";
 import IconButton from "../../../../core/IconButton";
 import { constants } from "../../../../utils";
 import { buildStrip } from "./utils";
 
 export default function Build() {
   const animation = useContext(AnimationEditorContext)!;
+  const dispatchToolbarAction = useContext(ToolbarDispatchContext)!;
   const isBuildable = useMemo(
     () => animation.filledFrames!.size === constants.NUM_FRAMES,
     [animation.filledFrames]
   );
 
+  function build() {
+    dispatchToolbarAction({
+      type: "STATUS_CHANGE",
+      newStatus: "building",
+    });
+    buildStrip(animation.id, animation.name!);
+  }
+
   return (
     <>
-      <IconButton
-        tooltip="build"
-        onClick={() => {
-          buildStrip(animation.id, animation.name!);
-        }}
-        disabled={!isBuildable}
-      >
+      <IconButton tooltip="build" onClick={build} disabled={!isBuildable}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"

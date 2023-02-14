@@ -12,9 +12,10 @@ function Frame(props: FrameType) {
   const animation = useContext(AnimationEditorContext);
   const dispatchAnimationAction = useContext(AnimationEditorDispatchContext)!;
   const toolbar = useContext(ToolbarContext)!;
+  const hasSelectedAssets = animation?.selectedAssets?.length !== 0;
   const isSelecting = toolbar.status === "selecting";
   const assets = animation!.assets!;
-  const assetExists = props.assetId! && assets[props.assetId] ;
+  const assetExists = props.assetId! && assets[props.assetId];
   const currentAssetId = animation!.selectedAssets![0];
   let assignedImage: Blob;
   let assignedImageURL;
@@ -53,11 +54,16 @@ function Frame(props: FrameType) {
       <div
         ref={animationParent}
         onClick={assignImage}
-        style={isSelecting ? { cursor: "copy", pointerEvents: "auto" } : {}}
+        style={hasSelectedAssets ? { cursor: "pointer" } : {}}
         className="relative h-[260px] w-[195px] rounded-xl bg-white drop-shadow-sm air:h-[400px] air:w-[300px]"
       >
         {/* Render the frame id (between 1 - 16) */}
-        <FrameCount onClick={deassignImage} frameId={props.id} hasAsset={assetExists!} />
+        <FrameCount
+          onClick={deassignImage}
+          frameId={props.id}
+          hasAsset={assetExists!}
+          isSelecting={isSelecting}
+        />
         {/* Render the asset if there is one assigned and it exists */}
         {assetExists ? (
           <img

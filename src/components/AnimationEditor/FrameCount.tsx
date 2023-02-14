@@ -4,6 +4,7 @@ interface FrameCountProps {
   frameId: number;
   onClick?: () => void;
   hasAsset?: boolean | any;
+  isSelecting?: boolean;
 }
 
 export default function FrameCount(props: FrameCountProps) {
@@ -18,7 +19,7 @@ export default function FrameCount(props: FrameCountProps) {
         }}
         className="text-md absolute left-[calc(100%_-_60px)] top-4 z-10 h-[40px] w-[40px] rounded-full bg-yellow text-center text-gray drop-shadow-sm"
       >
-        {hovered && props.hasAsset ? (
+        {!props.isSelecting && hovered && props.hasAsset ? (
           <span className="flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-full bg-orange">
             <svg
               xmlns="http://www.w3.org/2000/svg"
