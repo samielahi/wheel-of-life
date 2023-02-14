@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@formkit/auto-animate": "^1.0.0-beta.6",
     "@react-three/drei": "^9.56.18",
     "@react-three/fiber": "^8.11.0",
     "browser-fs-access": "^0.31.2",

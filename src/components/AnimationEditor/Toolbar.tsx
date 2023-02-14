@@ -22,7 +22,7 @@ export default function Toolbar() {
 
   return (
     <>
-      <div className="wrapper flex items-center justify-center gap-4 bg-white sm:gap-2 md:justify-between md:gap-0">
+      <div className="z-1 wrapper flex items-center justify-center gap-4 bg-white sm:gap-2 md:justify-between md:gap-0">
         <div className="flex items-center gap-4 sm:gap-2 md:w-1/3">
           <Upload isIdle={isIdle} />
           <Select isSelecting={isSelecting} hasAssets={hasAssets} isIdle={isIdle} />

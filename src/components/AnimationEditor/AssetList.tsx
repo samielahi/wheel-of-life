@@ -2,6 +2,7 @@ import { useContext, useMemo } from "react";
 import { AnimationEditorContext, ToolbarContext } from "../../state/context";
 import Asset from "./Asset";
 import { sortAssetsAlphaNumerically } from "../../utils";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 // Renders a horizontally scrollable section of the current Assets in the animation
 export default function AssetList() {
@@ -21,9 +22,9 @@ export default function AssetList() {
             ? { pointerEvents: "auto", cursor: "pointer" }
             : {}
         }
-        className="z-1 scrollbar flex h-max w-full flex-col justify-center overflow-x-auto bg-bg p-8 duration-300 ease-in-out"
+        className="scrollbar -z-1 flex h-max w-full flex-col justify-center overflow-x-auto bg-bg p-8 duration-300 ease-in-out"
       >
-        <div className="z-1 flex w-max gap-8">
+        <div className="flex w-max gap-8">
           {animationHasAssets ? (
             <>
               {sortedAssets.map((asset, i) => (
@@ -39,11 +40,30 @@ export default function AssetList() {
           ) : (
             <>
               {/* If the animation has no assets show a message */}
-              <div className="flex w-full">
-                <div className="rounded border-4 border-dashed border-lightViolet bg-white p-10">
-                  <span className="italic text-gray">
-                    Upload some images to get started (png, jpg).
-                  </span>
+              <div className="fixed ml-[calc(50%_-_250px)] mt-[5%]">
+                <div className="rounded border-2 border-dashed border-lightViolet bg-white p-10">
+                  <p className="text-md flex gap-2 italic text-gray">
+                    Upload
+                    <span className="text-violet">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <path d="M12 12v6"></path>
+                        <path d="m15 15-3-3-3 3"></path>
+                      </svg>
+                    </span>
+                    some images to get started (png, jpg).
+                  </p>
                 </div>
               </div>
             </>

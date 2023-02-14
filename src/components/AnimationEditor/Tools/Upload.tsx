@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { MouseEvent, useContext } from "react";
 import { v4 as uuid } from "uuid";
 import { FileWithHandle, fileOpen } from "browser-fs-access";
 import {
@@ -21,12 +21,12 @@ function createAsset(animationId: string, file: FileWithHandle): Asset {
   return asset;
 }
 
-export default function AssetUpload(props: { isIdle: boolean }) {
+export default function Upload(props: { isIdle: boolean }) {
   const animation = useContext(AnimationEditorContext)!;
   const animationId = animation.id!;
   const dispatchAnimationAction = useContext(AnimationEditorDispatchContext)!;
 
-  async function uploadAssets() {
+  async function uploadAssets(e: MouseEvent) {
     // Pick the file
     const images = await fileOpen({
       mimeTypes: ["image/*"],
