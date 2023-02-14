@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { ToolbarDispatchContext } from "../../../../state/context";
 import IconButton from "../../../../core/IconButton";
-import ExportDialog from "./ExportDialog";
 
 export default function Export(props: { isIdle?: boolean; isBuilt?: boolean }) {
   const dispatchToolbarAction = useContext(ToolbarDispatchContext)!;
@@ -17,7 +16,6 @@ export default function Export(props: { isIdle?: boolean; isBuilt?: boolean }) {
 
   return (
     <>
-      <ExportDialog />
       <IconButton tooltip="export" onClick={startExport} disabled={!props.isBuilt}>
         <svg
           xmlns="http://www.w3.org/2000/svg"

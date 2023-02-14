@@ -1,7 +1,6 @@
 import { useContext, memo } from "react";
 import { ToolbarDispatchContext } from "../../../../state/context";
 import IconButton from "../../../../core/IconButton";
-import DeleteDialog from "./DeleteDialog";
 
 function Delete(props: { isSelecting: boolean; hasSelectedAssets: boolean }) {
   const dispatchToolbarAction = useContext(ToolbarDispatchContext)!;
@@ -17,7 +16,6 @@ function Delete(props: { isSelecting: boolean; hasSelectedAssets: boolean }) {
 
   return (
     <>
-      <DeleteDialog />
       <IconButton
         onClick={startDeletion}
         disabled={!props.hasSelectedAssets}

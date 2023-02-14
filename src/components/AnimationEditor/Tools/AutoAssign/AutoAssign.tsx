@@ -1,12 +1,8 @@
 import { useContext } from "react";
 import { ToolbarDispatchContext } from "../../../../state/context";
 import Button from "../../../../core/Button";
-import AutoAssignDialog from "./AutoAssignDialog";
 
-export default function AutoAssign(props: {
-  isIdle: boolean;
-  hasAssets: boolean;
-}) {
+export default function AutoAssign(props: { isIdle: boolean; hasAssets: boolean }) {
   const dispatchToolbarAction = useContext(ToolbarDispatchContext)!;
 
   function startAutoAssign() {
@@ -20,7 +16,6 @@ export default function AutoAssign(props: {
 
   return (
     <>
-      <AutoAssignDialog />
       <Button
         onClick={startAutoAssign}
         disabled={!props.hasAssets || !props.isIdle ? true : false}

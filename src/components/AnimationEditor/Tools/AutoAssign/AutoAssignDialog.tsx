@@ -1,57 +1,38 @@
 import { useContext } from "react";
-import {
-  AnimationEditorDispatchContext,
-  ToolbarContext,
-  ToolbarDispatchContext,
-} from "../../../../state/context";
+import { AnimationEditorDispatchContext } from "../../../../state/context";
 import Modal from "../../../../core/Modal";
 import Button from "../../../../core/Button";
+import useModal from "../../../../hooks/useModal";
 
 export default function AutoAssignDialog() {
-  const toolbar = useContext(ToolbarContext)!;
-  const dispatchToolbarAction = useContext(ToolbarDispatchContext)!;
+  const [isStatus, closeModal] = useModal("auto-assigning");
   const dispatchAnimationAction = useContext(AnimationEditorDispatchContext)!;
-  const isAssigning = toolbar.status === "auto-assigning";
-
-  function closeDeleteDialog() {
-    if (isAssigning) {
-      dispatchToolbarAction({
-        type: "STATUS_CHANGE",
-        newStatus: "idle",
-      });
-    }
-  }
 
   function autoAssign() {
-    if (isAssigning) {
+    if (isStatus) {
       dispatchAnimationAction({
         type: "AUTO_ASSIGN",
       });
 
-      dispatchToolbarAction({
-        type: "STATUS_CHANGE",
-        newStatus: "idle",
-      });
+      (closeModal as () => void)();
     }
   }
 
   return (
     <>
-      {isAssigning ? (
-        <Modal closeModal={closeDeleteDialog}>
-          <div className="wrapper flex h-full flex-col items-center justify-center gap-8">
-            <h3 className="text-heading text-2xl">Auto assign images to frames?</h3>
-            <span className="text-center italic">
-              Images assigned until all frames are filled (in alphanumerical order by file
-              name) and will replace images that are currently assigned.
-            </span>
-            <div className="flex gap-4">
-              <Button onClick={autoAssign}>confirm</Button>
-              <Button onClick={closeDeleteDialog}>cancel</Button>
-            </div>
+      <Modal status="auto-assigning">
+        <div className="wrapper flex h-full flex-col items-center justify-center gap-8">
+          <h3 className="text-heading text-2xl">Auto assign images to frames?</h3>
+          <span className="text-center italic">
+            Images assigned until all frames are filled (in alphanumerical order by file
+            name) and will replace images that are currently assigned.
+          </span>
+          <div className="flex gap-4">
+            <Button onClick={autoAssign}>confirm</Button>
+            <Button onClick={closeModal as () => void}>cancel</Button>
           </div>
-        </Modal>
-      ) : null}
+        </div>
+      </Modal>
     </>
   );
 }

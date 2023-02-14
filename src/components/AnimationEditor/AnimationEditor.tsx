@@ -16,6 +16,9 @@ import AssetList from "./AssetList";
 import FrameList from "./FrameList";
 import { getAllAssets, getAllFrames } from "../../state/idb";
 import { Link } from "react-router-dom";
+import AutoAssignDialog from "./Tools/AutoAssign/AutoAssignDialog";
+import DeleteDialog from "./Tools/Delete/DeleteDialog";
+import ExportDialog from "./Tools/Export/ExportDialog";
 import ClearFramesDialog from "./Tools/ClearFrames/ClearFramesDialog";
 
 const AllStripsLink = () => (
@@ -102,6 +105,10 @@ export default function AnimationEditor() {
               <FrameList />
               <Toolbar />
               <AssetList />
+              {/* Dialogs */}
+              <AutoAssignDialog />
+              <DeleteDialog />
+              <ExportDialog />
               <ClearFramesDialog />
             </AnimationEditorDispatchContext.Provider>
           </AnimationEditorContext.Provider>

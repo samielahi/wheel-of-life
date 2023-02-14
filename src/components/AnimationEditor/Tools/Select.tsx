@@ -3,17 +3,19 @@ import {
   AnimationEditorDispatchContext,
   ToolbarDispatchContext,
 } from "../../../state/context";
-import { AnimationDispatch, ToolbarDispatch } from "../../../types";
 import IconButton from "../../../core/IconButton";
 
-function Select(props: { isIdle: boolean; isSelecting: boolean; hasAssets: boolean }) {
-  const dispatchAnimationAction = useContext<AnimationDispatch>(
-    AnimationEditorDispatchContext
-  );
-  const dispatchToolbarAction = useContext<ToolbarDispatch>(ToolbarDispatchContext);
+interface SelectProps {
+  isSelecting: boolean;
+  hasAssets: boolean;
+}
+
+function Select(props: SelectProps) {
+  const dispatchAnimationAction = useContext(AnimationEditorDispatchContext)!;
+  const dispatchToolbarAction = useContext(ToolbarDispatchContext)!;
 
   function toggleSelection() {
-    if (props.isIdle && props.hasAssets) {
+    if (!props.isSelecting && props.hasAssets) {
       dispatchToolbarAction({
         type: "STATUS_CHANGE",
         newStatus: "selecting",
@@ -34,10 +36,10 @@ function Select(props: { isIdle: boolean; isSelecting: boolean; hasAssets: boole
     <>
       <IconButton
         onClick={toggleSelection}
-        disabled={props.hasAssets ? false : true}
-        tooltip={!props.isIdle && props.hasAssets ? "cancel" : "select"}
+        disabled={!props.hasAssets}
+        tooltip={props.isSelecting && props.hasAssets ? "cancel" : "select"}
       >
-        {!props.isIdle && props.hasAssets ? (
+        {props.isSelecting && props.hasAssets ? (
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"

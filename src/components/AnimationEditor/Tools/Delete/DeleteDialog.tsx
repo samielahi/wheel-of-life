@@ -1,56 +1,36 @@
 import { useContext } from "react";
-import {
-  AnimationEditorDispatchContext,
-  ToolbarContext,
-  ToolbarDispatchContext,
-} from "../../../../state/context";
+import { AnimationEditorDispatchContext } from "../../../../state/context";
 import Button from "../../../../core/Button";
 import Modal from "../../../../core/Modal";
+import useModal from "../../../../hooks/useModal";
 
 export default function DeleteDialog() {
-  const toolbar = useContext(ToolbarContext)!;
-  const dispatchToolbarAction = useContext(ToolbarDispatchContext)!;
+  const [isStatus, closeModal] = useModal("deleting");
   const dispatchAnimationAction = useContext(AnimationEditorDispatchContext)!;
-  const isDeleting = toolbar.status === "deleting";
-
-  function closeDeleteDialog() {
-    if (isDeleting) {
-      dispatchToolbarAction({
-        type: "STATUS_CHANGE",
-        newStatus: "selecting",
-      });
-    }
-  }
 
   function deleteSelectedAssets() {
-    if (isDeleting) {
+    if (isStatus) {
       dispatchAnimationAction({
         type: "DELETE_ASSETS",
       });
-
-      dispatchToolbarAction({
-        type: "STATUS_CHANGE",
-        newStatus: "idle",
-      });
     }
+    (closeModal as () => void)();
   }
 
   return (
     <>
-      {isDeleting ? (
-        <Modal closeModal={closeDeleteDialog}>
-          <div className="wrapper flex h-full flex-col items-center justify-center gap-8">
-            <span className="text-2xl">Delete selected images?</span>
-            <span className="italic">
-              This will also remove the images from any assigned frames.
-            </span>
-            <div className="flex gap-4">
-              <Button onClick={deleteSelectedAssets}>confirm</Button>
-              <Button onClick={closeDeleteDialog}>cancel</Button>
-            </div>
+      <Modal status="deleting">
+        <div className="wrapper flex h-full flex-col items-center justify-center gap-8">
+          <span className="text-2xl">Delete selected images?</span>
+          <span className="italic">
+            This will also remove the images from any assigned frames.
+          </span>
+          <div className="flex gap-4">
+            <Button onClick={deleteSelectedAssets}>confirm</Button>
+            <Button onClick={closeModal as () => void}>cancel</Button>
           </div>
-        </Modal>
-      ) : null}
+        </div>
+      </Modal>
     </>
   );
 }
