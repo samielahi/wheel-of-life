@@ -118,6 +118,27 @@ export function AnimationEditorReducer(
       break;
     }
 
+    case "DEASSIGN_ALL": {
+      // Get all the frames that currently have images assigned to them
+      const targetFrames = draft.filledFrames!.values();
+      for (const frameId of targetFrames) {
+        // Grab the assetId so we can modify its assigned frames
+        const assetId = frames[frameId - 1].assetId!;
+        frames[frameId - 1].assetId = undefined;
+        currentAssets[assetId].assignedFrames = currentAssets[
+          assetId
+        ].assignedFrames?.filter((id) => id !== frameId);
+
+        // Update idb with new modified frame and asset
+        setFrame({ ...frames[frameId - 1] });
+        setAsset({ ...currentAssets[assetId] });
+      }
+      // Clear the set
+      draft.filledFrames?.clear();
+
+      break;
+    }
+
     case "AUTO_ASSIGN": {
       const assetsSortedByFilename = Object.values(currentAssets).sort(
         sortAssetsAlphaNumerically

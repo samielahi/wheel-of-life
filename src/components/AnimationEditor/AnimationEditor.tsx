@@ -15,8 +15,8 @@ import Toolbar from "./Toolbar";
 import AssetList from "./AssetList";
 import FrameList from "./FrameList";
 import { getAllAssets, getAllFrames } from "../../state/idb";
-import Button from "../../core/Button";
 import { Link } from "react-router-dom";
+import ClearFramesDialog from "./Tools/ClearFrames/ClearFramesDialog";
 
 const AllStripsLink = () => (
   <Link
@@ -102,6 +102,7 @@ export default function AnimationEditor() {
               <FrameList />
               <Toolbar />
               <AssetList />
+              <ClearFramesDialog />
             </AnimationEditorDispatchContext.Provider>
           </AnimationEditorContext.Provider>
         </ToolbarDispatchContext.Provider>

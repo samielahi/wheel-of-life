@@ -53,6 +53,7 @@ export type AnimationEditorAction =
   | { type: "DELETE_ASSETS" }
   | { type: "ASSIGN_IMAGE"; assetId: string; targetFrame: number }
   | { type: "DEASSIGN_IMAGE"; assetId: string; targetFrame: number }
+  | { type: "DEASSIGN_ALL" }
   | { type: "AUTO_ASSIGN" }
   | { type: "SELECT_ASSET"; assetId: string; selectionId: number }
   | { type: "DESELECT_ASSET"; assetId: string }
@@ -68,6 +69,7 @@ export type ToolbarStatus =
   | "deleting"
   | "exporting"
   | "auto-assigning"
+  | "clearing"
   | "getting-help";
 
 export interface ToolbarState {

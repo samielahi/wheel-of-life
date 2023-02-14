@@ -6,6 +6,7 @@ import Delete from "./Tools/Delete/Delete";
 import Export from "./Tools/Export/Export";
 import Build from "./Tools/Build/Build";
 import AutoAssign from "./Tools/AutoAssign/AutoAssign";
+import ClearFrames from "./Tools/ClearFrames/ClearFrames";
 import StatusMessage from "./StatusMessage";
 
 export default function Toolbar() {
@@ -18,6 +19,7 @@ export default function Toolbar() {
   const isBuilt = animation.isBuilt;
   const hasAssets = Object.values(animation.assets!).length !== 0;
   const hasSelectedAssets = animation.selectedAssets?.length !== 0;
+  const hasFilledFrames = animation.filledFrames!.size !== 0;
 
   return (
     <>
@@ -27,6 +29,7 @@ export default function Toolbar() {
           <Select isSelecting={isSelecting} hasAssets={hasAssets} isIdle={isIdle} />
           <Delete isSelecting={isSelecting} hasSelectedAssets={hasSelectedAssets} />
           <AutoAssign isIdle={isIdle} hasAssets={hasAssets} />
+          <ClearFrames isIdle={isIdle} hasFilledFrames={hasFilledFrames} />
         </div>
 
         <StatusMessage />
