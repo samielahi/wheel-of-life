@@ -5,7 +5,7 @@ import Button from "../../../core/Button";
 export default function AutoAssign(props: { isIdle: boolean; hasAssets: boolean }) {
   const dispatchToolsAction = useContext(ToolsDispatchContext)!;
 
-  function startAutoAssign() {
+  function toggleAutoAssignDialog() {
     if (props.isIdle && props.hasAssets) {
       dispatchToolsAction({
         type: "STATUS_CHANGE",
@@ -17,7 +17,7 @@ export default function AutoAssign(props: { isIdle: boolean; hasAssets: boolean 
   return (
     <>
       <Button
-        onClick={startAutoAssign}
+        onClick={toggleAutoAssignDialog}
         disabled={!props.hasAssets || !props.isIdle ? true : false}
       >
         <span className="sm:hidden">auto</span>

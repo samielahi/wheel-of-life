@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { AnimationEditorContext, ToolsContext } from "../../state/context";
 import Upload from "../Tools/Upload";
 import Select from "../Tools/Select";
-import Delete from "../Tools/Delete/Delete";
+import Delete from "../Tools/DeleteImage/DeleteImage";
 import Export from "../Tools/Export/Export";
 import Build from "../Tools/Build/Build";
 import AutoAssign from "../Tools/AutoAssign/AutoAssign";

@@ -26,7 +26,7 @@ export default function ExportDialog() {
     <>
       <Modal status="exporting">
         <div className="wrapper flex h-full flex-col items-center justify-center gap-8">
-          <span className="text-2xl">Export your strip as a:</span>
+          <h3 className="text-2xl text-orange">Export your strip as a:</h3>
           <div className="flex gap-4">
             <Button
               onClick={() => {

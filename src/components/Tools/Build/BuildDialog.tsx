@@ -10,7 +10,10 @@ export default function BuildDialog(props: { name: string }) {
     <>
       <Modal status="building">
         <div className="flex h-full flex-col items-center justify-center gap-4">
-          <h3 className="text-xl">Animation strip <i className="text-orange">'{props.name}'</i> was successfully built!</h3>
+          <h3 className="text-2xl text-orange">
+            Animation strip <i className="text-orange">'{props.name}'</i> was successfully
+            built!
+          </h3>
           <p>You can now go play your animation in the 3D zoetrope.</p>
           <div className="flex gap-4">
             <Link

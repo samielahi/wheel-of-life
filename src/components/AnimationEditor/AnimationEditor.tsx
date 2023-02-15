@@ -17,7 +17,7 @@ import FrameList from "./FrameList";
 import { getAllAssets, getAllFrames, getAnimation } from "../../state/idb";
 import { Link } from "react-router-dom";
 import AutoAssignDialog from "../Tools/AutoAssign/AutoAssignDialog";
-import DeleteDialog from "../Tools/Delete/DeleteDialog";
+import DeleteDialog from "../Tools/DeleteImage/DeleteImageDialog";
 import ExportDialog from "../Tools/Export/ExportDialog";
 import ClearFramesDialog from "../Tools/ClearFrames/ClearFramesDialog";
 import BuildDialog from "../Tools/Build/BuildDialog";

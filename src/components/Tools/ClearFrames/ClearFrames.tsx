@@ -10,7 +10,7 @@ interface ClearFramesProps {
 export default function ClearFrames(props: ClearFramesProps) {
   const dispatchToolsAction = useContext(ToolsDispatchContext)!;
 
-  function clearFrames() {
+  function toggleClearFramesDialog() {
     if (props.isIdle) {
       dispatchToolsAction({
         type: "STATUS_CHANGE",
@@ -21,7 +21,7 @@ export default function ClearFrames(props: ClearFramesProps) {
 
   return (
     <>
-      <Button onClick={clearFrames} disabled={!props.hasFilledFrames || !props.isIdle}>
+      <Button onClick={toggleClearFramesDialog} disabled={!props.hasFilledFrames || !props.isIdle}>
         <span>clear frames</span>
       </Button>
     </>

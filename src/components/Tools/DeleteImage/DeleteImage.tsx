@@ -2,10 +2,10 @@ import { useContext, memo } from "react";
 import { ToolsDispatchContext } from "../../../state/context";
 import IconButton from "../../../core/IconButton";
 
-function Delete(props: { isSelecting: boolean; hasSelectedAssets: boolean }) {
+function DeleteImage(props: { isSelecting: boolean; hasSelectedAssets: boolean }) {
   const dispatchToolsAction = useContext(ToolsDispatchContext)!;
 
-  function startDeletion() {
+  function toggleImageDeletionDialog() {
     if (props.isSelecting) {
       dispatchToolsAction({
         type: "STATUS_CHANGE",
@@ -17,7 +17,7 @@ function Delete(props: { isSelecting: boolean; hasSelectedAssets: boolean }) {
   return (
     <>
       <IconButton
-        onClick={startDeletion}
+        onClick={toggleImageDeletionDialog}
         disabled={!props.hasSelectedAssets}
         tooltip="delete"
       >
@@ -43,4 +43,4 @@ function Delete(props: { isSelecting: boolean; hasSelectedAssets: boolean }) {
   );
 }
 
-export default memo(Delete);
+export default memo(DeleteImage);

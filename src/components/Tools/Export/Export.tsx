@@ -5,7 +5,7 @@ import IconButton from "../../../core/IconButton";
 export default function Export(props: { isIdle?: boolean; isBuilt?: boolean }) {
   const dispatchToolsAction = useContext(ToolsDispatchContext)!;
 
-  function startExport() {
+  function toggleEsportDialog() {
     if (props.isIdle) {
       dispatchToolsAction({
         type: "STATUS_CHANGE",
@@ -16,7 +16,7 @@ export default function Export(props: { isIdle?: boolean; isBuilt?: boolean }) {
 
   return (
     <>
-      <IconButton tooltip="export" onClick={startExport} disabled={!props.isBuilt}>
+      <IconButton tooltip="export" onClick={toggleEsportDialog} disabled={!props.isBuilt}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"

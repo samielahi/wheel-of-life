@@ -25,7 +25,7 @@ export default function DeleteAnimationDialog() {
     <>
       <Modal status="deletingAnimation">
         <div className="flex h-full flex-col items-center justify-center gap-4">
-          <h3>Delete Animation?</h3>
+          <h3 className="text-2xl text-orange">Delete Animation?</h3>
           <span className="italic">
             Note: this will delete all uploaded images and is irreversible.
           </span>

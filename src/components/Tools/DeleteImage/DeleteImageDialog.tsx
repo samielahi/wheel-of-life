@@ -21,7 +21,7 @@ export default function DeleteDialog() {
     <>
       <Modal status="deleting">
         <div className="wrapper flex h-full flex-col items-center justify-center gap-8">
-          <span className="text-2xl">Delete selected images?</span>
+          <h3 className="text-2xl text-orange">Delete selected images?</h3>
           <span className="italic">
             This will also remove the images from any assigned frames.
           </span>
