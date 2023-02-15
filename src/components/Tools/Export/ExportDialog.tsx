@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import { AnimationEditorContext } from "../../../../state/context";
-import { getAnimation } from "../../../../state/idb";
-import Modal from "../../../../core/Modal";
-import Button from "../../../../core/Button";
+import { AnimationEditorContext } from "../../../state/context";
+import { getAnimation } from "../../../state/idb";
+import Modal from "../../../core/Modal";
+import Button from "../../../core/Button";
 import { fileSave } from "browser-fs-access";
-import useModal from "../../../../hooks/useModal";
+import useModal from "../../../hooks/useModal";
 
 export default function ExportDialog() {
   const [isStatus, closeModal] = useModal("exporting");

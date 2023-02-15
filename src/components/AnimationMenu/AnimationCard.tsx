@@ -1,7 +1,7 @@
 import { memo } from "react";
 import placeholderImage from "../../assets/icons/file-image.svg";
 import Input from "../../core/Input";
-import DeleteAnimation from "./DeleteAnimation";
+import DeleteAnimation from "../Tools/DeleteAnimation/DeleteAnimation";
 import { Link } from "react-router-dom";
 
 interface AnimationCardProps {
@@ -16,7 +16,6 @@ function AnimationCard(props: AnimationCardProps) {
   if (props.thumbnail) {
     thumbnailURL = URL.createObjectURL(props.thumbnail);
   }
-
 
   return (
     <>

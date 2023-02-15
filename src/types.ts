@@ -64,7 +64,7 @@ export type AnimationEditorAction =
 
 // Toolbar
 
-export type ToolbarStatus =
+export type ToolsStatus =
   | "idle"
   | "selecting"
   | "deleting"
@@ -72,13 +72,19 @@ export type ToolbarStatus =
   | "auto-assigning"
   | "clearing"
   | "getting-help"
-  | "building";
+  | "building"
+  | "deletingAnimation";
 
-export interface ToolbarState {
+export interface ToolsState {
   currentTool?: "base";
-  status?: ToolbarStatus;
+  status?: ToolsStatus;
+  animationId?: string;
 }
-export type ToolbarAction = { type: "STATUS_CHANGE"; newStatus: ToolbarStatus };
+export type ToolsAction = {
+  type: "STATUS_CHANGE";
+  newStatus: ToolsStatus;
+  animationId?: string;
+};
 
 // IDB Schema
 

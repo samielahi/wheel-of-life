@@ -4,9 +4,9 @@ import { FileWithHandle, fileOpen } from "browser-fs-access";
 import {
   AnimationEditorContext,
   AnimationEditorDispatchContext,
-} from "../../../state/context";
-import { Asset } from "../../../types";
-import IconButton from "../../../core/IconButton";
+} from "../../state/context";
+import { Asset } from "../../types";
+import IconButton from "../../core/IconButton";
 
 function createAsset(animationId: string, file: FileWithHandle): Asset {
   const assetId = uuid();
@@ -24,7 +24,7 @@ function createAsset(animationId: string, file: FileWithHandle): Asset {
 export default function Upload(props: { isIdle: boolean }) {
   const animation = useContext(AnimationEditorContext)!;
   const animationId = animation.id!;
-  const dispatchAnimationAction = useContext(AnimationEditorDispatchContext)!;
+  const dispatchEditorAction = useContext(AnimationEditorDispatchContext)!;
 
   async function uploadAssets(e: MouseEvent) {
     // Pick the file
@@ -36,7 +36,7 @@ export default function Upload(props: { isIdle: boolean }) {
     // Create and store assets
     images.forEach((image) => {
       const asset = createAsset(animationId, image);
-      dispatchAnimationAction({
+      dispatchEditorAction({
         type: "UPLOAD_ASSET",
         asset: asset,
       });

@@ -1,13 +1,13 @@
 import { useContext } from "react";
-import { ToolbarDispatchContext } from "../../../../state/context";
-import Button from "../../../../core/Button";
+import { ToolsDispatchContext } from "../../../state/context";
+import Button from "../../../core/Button";
 
 export default function AutoAssign(props: { isIdle: boolean; hasAssets: boolean }) {
-  const dispatchToolbarAction = useContext(ToolbarDispatchContext)!;
+  const dispatchToolsAction = useContext(ToolsDispatchContext)!;
 
   function startAutoAssign() {
     if (props.isIdle && props.hasAssets) {
-      dispatchToolbarAction({
+      dispatchToolsAction({
         type: "STATUS_CHANGE",
         newStatus: "auto-assigning",
       });

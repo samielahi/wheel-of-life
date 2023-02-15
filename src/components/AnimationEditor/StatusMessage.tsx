@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { AnimationEditorContext, ToolbarContext } from "../../state/context";
-import { ToolbarStatus } from "../../types";
+import { AnimationEditorContext, ToolsContext } from "../../state/context";
+import { ToolsStatus } from "../../types";
 
-function determineStatusMessage(status: ToolbarStatus, numSelectedElements: number) {
+function determineStatusMessage(status: ToolsStatus, numSelectedElements: number) {
   switch (status) {
     case "selecting":
       if (numSelectedElements) {
@@ -18,9 +18,9 @@ function determineStatusMessage(status: ToolbarStatus, numSelectedElements: numb
 
 export default function StatusMessage() {
   const animation = useContext(AnimationEditorContext)!;
-  const toolbar = useContext(ToolbarContext)!;
+  const tools = useContext(ToolsContext)!;
   const numSelectedElements = animation.selectedAssets?.length!;
-  const status = toolbar.status!;
+  const status = tools.status!;
   const message = determineStatusMessage(status, numSelectedElements);
 
   return (

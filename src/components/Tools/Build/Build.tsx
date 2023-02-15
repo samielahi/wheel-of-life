@@ -1,22 +1,19 @@
 import { useContext, useMemo } from "react";
-import {
-  AnimationEditorContext,
-  ToolbarDispatchContext,
-} from "../../../../state/context";
-import IconButton from "../../../../core/IconButton";
-import { constants } from "../../../../utils";
+import { AnimationEditorContext, ToolsDispatchContext } from "../../../state/context";
+import IconButton from "../../../core/IconButton";
+import { constants } from "../../../utils";
 import { buildStrip } from "./utils";
 
 export default function Build() {
   const animation = useContext(AnimationEditorContext)!;
-  const dispatchToolbarAction = useContext(ToolbarDispatchContext)!;
+  const dispatchToolsAction = useContext(ToolsDispatchContext)!;
   const isBuildable = useMemo(
     () => animation.filledFrames!.size === constants.NUM_FRAMES,
     [animation.filledFrames]
   );
 
   function build() {
-    dispatchToolbarAction({
+    dispatchToolsAction({
       type: "STATUS_CHANGE",
       newStatus: "building",
     });

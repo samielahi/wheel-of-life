@@ -1,9 +1,9 @@
 import { useContext, memo } from "react";
 import {
   AnimationEditorDispatchContext,
-  ToolbarDispatchContext,
-} from "../../../state/context";
-import IconButton from "../../../core/IconButton";
+  ToolsDispatchContext,
+} from "../../state/context";
+import IconButton from "../../core/IconButton";
 
 interface SelectProps {
   isSelecting: boolean;
@@ -11,22 +11,22 @@ interface SelectProps {
 }
 
 function Select(props: SelectProps) {
-  const dispatchAnimationAction = useContext(AnimationEditorDispatchContext)!;
-  const dispatchToolbarAction = useContext(ToolbarDispatchContext)!;
+  const dispatchEditorAction = useContext(AnimationEditorDispatchContext)!;
+  const dispatchToolsAction = useContext(ToolsDispatchContext)!;
 
   function toggleSelection() {
     if (!props.isSelecting && props.hasAssets) {
-      dispatchToolbarAction({
+      dispatchToolsAction({
         type: "STATUS_CHANGE",
         newStatus: "selecting",
       });
     } else {
-      dispatchToolbarAction({
+      dispatchToolsAction({
         type: "STATUS_CHANGE",
         newStatus: "idle",
       });
 
-      dispatchAnimationAction({
+      dispatchEditorAction({
         type: "DESELECT_ALL",
       });
     }

@@ -2,16 +2,16 @@ import { useContext } from "react";
 import {
   AnimationEditorContext,
   AnimationEditorDispatchContext,
-  ToolbarContext,
-  ToolbarDispatchContext,
+  ToolsContext,
+  ToolsDispatchContext,
 } from "../state/context";
-import { ToolbarStatus } from "../types";
+import { ToolsStatus } from "../types";
 
-export default function useModal(status: ToolbarStatus) {
-  const toolbar = useContext(ToolbarContext);
+export default function useModal(status: ToolsStatus) {
+  const tools = useContext(ToolsContext);
   const dispatchEditorAction = useContext(AnimationEditorDispatchContext)!;
-  const dispatchToolbarAction = useContext(ToolbarDispatchContext)!;
-  const isStatus = toolbar?.status === status;
+  const dispatchToolbarAction = useContext(ToolsDispatchContext)!;
+  const isStatus = tools?.status === status;
 
   function closeModal() {
     if (status === "deleting") {

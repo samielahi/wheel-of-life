@@ -1,16 +1,16 @@
 import { useContext } from "react";
-import { AnimationEditorDispatchContext } from "../../../../state/context";
-import Button from "../../../../core/Button";
-import Modal from "../../../../core/Modal";
-import useModal from "../../../../hooks/useModal";
+import { AnimationEditorDispatchContext } from "../../../state/context";
+import Button from "../../../core/Button";
+import Modal from "../../../core/Modal";
+import useModal from "../../../hooks/useModal";
 
 export default function DeleteDialog() {
   const [isStatus, closeModal] = useModal("deleting");
-  const dispatchAnimationAction = useContext(AnimationEditorDispatchContext)!;
+  const dispatchEditorAction = useContext(AnimationEditorDispatchContext)!;
 
   function deleteSelectedAssets() {
     if (isStatus) {
-      dispatchAnimationAction({
+      dispatchEditorAction({
         type: "DELETE_ASSETS",
       });
     }

@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { ToolbarDispatchContext } from "../../../../state/context";
-import Button from "../../../../core/Button";
+import { ToolsDispatchContext } from "../../../state/context";
+import Button from "../../../core/Button";
 
 interface ClearFramesProps {
   isIdle?: boolean;
@@ -8,11 +8,11 @@ interface ClearFramesProps {
 }
 
 export default function ClearFrames(props: ClearFramesProps) {
-  const dispatchToolbarAction = useContext(ToolbarDispatchContext)!;
+  const dispatchToolsAction = useContext(ToolsDispatchContext)!;
 
   function clearFrames() {
     if (props.isIdle) {
-      dispatchToolbarAction({
+      dispatchToolsAction({
         type: "STATUS_CHANGE",
         newStatus: "clearing",
       });

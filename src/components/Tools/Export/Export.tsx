@@ -1,13 +1,13 @@
 import { useContext } from "react";
-import { ToolbarDispatchContext } from "../../../../state/context";
-import IconButton from "../../../../core/IconButton";
+import { ToolsDispatchContext } from "../../../state/context";
+import IconButton from "../../../core/IconButton";
 
 export default function Export(props: { isIdle?: boolean; isBuilt?: boolean }) {
-  const dispatchToolbarAction = useContext(ToolbarDispatchContext)!;
+  const dispatchToolsAction = useContext(ToolsDispatchContext)!;
 
   function startExport() {
     if (props.isIdle) {
-      dispatchToolbarAction({
+      dispatchToolsAction({
         type: "STATUS_CHANGE",
         newStatus: "exporting",
       });

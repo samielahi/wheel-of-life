@@ -1,6 +1,6 @@
-import useModal from "../../../../hooks/useModal";
-import Modal from "../../../../core/Modal";
-import Button from "../../../../core/Button";
+import useModal from "../../../hooks/useModal";
+import Modal from "../../../core/Modal";
+import Button from "../../../core/Button";
 import { Link } from "react-router-dom";
 
 export default function BuildDialog(props: { name: string }) {

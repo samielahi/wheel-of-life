@@ -1,13 +1,13 @@
 import { useContext, memo } from "react";
-import { ToolbarDispatchContext } from "../../../../state/context";
-import IconButton from "../../../../core/IconButton";
+import { ToolsDispatchContext } from "../../../state/context";
+import IconButton from "../../../core/IconButton";
 
 function Delete(props: { isSelecting: boolean; hasSelectedAssets: boolean }) {
-  const dispatchToolbarAction = useContext(ToolbarDispatchContext)!;
+  const dispatchToolsAction = useContext(ToolsDispatchContext)!;
 
   function startDeletion() {
     if (props.isSelecting) {
-      dispatchToolbarAction({
+      dispatchToolsAction({
         type: "STATUS_CHANGE",
         newStatus: "deleting",
       });

@@ -1,16 +1,16 @@
 import { useContext } from "react";
-import { AnimationEditorDispatchContext } from "../../../../state/context";
-import Modal from "../../../../core/Modal";
-import Button from "../../../../core/Button";
-import useModal from "../../../../hooks/useModal";
+import { AnimationEditorDispatchContext } from "../../../state/context";
+import Modal from "../../../core/Modal";
+import Button from "../../../core/Button";
+import useModal from "../../../hooks/useModal";
 
 export default function AutoAssignDialog() {
   const [isStatus, closeModal] = useModal("auto-assigning");
-  const dispatchAnimationAction = useContext(AnimationEditorDispatchContext)!;
+  const dispatchEditorAction = useContext(AnimationEditorDispatchContext)!;
 
   function autoAssign() {
     if (isStatus) {
-      dispatchAnimationAction({
+      dispatchEditorAction({
         type: "AUTO_ASSIGN",
       });
 

@@ -2,30 +2,30 @@ import { useContext, useRef, memo } from "react";
 import {
   AnimationEditorContext,
   AnimationEditorDispatchContext,
-  ToolbarContext,
+  ToolsContext,
 } from "../../state/context";
 import { Asset as AssetType } from "../../types";
 
 function Asset(props: AssetType) {
   const animation = useContext(AnimationEditorContext);
-  const dispatchAnimationAction = useContext(AnimationEditorDispatchContext)!;
-  const toolbar = useContext(ToolbarContext)!;
+  const dispatchEditorAction = useContext(AnimationEditorDispatchContext)!;
+  const tools = useContext(ToolsContext)!;
   const numSelectedAssets = animation!.selectedAssets?.length!;
   const selectionId = useRef<number>();
   const imgObjectURL = URL.createObjectURL(props.data);
 
   function handleSelection() {
-    if (toolbar.status === "selecting") {
+    if (tools.status === "selecting") {
       if (!props.isSelected) {
         selectionId.current = numSelectedAssets + 1;
-        dispatchAnimationAction({
+        dispatchEditorAction({
           type: "SELECT_ASSET",
           assetId: props.id,
           selectionId: selectionId.current,
         });
       } else {
         // If asset is selected we deselect if clicked on again
-        dispatchAnimationAction({
+        dispatchEditorAction({
           type: "DESELECT_ASSET",
           assetId: props.id,
         });

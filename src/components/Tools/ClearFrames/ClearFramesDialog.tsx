@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { AnimationEditorDispatchContext } from "../../../../state/context";
-import Modal from "../../../../core/Modal";
-import Button from "../../../../core/Button";
-import useModal from "../../../../hooks/useModal";
+import { AnimationEditorDispatchContext } from "../../../state/context";
+import Modal from "../../../core/Modal";
+import Button from "../../../core/Button";
+import useModal from "../../../hooks/useModal";
 
 export default function ClearFramesDialog() {
   const [isStatus, closeModal] = useModal("clearing");

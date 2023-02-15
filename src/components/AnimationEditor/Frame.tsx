@@ -2,7 +2,7 @@ import { useContext, memo } from "react";
 import {
   AnimationEditorContext,
   AnimationEditorDispatchContext,
-  ToolbarContext,
+  ToolsContext,
 } from "../../state/context";
 import { Frame as FrameType } from "../../types";
 import FrameCount from "./FrameCount";
@@ -10,10 +10,10 @@ import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 function Frame(props: FrameType) {
   const animation = useContext(AnimationEditorContext);
-  const dispatchAnimationAction = useContext(AnimationEditorDispatchContext)!;
-  const toolbar = useContext(ToolbarContext)!;
+  const dispatchEditorAction = useContext(AnimationEditorDispatchContext)!;
+  const tools = useContext(ToolsContext)!;
   const hasSelectedAssets = animation?.selectedAssets?.length !== 0;
-  const isSelecting = toolbar.status === "selecting";
+  const isSelecting = tools.status === "selecting";
   const assets = animation!.assets!;
   const assetExists = props.assetId! && assets[props.assetId];
   const currentAssetId = animation!.selectedAssets![0];
@@ -28,13 +28,13 @@ function Frame(props: FrameType) {
 
   function assignImage() {
     if (isSelecting && currentAssetId) {
-      dispatchAnimationAction({
+      dispatchEditorAction({
         type: "ASSIGN_IMAGE",
         targetFrame: props.id,
         assetId: currentAssetId,
       });
 
-      dispatchAnimationAction({
+      dispatchEditorAction({
         type: "DESELECT_ASSET",
         assetId: currentAssetId,
       });
@@ -42,7 +42,7 @@ function Frame(props: FrameType) {
   }
 
   function deassignImage() {
-    dispatchAnimationAction({
+    dispatchEditorAction({
       type: "DEASSIGN_IMAGE",
       targetFrame: props.id,
       assetId: props.assetId!,

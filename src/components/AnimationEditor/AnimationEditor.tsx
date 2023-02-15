@@ -1,26 +1,26 @@
-import { useEffect, useContext } from "react";
+import { useEffect } from "react";
 import { useImmerReducer } from "use-immer";
 import { useParams, useLocation } from "react-router";
-import { AnimationEditorReducer, ToolbarReducer } from "../../state/reducers";
+import { AnimationEditorReducer, ToolsReducer } from "../../state/reducers";
 import {
   AnimationEditorContext,
   AnimationEditorDispatchContext,
-  ToolbarContext,
-  ToolbarDispatchContext,
+  ToolsContext,
+  ToolsDispatchContext,
 } from "../../state/context";
-import { initialToolbarState } from "../../state/context";
-import { AnimationState, ToolbarState, Asset } from "../../types";
+import { initialToolsState } from "../../state/context";
+import { AnimationState, ToolsState, Asset } from "../../types";
 import Header from "../../core/Header";
 import Toolbar from "./Toolbar";
 import AssetList from "./AssetList";
 import FrameList from "./FrameList";
 import { getAllAssets, getAllFrames, getAnimation } from "../../state/idb";
 import { Link } from "react-router-dom";
-import AutoAssignDialog from "./Tools/AutoAssign/AutoAssignDialog";
-import DeleteDialog from "./Tools/Delete/DeleteDialog";
-import ExportDialog from "./Tools/Export/ExportDialog";
-import ClearFramesDialog from "./Tools/ClearFrames/ClearFramesDialog";
-import BuildDialog from "./Tools/Build/BuildDialog";
+import AutoAssignDialog from "../Tools/AutoAssign/AutoAssignDialog";
+import DeleteDialog from "../Tools/Delete/DeleteDialog";
+import ExportDialog from "../Tools/Export/ExportDialog";
+import ClearFramesDialog from "../Tools/ClearFrames/ClearFramesDialog";
+import BuildDialog from "../Tools/Build/BuildDialog";
 
 const AllStripsLink = () => (
   <Link
@@ -52,7 +52,7 @@ export default function AnimationEditor() {
   const location = useLocation();
   const name = params.name;
   const animationId = location.state.animationId;
-  const toolbarState: ToolbarState = initialToolbarState;
+  const toolbarState: ToolsState = initialToolsState;
   // Replace with imported initialAnimationState from context and Object.assign with props
   let initialAnimationState: AnimationState = {
     id: animationId,
@@ -64,11 +64,11 @@ export default function AnimationEditor() {
     isBuilt: false,
   };
 
-  const [animation, dispatchAnimationAction] = useImmerReducer(
+  const [animation, dispatchEditorAction] = useImmerReducer(
     AnimationEditorReducer,
     initialAnimationState
   );
-  const [toolbar, dispatchToolbarAction] = useImmerReducer(ToolbarReducer, toolbarState);
+  const [toolbar, dispatchToolbarAction] = useImmerReducer(ToolsReducer, toolbarState);
 
   useEffect(() => {
     // Async actions not allowed so we load in idb data and rehydrate as a side effect
@@ -89,7 +89,7 @@ export default function AnimationEditor() {
       loadedAnimationState.lastBuildTime = animation!.lastBuildTime;
       loadedAnimationState.thumbnail = animation!.thumbnail;
 
-      dispatchAnimationAction({
+      dispatchEditorAction({
         type: "REHYDRATE",
         animation: loadedAnimationState,
       });
@@ -100,10 +100,10 @@ export default function AnimationEditor() {
 
   return (
     <>
-      <ToolbarContext.Provider value={toolbar}>
-        <ToolbarDispatchContext.Provider value={dispatchToolbarAction}>
+      <ToolsContext.Provider value={toolbar}>
+        <ToolsDispatchContext.Provider value={dispatchToolbarAction}>
           <AnimationEditorContext.Provider value={animation}>
-            <AnimationEditorDispatchContext.Provider value={dispatchAnimationAction}>
+            <AnimationEditorDispatchContext.Provider value={dispatchEditorAction}>
               <Header type="editor">
                 <AllStripsLink />
               </Header>
@@ -118,8 +118,8 @@ export default function AnimationEditor() {
               <BuildDialog name={animation.name!} />
             </AnimationEditorDispatchContext.Provider>
           </AnimationEditorContext.Provider>
-        </ToolbarDispatchContext.Provider>
-      </ToolbarContext.Provider>
+        </ToolsDispatchContext.Provider>
+      </ToolsContext.Provider>
     </>
   );
 }

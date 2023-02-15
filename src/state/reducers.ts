@@ -1,8 +1,8 @@
 import {
   AnimationState,
   AnimationEditorAction,
-  ToolbarState,
-  ToolbarAction,
+  ToolsState,
+  ToolsAction,
   AnimationMenuAction,
   AnimationMenuState,
 } from "../types";
@@ -245,11 +245,16 @@ export function AnimationEditorReducer(
   }
 }
 
-export function ToolbarReducer(draft: ToolbarState, action: ToolbarAction) {
+export function ToolsReducer(draft: ToolsState, action: ToolsAction) {
   switch (action.type) {
     case "STATUS_CHANGE": {
       console.log(`Status Changed to : ${action.newStatus}`);
       draft.status = action.newStatus;
+
+      if (action.newStatus === "deletingAnimation") {
+        draft.animationId = action.animationId;
+      }
+
       break;
     }
 

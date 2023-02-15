@@ -1,8 +1,8 @@
 import useModal from "../hooks/useModal";
-import { ToolbarStatus } from "../types";
+import { ToolsStatus } from "../types";
 
 export interface ModalProps {
-  status?: ToolbarStatus;
+  status?: ToolsStatus;
   children?: any;
 }
 

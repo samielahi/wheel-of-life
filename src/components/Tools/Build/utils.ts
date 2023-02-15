@@ -1,6 +1,6 @@
-import { getAllFrames, getAllAssets, setAnimation } from "../../../../state/idb";
-import { AnimationStateDB, Asset, Frame } from "../../../../types";
-import { constants } from "../../../../utils";
+import { getAllFrames, getAllAssets, setAnimation } from "../../../state/idb";
+import { AnimationStateDB, Asset, Frame } from "../../../types";
+import { constants } from "../../../utils";
 
 /**
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas}

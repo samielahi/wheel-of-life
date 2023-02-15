@@ -1,5 +1,5 @@
 import { useContext, useMemo } from "react";
-import { AnimationEditorContext, ToolbarContext } from "../../state/context";
+import { AnimationEditorContext, ToolsContext } from "../../state/context";
 import Asset from "./Asset";
 import { sortAssetsAlphaNumerically } from "../../utils";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
@@ -7,8 +7,8 @@ import { useAutoAnimate } from "@formkit/auto-animate/react";
 // Renders a horizontally scrollable section of the current Assets in the animation
 export default function AssetList() {
   const animation = useContext(AnimationEditorContext);
-  const toolbar = useContext(ToolbarContext)!;
-  const isSelecting = toolbar.status === "selecting";
+  const tools = useContext(ToolsContext)!;
+  const isSelecting = tools.status === "selecting";
   const assets = useMemo(() => Object.values(animation!.assets!), [animation!.assets!]);
   const animationHasAssets = assets.length !== 0;
   // Get asset list and sort in alphanumeric order
