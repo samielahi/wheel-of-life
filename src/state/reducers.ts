@@ -51,6 +51,18 @@ export function AnimationMenuReducer(
       break;
     }
 
+    case "SET_THUMBNAIL": {
+      const targetAnimation = draft.find(
+        (animation) => action.animationId === animation.id
+      )!;
+
+      if (targetAnimation) {
+        targetAnimation.thumbnail = action.image;
+        setAnimation({ ...targetAnimation });
+      }
+      break;
+    }
+
     default: {
       throw Error("Unknown action: " + action);
     }
@@ -75,6 +87,9 @@ export function AnimationEditorReducer(
       const newAnimationState = action.animation!;
       draft.assets = newAnimationState.assets;
       draft.frames = newAnimationState.frames;
+      draft.isBuilt = newAnimationState.isBuilt;
+      draft.thumbnail = newAnimationState.thumbnail;
+      draft.lastBuildTime = newAnimationState.lastBuildTime;
       // Check which frames are filled and update state
       draft.frames?.forEach((frame) => {
         const isAssigned = typeof frame.assetId! === "string";

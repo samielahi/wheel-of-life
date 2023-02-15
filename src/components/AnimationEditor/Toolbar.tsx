@@ -16,7 +16,7 @@ export default function Toolbar() {
   const status = toolbar.status;
   const isIdle = status === "idle";
   const isSelecting = status === "selecting";
-  const isBuilt = animation.isBuilt;
+  const isBuilt = animation.isBuilt!;
   const hasAssets = Object.values(animation.assets!).length !== 0;
   const hasSelectedAssets = animation.selectedAssets?.length !== 0;
   const hasFilledFrames = animation.filledFrames!.size !== 0;

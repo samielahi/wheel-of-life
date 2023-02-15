@@ -26,7 +26,8 @@ export type AnimationMenuAction =
   | { type: "REHYDRATE"; animations: AnimationStateDB[] }
   | { type: "NAME_CHANGE"; animationId: string; name: string }
   | { type: "NEW_ANIMATION"; animation: AnimationStateDB }
-  | { type: "DELETE_ANIMATION"; animationId: string };
+  | { type: "DELETE_ANIMATION"; animationId: string }
+  | { type: "SET_THUMBNAIL"; animationId: string; image: File | Blob | undefined };
 
 // Animation Editor
 

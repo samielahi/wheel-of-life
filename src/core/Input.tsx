@@ -1,5 +1,4 @@
 import { useState, useContext } from "react";
-import { AnimationMenuDispatch } from "../types";
 import { AnimationMenuDispatchContext } from "../state/context";
 
 export interface InputProps {
@@ -62,6 +61,7 @@ export default function Input(props: InputProps) {
             }}
             onKeyUp={(event) => {
               if (event.key === "Enter") {
+                confirmNameChange();
                 setIsEditing(false);
               }
             }}

@@ -14,7 +14,7 @@ import Header from "../../core/Header";
 import Toolbar from "./Toolbar";
 import AssetList from "./AssetList";
 import FrameList from "./FrameList";
-import { getAllAssets, getAllFrames } from "../../state/idb";
+import { getAllAssets, getAllFrames, getAnimation } from "../../state/idb";
 import { Link } from "react-router-dom";
 import AutoAssignDialog from "./Tools/AutoAssign/AutoAssignDialog";
 import DeleteDialog from "./Tools/Delete/DeleteDialog";
@@ -74,6 +74,7 @@ export default function AnimationEditor() {
     // Async actions not allowed so we load in idb data and rehydrate as a side effect
     async function loadAnimationFromIdb() {
       const loadedAnimationState = { ...initialAnimationState };
+      const animation = await getAnimation(animationId);
       const assetList = await getAllAssets(animationId);
       const frames = await getAllFrames(animationId);
       const assets: Record<string, Asset> = {};
@@ -84,6 +85,9 @@ export default function AnimationEditor() {
 
       loadedAnimationState.assets = assets;
       loadedAnimationState.frames = frames;
+      loadedAnimationState.isBuilt = animation!.isBuilt;
+      loadedAnimationState.lastBuildTime = animation!.lastBuildTime;
+      loadedAnimationState.thumbnail = animation!.thumbnail;
 
       dispatchAnimationAction({
         type: "REHYDRATE",
