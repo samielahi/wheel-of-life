@@ -19,16 +19,21 @@ function AnimationCard(props: AnimationCardProps) {
 
   return (
     <>
-      <div className="group relative cursor-pointer rounded border-2 border-silver bg-white p-4 drop-shadow-sm hover:border-violet">
+      <div
+        tabIndex={0}
+        className="group relative rounded border-2 border-silver bg-white p-4 drop-shadow-sm hover:border-violet focus:outline-none focus:ring-2 focus:ring-orange"
+      >
         <DeleteAnimation animationId={props.animationId!} />
 
         <div className="h-[300px] w-[225px]">
           <Link
+            tabIndex={0}
             to={`/animation-editor/${props.name}`}
             state={{ animationId: props.animationId }}
           >
             <img
-              className="h-full w-full opacity-75"
+              tabIndex={-1}
+              className="h-full w-full cursor-pointer opacity-75 "
               src={thumbnailURL || placeholderImage}
               alt="animation thumbnail placeholder"
             />

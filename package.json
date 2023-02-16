@@ -13,6 +13,7 @@
     "@react-three/drei": "^9.56.18",
     "@react-three/fiber": "^8.11.0",
     "browser-fs-access": "^0.31.2",
+    "focus-trap-react": "^10.1.0",
     "idb": "^7.1.1",
     "immer": "^9.0.18",
     "react": "^18.2.0",

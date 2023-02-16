@@ -25,7 +25,7 @@ import BuildDialog from "../Tools/Build/BuildDialog";
 const AllStripsLink = () => (
   <Link
     to="/animations"
-    className="flex w-fit items-center justify-center gap-2 rounded-md border-2 border-silver bg-white px-2 py-1 text-sm text-violet drop-shadow-sm hover:bg-smoke sm:px-4 sm:py-2 lg:h-[50px] lg:text-lg"
+    className="flex w-fit items-center justify-center gap-2 rounded-md border-2 border-silver bg-white px-2 py-1 text-sm text-black drop-shadow-sm hover:bg-smoke sm:px-4 sm:py-2 lg:h-[50px] lg:text-lg"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"

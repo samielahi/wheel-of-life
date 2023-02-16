@@ -42,7 +42,7 @@ export default function AssetList() {
               {/* If the animation has no assets show a message */}
               <div className="fixed ml-[calc(50%_-_250px)] mt-[5%]">
                 <div className="rounded border-2 border-dashed border-lightViolet bg-white p-10">
-                  <p className="text-md flex gap-2 italic text-gray">
+                  <p className="text-md flex gap-2 italic text-black">
                     Upload
                     <span className="text-violet">
                       <svg

@@ -8,7 +8,7 @@ module.exports = {
       smoke: "#f3f3f1",
       white: "#FFFFFF",
       red: "#ff3d00",
-      violet: "#9c8cdf",
+      violet: "#9B86F3",
       lightViolet: "#E2DDE9",
       pink: "#FCC8D3",
       blue: "#1C2E69",

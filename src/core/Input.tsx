@@ -10,7 +10,16 @@ const Name = (props: { name: string; onClick?: () => void }) => (
   <>
     <div className="flex w-[20ch] items-center justify-between gap-4 rounded bg-smoke p-2">
       <p>{props.name}</p>
-      <span onClick={props.onClick} className="w-[20px] cursor-pointer">
+      <span
+        tabIndex={0}
+        onClick={props.onClick}
+        onKeyUp={(event) => {
+          if (event.key === "Enter") {
+            props.onClick!();
+          }
+        }}
+        className="w-[20px] cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -33,13 +42,13 @@ const Name = (props: { name: string; onClick?: () => void }) => (
 export default function Input(props: InputProps) {
   const [value, setValue] = useState(props.name);
   const [isEditing, setIsEditing] = useState(false);
-  const dispatch = useContext(AnimationMenuDispatchContext);
+  const dispatch = useContext(AnimationMenuDispatchContext)!;
 
   function confirmNameChange() {
     dispatch({
       type: "NAME_CHANGE",
-      name: value,
-      animationId: props.animationId,
+      name: value!,
+      animationId: props.animationId!,
     });
   }
 
@@ -50,7 +59,7 @@ export default function Input(props: InputProps) {
       ) : (
         <div className="flex w-fit items-center gap-2 rounded bg-smoke">
           <input
-            className="w-[15ch] p-2"
+            className="w-[15ch] p-2 focus:outline-none focus:ring-2 focus:ring-violet"
             type="text"
             autoFocus
             placeholder="Name your strip..."
@@ -67,6 +76,7 @@ export default function Input(props: InputProps) {
             }}
           />
           <span
+            tabIndex={0}
             className="flex w-[5ch] cursor-pointer items-center justify-center"
             onClick={() => {
               confirmNameChange();

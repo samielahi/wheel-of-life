@@ -52,6 +52,12 @@ function Frame(props: FrameType) {
   return (
     <>
       <div
+        tabIndex={hasSelectedAssets ? 0 : -1}
+        onKeyUp={(event) => {
+          if (event.key === "Enter") {
+            assignImage();
+          }
+        }}
         ref={animationParent}
         onClick={assignImage}
         style={hasSelectedAssets ? { cursor: "pointer" } : {}}

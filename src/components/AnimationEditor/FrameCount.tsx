@@ -11,18 +11,25 @@ export default function FrameCount(props: FrameCountProps) {
   const [hovered, setHovered] = useState(false);
   return (
     <>
-      <div
+      <button
+        tabIndex={props.hasAsset && !props.isSelecting ? 0 : -1}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
+        onFocus={() => {
+          if (props.hasAsset) {
+            setHovered(true);
+          }
+        }}
+        onBlur={() => setHovered(false)}
         onClick={() => {
           if (props.hasAsset && !props.isSelecting) {
             props.onClick!();
           }
         }}
-        className="text-md absolute left-[calc(100%_-_60px)] top-4 z-10 h-[40px] w-[40px] rounded-full bg-yellow text-center text-gray drop-shadow-sm"
+        className="text-md absolute left-[calc(100%_-_60px)] top-4 z-10 h-[40px] w-[40px] rounded-full bg-yellow text-center text-black drop-shadow-sm focus:outline-none focus:ring-2 focus:ring-violet"
       >
         {!props.isSelecting && hovered && props.hasAsset ? (
-          <span className="flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-full bg-orange">
+          <span className="flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-full bg-orange ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -43,7 +50,7 @@ export default function FrameCount(props: FrameCountProps) {
             {props.frameId + 1 <= 10 ? `0${props.frameId}` : `${props.frameId}`}
           </span>
         )}
-      </div>
+      </button>
     </>
   );
 }
