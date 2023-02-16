@@ -13,24 +13,32 @@ interface HelpProps {
 
 const MenuHelpInfo = (props: HelpProps) => (
   <>
-    <div className="flex flex-col items-center justify-center gap-4">
-      <h3 className="text-2xl text-red">Welcome To The Strip Editor!</h3>
-      <span>
-        Here you can create your own 16 frame animation strip that can be played on the 3D
-        zoetrope.
+    <div className="flex flex-col items-center gap-4">
+      <h3 className="text-center text-3xl text-red">Welcome!</h3>
+      <span className="leading-7">
+        Create your own 16 frame animation strip that can be played on the 3D Zoetrope.
+        Click{" "}
+        <span className="rounded-md border-2 border-lightViolet bg-white px-2 py-1 text-violet">
+          create strip
+        </span>{" "}
+        , give your animation a name, and then click on the card to open the animation
+        editor.
       </span>
-      <div>
-        <input
-          onChange={() => props.toggleShow(!props.show)}
-          checked={!props.show}
-          type="checkbox"
-          name="suppress"
-          id="suppress"
-          className="mr-4"
-        />
-        <label htmlFor="suppress">Don't show again</label>
+
+      <div className="flex w-fit items-center justify-between gap-4">
+        <Button onClick={props.closeModal}>cancel</Button>
+        <div>
+          <input
+            onChange={() => props.toggleShow(!props.show)}
+            checked={!props.show}
+            type="checkbox"
+            name="suppress"
+            id="suppress"
+            className="mr-4"
+          />
+          <label htmlFor="suppress">Don't show again</label>
+        </div>
       </div>
-      <Button onClick={props.closeModal}>cancel</Button>
     </div>
   </>
 );

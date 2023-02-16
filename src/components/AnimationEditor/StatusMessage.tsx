@@ -6,9 +6,9 @@ function determineStatusMessage(status: ToolsStatus, numSelectedElements: number
   switch (status) {
     case "selecting":
       if (numSelectedElements) {
-        return `${numSelectedElements} images selected: click a frame to assign/replace with selected images.`;
+        return `Click a frame to assign/replace with selected image(s).`;
       } else {
-        return "Selecting : click an image below to select it.";
+        return "Click an image below to select it.";
       }
 
     default:

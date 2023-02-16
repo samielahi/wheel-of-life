@@ -22,7 +22,7 @@ export default function ClearFramesDialog() {
     <>
       <Modal status="clearing">
         <div className="flex h-full flex-col items-center justify-center gap-4">
-          <h3 className="text-2xl text-orange">Clear All Frames?</h3>
+          <h3 className="text-3xl text-red">Clear All Frames?</h3>
           <div className="flex gap-4">
             <Button onClick={clearFrames}>confirm</Button>
             <Button onClick={closeModal as () => void}>cancel</Button>
