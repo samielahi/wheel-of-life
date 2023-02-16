@@ -5,7 +5,7 @@ export default function Table() {
   const mesh = useRef<any>();
   // If a result.scene prop is found useGLTF will automatically create a object & material collection: { nodes, materials }
   // @ts-ignore
-  const { nodes, materials } = useGLTF("/public/table.glb");
+  const { nodes, materials } = useGLTF("/table.glb");
   return (
     <group ref={mesh} dispose={null}>
       <group scale={[0.89, 4.09, 0.89]}>
@@ -28,4 +28,4 @@ export default function Table() {
   );
 }
 
-useGLTF.preload("./table.glb");
+useGLTF.preload("/table.glb");
