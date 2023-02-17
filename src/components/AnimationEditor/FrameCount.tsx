@@ -46,7 +46,7 @@ export default function FrameCount(props: FrameCountProps) {
             </svg>
           </span>
         ) : (
-          <span className="flex h-[40px] w-[40px] items-center justify-center">
+          <span className="flex h-[40px] w-[40px] cursor-auto items-center justify-center">
             {props.frameId + 1 <= 10 ? `0${props.frameId}` : `${props.frameId}`}
           </span>
         )}

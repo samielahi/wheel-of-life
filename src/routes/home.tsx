@@ -71,7 +71,7 @@ const ArtistsLink = () => (
 
 const LearnLink = () => (
   <>
-    <Link to="/">
+    <Link to="/animations">
       <div className="group absolute top-[88%] left-[calc(100%_-_500px)]">
         <div className="flex w-[500px] items-center justify-center">
           <svg viewBox="0 0 500 500" className="absolute">

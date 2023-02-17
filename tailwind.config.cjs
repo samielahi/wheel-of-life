@@ -12,7 +12,7 @@ module.exports = {
       lightViolet: "#E2DDE9",
       pink: "#FCC8D3",
       blue: "#1C2E69",
-      silver: "#E4E4E4",
+      silver: "#F5f5f5",
       bg: "#FBF8F3",
       orange: "#FFB565",
       inactive: "#D8D0D0",

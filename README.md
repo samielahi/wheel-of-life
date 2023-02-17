@@ -16,6 +16,8 @@
 - Design and copy for about page
 - Design and UI For Zoetropes page
   - Suspense loading animation
+- Optimize assets
 - Lazy loading cards and image using lazy() and dynamic imports
+- Refactor nasty tailwind code
 
 - Host and set up ci/cd pipeline
