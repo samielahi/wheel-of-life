@@ -29,7 +29,7 @@ const AnimationEditorHeader = (props: { children?: any }) => (
 export default function Header(props: { type: "menu" | "editor"; children?: any }) {
   return (
     <>
-      <header className="wrapper flex items-center justify-between bg-bg drop-shadow-sm">
+      <header className="flex items-center justify-between bg-bg/40 py-6 px-8  backdrop-blur">
         {props.type === "menu" ? (
           <AnimationMenuHeader>{props.children}</AnimationMenuHeader>
         ) : (

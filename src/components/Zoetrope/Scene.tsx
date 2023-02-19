@@ -8,6 +8,7 @@ import { useState } from "react";
 import { blobToDataURL } from "../../utils";
 import { getAllAnimations } from "../../state/idb";
 import Strip from "./Strip/Strip";
+import Footer from "../../core/Footer";
 
 export default function Scene() {
   const [animations, setAnimations] = useState<Record<string, string>>({});
@@ -46,19 +47,21 @@ export default function Scene() {
   return (
     <>
       <div className="fixed z-20 w-full">
-        <div className="flex items-center justify-center pt-10">
+        <div className="flex items-center justify-center bg-bg/40 py-10 backdrop-blur-2xl">
           <h1 className="text-5xl text-red">Wheel Of Life</h1>
         </div>
       </div>
 
-      <div className="absolute left-[5%] top-[75%] z-20 rounded-md bg-yellow p-6">
+      <div className="absolute left-[5%] top-[75%] z-20 rounded-md bg-yellow/40 p-6 backdrop-blur">
         <h3 className="text-lg text-red">Now Playing:</h3>
         <p className="italic">Jessica Campbell</p>
       </div>
 
-      <div className="absolute left-[80%] top-[75%] z-20 h-max w-max rounded-md  bg-silver p-6 text-lg drop-shadow-md">
+      <div className="absolute left-[80%] top-[70%] z-20 h-max w-max rounded-md bg-silver p-6 text-center text-lg drop-shadow-md backdrop-blur-3xl">
         <div className="flex flex-col gap-4">
-          <label htmlFor="speed-select">Set spin speed :</label>
+          <label htmlFor="speed-select">
+            <h3 className="text-red">Set spin speed :</h3>
+          </label>
           <input
             id="speed-select"
             type="range"
@@ -68,12 +71,14 @@ export default function Scene() {
             onChange={changeZoetropeSpinSpeed}
           />
         </div>
-        <div className="flex flex-col gap-2">
-          <label htmlFor="strip-select">Choose a strip : </label>
+        <div className="mt-4 flex flex-col gap-4">
+          <label htmlFor="strip-select">
+            <h3 className="text-violet">Choose a strip :</h3>
+          </label>
           <select
             name="strips"
             id="strip-select"
-            className="cursor-pointer rounded p-2"
+            className="cursor-pointer rounded p-2 bg-white"
             onClick={selectStrip}
           >
             <option defaultValue={jessica}>--select strip--</option>
@@ -86,7 +91,7 @@ export default function Scene() {
         </div>
       </div>
 
-      <Canvas shadows className="bg-bg" camera={{ position: [0, 10, 10], fov: 80 }}>
+      <Canvas shadows camera={{ position: [0, 10, 10], fov: 80 }}>
         <OrbitControls
           maxDistance={8}
           minDistance={2}
@@ -109,6 +114,7 @@ export default function Scene() {
           </Stage>
         </Suspense>
       </Canvas>
+      <Footer></Footer>
     </>
   );
 }

@@ -75,80 +75,15 @@ h6 {
   isolation: isolate;
 }
 
-/**
- * @license
- *
- * Font Family: Clash Display
- * Designed by: Indian Type Foundry
- * URL: https://www.fontshare.com/fonts/clash-display
- * © 2023 Indian Type Foundry
- *
- * Font Styles:
- * Clash Display Semibold
- *
-*/
-
-@layer base {
-  @font-face {
-    font-family: "Archivo-Regular";
-    src: url("/fonts/Archivo-Regular.woff2") format("woff2"),
-      url("/fonts/Archivo-Regular.woff") format("woff"),
-      url("/fonts/Archivo-Regular.ttf") format("truetype");
-    font-weight: 400;
-    font-display: swap;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: "Archivo-Italic";
-    src: url("/fonts/Archivo-Italic.woff2") format("woff2"),
-      url("/fonts/Archivo-Italic.woff") format("woff"),
-      url("/fonts/Archivo-Italic.ttf") format("truetype");
-    font-weight: 400;
-    font-display: swap;
-    font-style: italic;
-  }
-
-  @font-face {
-    font-family: "Archivo-Medium";
-    src: url("/fonts/Archivo-Medium.woff2") format("woff2"),
-      url("/fonts/Archivo-Medium.woff") format("woff"),
-      url("/fonts/Archivo-Medium.ttf") format("truetype");
-    font-weight: 500;
-    font-display: swap;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: "Archivo-MediumItalic";
-    src: url("/fonts/Archivo-MediumItalic.woff2") format("woff2"),
-      url("/fonts/Archivo-MediumItalic.woff") format("woff"),
-      url("/fonts/Archivo-MediumItalic.ttf") format("truetype");
-    font-weight: 500;
-    font-display: swap;
-    font-style: italic;
-  }
-
-  @font-face {
-    font-family: "Clash";
-    src: url("/fonts/ClashDisplay-Semibold.woff2") format("woff2"),
-      url("/fonts/ClashDisplay-Semibold.woff") format("woff"),
-      url("/fonts/ClashDisplay-Semibold.ttf") format("truetype");
-    font-weight: 600;
-    font-display: swap;
-    font-style: normal;
-  }
-}
-
 body {
-  /* font-family: "Archivo-Regular"; */
+  font-family: "Archivo", sans-serif;
   color: #4f4c4c;
 }
 
 h1,
 h2,
 h3 {
-  font-family: Clash;
+  font-family: "Krona One", sans-serif;
 }
 
 /* UTILS */
@@ -169,7 +104,7 @@ h3 {
 }
 
 .scrollbar::-webkit-scrollbar-thumb {
-  background: wheat;
+  background: #FFB565;
 }
 
 .dotted-bg {
@@ -183,7 +118,7 @@ h3 {
 .expand {
   animation: expand-in;
   animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
-  animation-duration: 300ms;
+  animation-duration: 700ms;
   animation-fill-mode: forwards;
   transform-origin: center;
 }
@@ -197,4 +132,28 @@ h3 {
     opacity: 1;
     transform: scale(1);
   }
+}
+
+input[type="range"]::-moz-range-thumb {
+  border: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: orange;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: orange;
+  margin-top: -4px;
+  margin-bottom: -4px;
+  cursor: grabbing;
 }

@@ -25,9 +25,8 @@ module.exports = {
         air: { raw: "(min-height : 850px)" },
       },
       fontFamily: {
-        main: ["Archivo-Regular"],
-        heading: ["Clash"],
-        medium: ["Archivo-Medium"],
+        main: ["Archivo, sans-serif"],
+        heading: ["Krona One, sans-serif"],
       },
     },
   },

@@ -36,7 +36,10 @@ function Asset(props: AssetType) {
 
   return (
     <>
-      <div onClick={handleSelection} className="-z-1 relative rounded-xl bg-white">
+      <div
+        onClick={handleSelection}
+        className="-z-1 relative rounded-xl border-4 border-smoke bg-white"
+      >
         {/* Render selection id on top right if Asset is selected */}
         <span
           style={!props.isSelected ? { display: "none" } : {}}
@@ -57,7 +60,7 @@ function Asset(props: AssetType) {
           // Use file name as alt text
           alt={props.data.name}
           style={props.isSelected ? { border: "3px solid #9c8cdf" } : {}}
-          className="relative h-[200px] w-[150px] rounded-xl border-[3px] border-white bg-white opacity-80 drop-shadow-md duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-orange air:h-[260px] air:w-[195px]"
+          className="relative h-[200px] w-[150px] rounded-xl border-[3px] border-white bg-white opacity-80  duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-orange air:h-[260px] air:w-[195px]"
         />
       </div>
     </>

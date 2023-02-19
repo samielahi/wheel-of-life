@@ -15,6 +15,7 @@ import AddAnimation from "./AddAnimation";
 import AnimationCards from "./AnimationCards";
 import DeleteAnimationDialog from "../Tools/DeleteAnimation/DeleteAnimationDialog";
 import HelpDialog from "../Tools/Help/HelpDialog";
+import Footer from "../../core/Footer";
 
 function AnimationMenu() {
   const [tools, dispatchToolsAction] = useImmerReducer(ToolsReducer!, initialToolsState);
@@ -64,6 +65,7 @@ function AnimationMenu() {
               <AnimationCards />
               <DeleteAnimationDialog />
               <HelpDialog />
+              <Footer />
             </ToolsDispatchContext.Provider>
           </ToolsContext.Provider>
         </AnimationMenuDispatchContext.Provider>

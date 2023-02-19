@@ -8,6 +8,7 @@ interface AnimationCardProps {
   animationId?: string;
   name?: string;
   thumbnail?: Blob | File | undefined;
+  style?: any;
 }
 
 function AnimationCard(props: AnimationCardProps) {
@@ -21,7 +22,7 @@ function AnimationCard(props: AnimationCardProps) {
     <>
       <div
         tabIndex={0}
-        className="group relative rounded border-2 border-silver bg-white p-4 drop-shadow-sm hover:border-violet focus:outline-none focus:ring-2 focus:ring-orange"
+        className="group expand relative origin-center rounded border-4 border-silver bg-white p-4 drop-shadow-sm hover:border-violet focus:outline-none focus:ring-2 focus:ring-orange"
       >
         <DeleteAnimation animationId={props.animationId!} />
 

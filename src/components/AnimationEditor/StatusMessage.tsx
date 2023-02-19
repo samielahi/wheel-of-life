@@ -30,7 +30,7 @@ export default function StatusMessage() {
 
   return (
     <>
-      <div className="hidden rounded bg-smoke md:block">
+      <div className="hidden rounded bg-smoke italic md:block">
         {message !== "" ? <p className="px-4 py-2">{message}</p> : null}
       </div>
     </>

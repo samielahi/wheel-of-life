@@ -21,6 +21,7 @@ import DeleteDialog from "../Tools/DeleteImage/DeleteImageDialog";
 import ExportDialog from "../Tools/Export/ExportDialog";
 import ClearFramesDialog from "../Tools/ClearFrames/ClearFramesDialog";
 import BuildDialog from "../Tools/Build/BuildDialog";
+import Footer from "../../core/Footer";
 
 const AllStripsLink = () => (
   <Link
@@ -110,6 +111,7 @@ export default function AnimationEditor() {
               <FrameList />
               <Toolbar />
               <AssetList />
+              {/* <Footer /> */}
               {/* Dialogs */}
               <AutoAssignDialog />
               <DeleteDialog />
