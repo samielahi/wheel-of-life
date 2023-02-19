@@ -21,30 +21,7 @@ import DeleteDialog from "../Tools/DeleteImage/DeleteImageDialog";
 import ExportDialog from "../Tools/Export/ExportDialog";
 import ClearFramesDialog from "../Tools/ClearFrames/ClearFramesDialog";
 import BuildDialog from "../Tools/Build/BuildDialog";
-import Footer from "../../core/Footer";
-
-const AllStripsLink = () => (
-  <Link
-    to="/animations"
-    className="flex w-fit items-center justify-center gap-2 rounded-md border-2 border-silver bg-white px-2 py-1 text-sm text-black drop-shadow-sm hover:bg-smoke sm:px-4 sm:py-2 lg:h-[50px] lg:text-lg"
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <line x1="19" y1="12" x2="5" y2="12"></line>
-      <polyline points="12 19 5 12 12 5"></polyline>
-    </svg>
-    <span className="hidden md:block">all strips</span>
-  </Link>
-);
+import StyledLink from "../../core/StyledLink";
 
 export default function AnimationEditor() {
   // Get the animation name from the url
@@ -106,7 +83,23 @@ export default function AnimationEditor() {
           <AnimationEditorContext.Provider value={animation}>
             <AnimationEditorDispatchContext.Provider value={dispatchEditorAction}>
               <Header type="editor">
-                <AllStripsLink />
+                <StyledLink to="/animations">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#9B86F3"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                  </svg>
+                  <span className="hidden md:block">all strips</span>
+                </StyledLink>
               </Header>
               <FrameList />
               <Toolbar />

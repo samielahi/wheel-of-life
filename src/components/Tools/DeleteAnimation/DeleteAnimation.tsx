@@ -16,7 +16,7 @@ export default function DeleteAnimation(props: { animationId: string }) {
     <>
       <button
         onClick={toggleDeleteAnimationDialog}
-        className="absolute top-3 left-[80%] z-10 cursor-pointer rounded-full bg-yellow p-2 text-gray focus:outline-none focus:ring-2 focus:ring-orange"
+        className="absolute top-3 left-[80%] z-10 cursor-pointer rounded-full bg-yellow p-2 text-gray focus:outline-2 focus:outline-offset-4 focus:outline-violet"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

@@ -38,12 +38,13 @@ function Asset(props: AssetType) {
     <>
       <div
         onClick={handleSelection}
-        className="-z-1 relative rounded-xl border-4 border-smoke bg-white"
+        style={props.isSelected ? { borderColor: "#9c8cdf" } : {}}
+        className="-z-1 relative rounded-xl border-4 border-smoke bg-white duration-300 ease-in-out"
       >
         {/* Render selection id on top right if Asset is selected */}
         <span
           style={!props.isSelected ? { display: "none" } : {}}
-          className="absolute left-[90%] bottom-[94%] z-[2] w-6 rounded-full bg-violet text-center  text-white duration-200 ease-in-out"
+          className="absolute left-[93%] bottom-[95%] z-[2] w-6 rounded-full bg-violet text-center  text-white duration-200 ease-in-out"
         >
           {props.selectionId}
         </span>
@@ -59,8 +60,7 @@ function Asset(props: AssetType) {
           draggable={false}
           // Use file name as alt text
           alt={props.data.name}
-          style={props.isSelected ? { border: "3px solid #9c8cdf" } : {}}
-          className="relative h-[200px] w-[150px] rounded-xl border-[3px] border-white bg-white opacity-80  duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-orange air:h-[260px] air:w-[195px]"
+          className="relative h-[200px] w-[150px] rounded-xl bg-white opacity-80 focus:outline-2 focus:outline-offset-4 focus:outline-violet air:h-[260px] air:w-[195px]"
         />
       </div>
     </>

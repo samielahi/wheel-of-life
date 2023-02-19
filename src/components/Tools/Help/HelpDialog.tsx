@@ -20,7 +20,7 @@ const MenuHelpInfo = (props: HelpProps) => (
       <p id="dialogDesc" className="leading-7">
         Create your own 16 frame animation strip that can be played on the 3D Zoetrope.
         Click{" "}
-        <span className="rounded-md border-2 border-lightViolet bg-white px-2 py-1 text-violet">
+        <span className="rounded-md  bg-white px-2 py-1">
           create strip
         </span>{" "}
         , give your animation a name, and then click on the card to open the animation

@@ -26,7 +26,7 @@ export default function FrameCount(props: FrameCountProps) {
             props.onClick!();
           }
         }}
-        className="text-md absolute left-[calc(100%_-_60px)] top-4 z-10 h-[40px] w-[40px] rounded-full bg-yellow text-center text-black drop-shadow-sm focus:outline-none focus:ring-2 focus:ring-violet"
+        className="text-md absolute left-[calc(100%_-_60px)] top-4 z-10 h-[40px] w-[40px] rounded-full bg-yellow text-center text-black drop-shadow-sm focus:outline-2 focus:outline-offset-4 focus:outline-violet"
       >
         {!props.isSelecting && hovered && props.hasAsset ? (
           <span className="flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-full bg-orange ">

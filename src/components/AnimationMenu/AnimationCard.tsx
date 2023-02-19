@@ -22,7 +22,7 @@ function AnimationCard(props: AnimationCardProps) {
     <>
       <div
         tabIndex={0}
-        className="group expand relative origin-center rounded border-4 border-silver bg-white p-4 drop-shadow-sm hover:border-violet focus:outline-none focus:ring-2 focus:ring-orange"
+        className="expand group relative origin-center rounded border-4 border-silver bg-white p-4 drop-shadow-sm hover:border-orange focus:outline-none focus:ring-2 focus:ring-orange focus:ring-offset-4"
       >
         <DeleteAnimation animationId={props.animationId!} />
 
@@ -31,16 +31,19 @@ function AnimationCard(props: AnimationCardProps) {
             tabIndex={0}
             to={`/animation-editor/${props.name}`}
             state={{ animationId: props.animationId }}
+            className="rounded focus:outline-2 focus:outline-orange"
           >
             <img
               tabIndex={-1}
-              className="h-full w-full cursor-pointer opacity-75 "
+              className="h-full w-full cursor-pointer opacity-75"
               src={thumbnailURL || placeholderImage}
-              alt="animation thumbnail placeholder"
+              alt={`Thumbnail for the animation ${props.name}`}
             />
           </Link>
         </div>
-        <Input name={props.name} animationId={props.animationId} />
+        <div className="ml-5 w-full">
+          <Input name={props.name} animationId={props.animationId} />
+        </div>
       </div>
     </>
   );

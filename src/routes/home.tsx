@@ -4,6 +4,7 @@ import smile from "../assets/images/smile.png";
 import asset from "../assets/images/1.png";
 import Footer from "../core/Footer";
 import { Link } from "react-router-dom";
+import StyledLink from "../core/StyledLink";
 
 export default function Home() {
   return (
@@ -21,11 +22,18 @@ export default function Home() {
           <span className="text-3xl font-bold xl:text-5xl">@ Hyde Park Center</span>
           <span className="lg:text-lg xl:text-2xl">Kanter-McCormick Gallery</span>
         </div>
-        <Link to="/animations" className="w-fit">
-          <span className="rounded-full bg-[#FFE1C1] p-6 text-center font-bold  text-red hover:underline hover:underline-offset-4 lg:text-lg xl:text-2xl">
-            learn more
-          </span>
-        </Link>
+
+        <div className="flex gap-8">
+          <StyledLink to="/">
+            <span className="text-2xl font-bold text-red">Learn More</span>
+          </StyledLink>
+          <StyledLink to="/zoetrope">
+            <span className="text-2xl font-bold text-violet">3D Zoetrope</span>
+          </StyledLink>
+          <StyledLink to="/animations">
+            <span className="text-2xl font-bold text-violet">Create An Animation</span>
+          </StyledLink>
+        </div>
       </section>
 
       <Footer />

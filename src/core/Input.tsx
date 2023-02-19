@@ -18,7 +18,7 @@ const Name = (props: { name: string; onClick?: () => void }) => (
             props.onClick!();
           }
         }}
-        className="w-[20px] cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange"
+        className="w-[20px] cursor-pointer rounded  focus:outline-2 focus:outline-offset-4 focus:outline-violet"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -59,7 +59,7 @@ export default function Input(props: InputProps) {
       ) : (
         <div className="flex w-fit items-center gap-2 rounded bg-smoke">
           <input
-            className="w-[15ch] p-2 focus:outline-none focus:ring-2 focus:ring-violet"
+            className="w-[15ch] rounded border-2 border-smoke p-2 italic focus:outline-2 focus:outline-violet"
             type="text"
             autoFocus
             placeholder="Name your strip..."
