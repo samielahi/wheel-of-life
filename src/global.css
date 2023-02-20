@@ -104,7 +104,7 @@ h3 {
 }
 
 .scrollbar::-webkit-scrollbar-thumb {
-  background: #FFB565;
+  background: #ffb565;
 }
 
 .dotted-bg {
@@ -113,33 +113,13 @@ h3 {
   background-size: 25px 25px;
 }
 
-/* Animations */
-
-.expand {
-  animation: expand-in;
-  animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
-  animation-duration: 700ms;
-  animation-fill-mode: forwards;
-  transform-origin: center;
-}
-
-@keyframes expand-in {
-  from {
-    opacity: 0;
-    transform: scale(0);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
 input[type="range"]::-moz-range-thumb {
   border: none;
   height: 16px;
   width: 16px;
   border-radius: 50%;
   background: orange;
+  cursor: grabbing;
 }
 
 input[type="range"] {
@@ -156,4 +136,41 @@ input[type="range"]::-webkit-slider-thumb {
   margin-top: -4px;
   margin-bottom: -4px;
   cursor: grabbing;
+}
+
+/* Animations */
+
+.expand {
+  animation: expandIn;
+  animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+  animation-duration: 700ms;
+  animation-fill-mode: forwards;
+  transform-origin: center;
+}
+
+@keyframes expandIn {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.fadeIn {
+  animation: fadeIn;
+  animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+  animation-duration: 300ms;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
