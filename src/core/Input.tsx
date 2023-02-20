@@ -1,5 +1,6 @@
-import { useState, useContext } from "react";
+import { useState, useContext, isValidElement } from "react";
 import { AnimationMenuDispatchContext } from "../state/context";
+import { inputIsValid } from "../utils";
 
 export interface InputProps {
   name?: string;
@@ -42,14 +43,27 @@ const Name = (props: { name: string; onClick?: () => void }) => (
 export default function Input(props: InputProps) {
   const [value, setValue] = useState(props.name);
   const [isEditing, setIsEditing] = useState(false);
+  const [showError, setShowError] = useState(false);
+  const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null);
   const dispatch = useContext(AnimationMenuDispatchContext)!;
 
   function confirmNameChange() {
-    dispatch({
-      type: "NAME_CHANGE",
-      name: value!,
-      animationId: props.animationId!,
-    });
+    if (inputIsValid(value!)) {
+      dispatch({
+        type: "NAME_CHANGE",
+        name: value!,
+        animationId: props.animationId!,
+      });
+
+      setIsEditing(false);
+      setShowError(false);
+    } else {
+      setShowError(true);
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+      setTimeoutId(setTimeout(() => setShowError(false), 1500));
+    }
   }
 
   return (
@@ -71,17 +85,13 @@ export default function Input(props: InputProps) {
             onKeyUp={(event) => {
               if (event.key === "Enter") {
                 confirmNameChange();
-                setIsEditing(false);
               }
             }}
           />
           <span
             tabIndex={0}
             className="flex w-[5ch] cursor-pointer items-center justify-center"
-            onClick={() => {
-              confirmNameChange();
-              setIsEditing(false);
-            }}
+            onClick={confirmNameChange}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -97,6 +107,14 @@ export default function Input(props: InputProps) {
               <polyline points="20 6 9 17 4 12"></polyline>
             </svg>
           </span>
+
+          {showError ? (
+            <span className="absolute mt-[8rem] text-sm italic text-red">
+              Alphanumeric characters only.
+            </span>
+          ) : (
+            <></>
+          )}
         </div>
       )}
     </>

@@ -35,3 +35,11 @@ export function blobToDataURL(blob: Blob | File): Promise<string> {
     reader.readAsDataURL(blob);
   });
 }
+
+export function inputIsValid(text: string) {
+  if (text.match(/^[0-9a-zA-Z]{1,16}$/)) {
+    return true;
+  }
+
+  return false;
+}
