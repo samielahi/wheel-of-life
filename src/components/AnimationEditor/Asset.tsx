@@ -60,7 +60,7 @@ function Asset(props: AssetType) {
           draggable={false}
           // Use file name as alt text
           alt={props.data.name}
-          className="relative h-[200px] w-[150px] rounded-xl bg-white opacity-80 focus:outline-2 focus:outline-offset-4 focus:outline-violet air:h-[260px] air:w-[195px]"
+          className="relative h-[200px] w-[150px] rounded-lg bg-white opacity-80 focus:outline-2 focus:outline-offset-4 focus:outline-violet air:h-[260px] air:w-[195px]"
         />
       </div>
     </>

@@ -11,42 +11,42 @@ import Strip from "./Strip/Strip";
 import Footer from "../../core/Footer";
 
 export default function Scene() {
-  const [animations, setAnimations] = useState<Record<string, string>>({});
-  const [speed, setSpeed] = useState(0);
-  const [currentStrip, setCurrentStrip] = useState(jessica);
+  // const [animations, setAnimations] = useState<Record<string, string>>({});
+  // const [speed, setSpeed] = useState(0);
+  // const [currentStrip, setCurrentStrip] = useState(jessica);
 
-  function changeZoetropeSpinSpeed(e: FormEvent<HTMLInputElement>) {
-    const target = e.target as HTMLInputElement;
-    const speed = parseFloat(target.value);
-    setSpeed(speed);
-  }
+  // function changeZoetropeSpinSpeed(e: FormEvent<HTMLInputElement>) {
+  //   const target = e.target as HTMLInputElement;
+  //   const speed = parseFloat(target.value);
+  //   setSpeed(speed);
+  // }
 
-  function selectStrip(e: MouseEvent) {
-    const target = e.target as HTMLOptionElement;
-    const strip = target.value;
-    setCurrentStrip(strip);
-  }
+  // function selectStrip(e: MouseEvent) {
+  //   const target = e.target as HTMLOptionElement;
+  //   const strip = target.value;
+  //   setCurrentStrip(strip);
+  // }
 
-  useEffect(() => {
-    async function loadAnimations() {
-      const animationDataURLs: Record<string, string> = { Jessica: jessica };
+  // useEffect(() => {
+  //   async function loadAnimations() {
+  //     const animationDataURLs: Record<string, string> = { Jessica: jessica };
 
-      for (const animation of await getAllAnimations()) {
-        const name = animation.name!;
-        const blob = animation.build!;
-        if (blob) {
-          const dataURL = await blobToDataURL(blob);
-          animationDataURLs[name] = dataURL;
-        }
-      }
-      setAnimations(animationDataURLs);
-    }
-    loadAnimations();
-  }, []);
+  //     for (const animation of await getAllAnimations()) {
+  //       const name = animation.name!;
+  //       const blob = animation.build!;
+  //       if (blob) {
+  //         const dataURL = await blobToDataURL(blob);
+  //         animationDataURLs[name] = dataURL;
+  //       }
+  //     }
+  //     setAnimations(animationDataURLs);
+  //   }
+  //   loadAnimations();
+  // }, []);
 
   return (
     <>
-      <div className="fixed z-20 w-full">
+      {/* <div className="fixed z-20 w-full">
         <div className="flex items-center justify-center bg-bg/40 py-10 backdrop-blur-2xl">
           <h1 className="text-5xl text-red">Wheel Of Life</h1>
         </div>
@@ -114,7 +114,7 @@ export default function Scene() {
           </Stage>
         </Suspense>
       </Canvas>
-      <Footer></Footer>
+      <Footer></Footer> */}
     </>
   );
 }

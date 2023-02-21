@@ -6,8 +6,8 @@ import { useLocation } from "react-router";
 import useLocalStorage from "../../../hooks/useLocalStorage";
 
 interface HelpProps {
-  show: boolean;
-  toggleShow: (value: any) => void;
+  show?: boolean;
+  toggleShow?: (value: any) => void;
   closeModal: () => void;
 }
 
@@ -18,20 +18,18 @@ const MenuHelpInfo = (props: HelpProps) => (
         Welcome!
       </h3>
       <p id="dialogDesc" className="leading-7">
-        Create your own 16 frame animation strip that can be played on the 3D Zoetrope.
-        Click{" "}
-        <span className="rounded-md  bg-white px-2 py-1">
-          create strip
-        </span>{" "}
-        , give your animation a name, and then click on the card to open the animation
-        editor.
+        Create your own 16 frame animation strip that can be played on the 3D
+        Zoetrope. Click{" "}
+        <span className="rounded-md  bg-white px-2 py-1">create strip</span> ,
+        give your animation a name, and then click on the card to open the
+        animation editor.
       </p>
 
       <div className="flex w-fit items-center justify-between gap-4">
         <Button onClick={props.closeModal}>cancel</Button>
         <div>
           <input
-            onChange={() => props.toggleShow(!props.show)}
+            onChange={() => props.toggleShow!(!props.show)}
             checked={!props.show}
             type="checkbox"
             name="suppress"
@@ -45,7 +43,22 @@ const MenuHelpInfo = (props: HelpProps) => (
   </>
 );
 
-const EditorHelpInfo = () => <></>;
+const EditorHelpInfo = (props: HelpProps) => (
+  <>
+    <div className="flex flex-col items-center gap-4">
+      <h3 id="dialogTitle" className="text-center text-3xl text-red">
+        Welcome!
+      </h3>
+      <p id="dialogDesc" className="leading-7">
+        Make your animation here.
+      </p>
+
+      <div className="flex w-fit items-center justify-between gap-4">
+        <Button onClick={props.closeModal}>cancel</Button>
+      </div>
+    </div>
+  </>
+);
 
 export default function HelpDialog() {
   const [showDialog, setShowDialog] = useLocalStorage("showHelpDialog", true);
@@ -63,7 +76,7 @@ export default function HelpDialog() {
             closeModal={closeModal as () => void}
           />
         ) : (
-          <EditorHelpInfo />
+          <EditorHelpInfo closeModal={closeModal as () => void} />
         )}
       </Modal>
     </>
