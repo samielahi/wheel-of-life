@@ -43,7 +43,7 @@ export default function Home() {
       <BurgerMenu>
         <Links />
       </BurgerMenu>
-      {/* <section className="absolute left-[7%] 2xl:left-[15%]">
+      <section className="absolute left-[7%] 2xl:left-[15%]">
         <div className="z-0 hidden flex-col gap-20 md:flex">
           <img
             src={light}
@@ -88,7 +88,7 @@ export default function Home() {
           alt="A praxinoscope featuring artwork by participating artist Georgina Valverde."
         />
       </section>
-      <Footer /> */}
+      <Footer />
     </>
   );
 }

@@ -25,7 +25,8 @@ export default function ClearFrames(props: ClearFramesProps) {
         onClick={toggleClearFramesDialog}
         disabled={!props.hasFilledFrames || !props.isIdle}
       >
-        <span>clear frames</span>
+        <span className="hidden 2xl:block">clear frames</span>
+        <span className="block 2xl:hidden ">clear</span>
       </Button>
     </>
   );

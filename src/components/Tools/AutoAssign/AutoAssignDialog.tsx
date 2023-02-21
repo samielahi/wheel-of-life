@@ -22,7 +22,7 @@ export default function AutoAssignDialog() {
     <>
       <Modal status="auto-assigning">
         <div className="wrapper flex h-full flex-col items-center justify-center gap-8">
-          <h3 className="text-3xl text-red">Auto Assign All?</h3>
+          <h3 className="text-lg text-red md:text-3xl">Auto Assign All?</h3>
           <span className="text-center italic">
             Images will be assigned until all frames are filled (in alphanumerical order
             by file name) and will replace images that are currently assigned.

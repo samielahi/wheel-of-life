@@ -1,11 +1,13 @@
 import { useContext, useEffect } from "react";
-import { ToolsDispatchContext } from "../../../state/context";
+import { ToolsDispatchContext, ToolsContext } from "../../../state/context";
 import IconButton from "../../../core/IconButton";
 import useLocalStorage from "../../../hooks/useLocalStorage";
 
 export default function Help() {
+  const tools = useContext(ToolsContext)!;
   const dispatchToolsAction = useContext(ToolsDispatchContext)!;
   const [showDialog, setShowDialog] = useLocalStorage("showHelpDialog", true);
+  const isIdle = tools.status === "idle";
 
   function toggleHelpDialog() {
     dispatchToolsAction({
@@ -22,7 +24,7 @@ export default function Help() {
 
   return (
     <>
-      <IconButton tooltip="help" onClick={toggleHelpDialog}>
+      <IconButton tooltip="help" onClick={toggleHelpDialog} disabled={!isIdle}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"

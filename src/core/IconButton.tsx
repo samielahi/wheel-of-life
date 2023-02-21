@@ -15,7 +15,7 @@ export default function IconButton(props: ButtonProps) {
               ? { color: "#D8D0D0", pointerEvents: "none" }
               : { color: "#9c8cdf" }
           }
-          className="flex h-[35px] w-[35px] items-center justify-center rounded border-2 border-silver bg-white drop-shadow-sm backdrop-blur-lg hover:border-violet hover:bg-smoke/10 focus:outline-2 focus:outline-offset-4 focus:outline-violet sm:p-0 lg:h-[50px] lg:w-[50px]"
+          className="flex h-[35px] w-[35px] items-center justify-center rounded border-2 border-silver bg-white p-1 drop-shadow-sm backdrop-blur-lg hover:border-violet hover:bg-smoke/10 focus:outline-2 focus:outline-offset-4 focus:outline-violet sm:p-0 lg:h-[50px] lg:w-[50px]"
           onClick={props.onClick}
           onMouseEnter={() => setShowTooltip(true)}
           onMouseLeave={() => setShowTooltip(false)}

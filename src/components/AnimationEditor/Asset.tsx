@@ -39,15 +39,17 @@ function Asset(props: AssetType) {
       <div
         onClick={handleSelection}
         style={props.isSelected ? { borderColor: "#9c8cdf" } : {}}
-        className="-z-1 relative rounded-xl border-4 border-smoke bg-white duration-300 ease-in-out"
+        className="relative rounded-xl border-2 border-smoke bg-white duration-300 ease-in-out"
       >
         {/* Render selection id on top right if Asset is selected */}
-        <span
+        <div
           style={!props.isSelected ? { display: "none" } : {}}
-          className="absolute left-[93%] bottom-[95%] z-[2] w-6 rounded-full bg-violet text-center  text-white duration-200 ease-in-out"
+          className="absolute left-[93%] bottom-[95%] z-[2]"
         >
-          {props.selectionId}
-        </span>
+          <span className="flex h-5 w-5 items-center justify-center rounded-full bg-violet text-sm text-white duration-200 ease-in-out md:h-6 md:w-6 md:text-base">
+            {props.selectionId}
+          </span>
+        </div>
 
         <img
           tabIndex={isSelecting ? 0 : -1}

@@ -8,7 +8,7 @@ export default function FrameList() {
   return (
     <>
       <div
-        className="scrollbar h-max w-full overflow-x-auto bg-lightViolet p-4"
+        className="scrollbar h-max w-full overflow-x-auto bg-lightViolet p-2 sm:p-4"
       >
         <div className="flex h-max w-max gap-6">
           {animation!.frames?.map((frame, i) => (

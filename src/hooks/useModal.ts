@@ -18,7 +18,6 @@ export default function useModal(status: ToolsStatus) {
         type: "DESELECT_ALL",
       });
     }
-
     dispatchToolbarAction({
       type: "STATUS_CHANGE",
       newStatus: "idle",

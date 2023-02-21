@@ -11,7 +11,7 @@ export default function useViewportWidth() {
 
   useEffect(() => {
     // TimeoutId for debounce mechanism
-    let timeoutId: NodeJS.Timeout | number | null = null;
+    let timeoutId: NodeJS.Timeout | null = null;
     const resizeListener = () => {
       // Prevent execution of previous setTimeout
       clearTimeout(timeoutId!);

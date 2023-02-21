@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import useModal from "../../../hooks/useModal";
 import Button from "../../../core/Button";
 import Modal from "../../../core/Modal";
@@ -13,16 +12,18 @@ interface HelpProps {
 
 const MenuHelpInfo = (props: HelpProps) => (
   <>
-    <div className="flex flex-col items-center gap-4">
-      <h3 id="dialogTitle" className="text-center text-3xl text-red">
+    <div className="flex h-full flex-col items-center justify-center gap-4">
+      <h3 id="dialogTitle" className="text-center text-lg text-red md:text-3xl">
         Welcome!
       </h3>
       <p id="dialogDesc" className="leading-7">
-        Create your own 16 frame animation strip that can be played on the 3D
-        Zoetrope. Click{" "}
-        <span className="rounded-md  bg-white px-2 py-1">create strip</span> ,
-        give your animation a name, and then click on the card to open the
-        animation editor.
+        Create your own 16 frame animation strip that can be played on the 3D Zoetrope.
+        Click{" "}
+        <span className="rounded-md  border-2 border-silver bg-white px-2 py-1 drop-shadow-sm">
+          create strip
+        </span>{" "}
+        , give your animation a name, and then click on the card to open the animation
+        editor.
       </p>
 
       <div className="flex w-fit items-center justify-between gap-4">
@@ -45,8 +46,8 @@ const MenuHelpInfo = (props: HelpProps) => (
 
 const EditorHelpInfo = (props: HelpProps) => (
   <>
-    <div className="flex flex-col items-center gap-4">
-      <h3 id="dialogTitle" className="text-center text-3xl text-red">
+    <div className="flex h-full flex-col items-center justify-center gap-4">
+      <h3 id="dialogTitle" className="text-center text-lg text-red md:text-3xl">
         Welcome!
       </h3>
       <p id="dialogDesc" className="leading-7">

@@ -22,9 +22,9 @@ export default function AssetList() {
             ? { pointerEvents: "auto", cursor: "pointer" }
             : {}
         }
-        className="scrollbar -z-1 flex h-max w-full flex-col justify-center overflow-x-auto  p-8 duration-300 ease-in-out"
+        className="scrollbar -z-1 flex h-max w-full flex-col justify-center overflow-x-auto p-2 md:p-8 duration-300 ease-in-out"
       >
-        <div className="flex w-max gap-8">
+        <div className="flex w-max gap-6 md:gap-8">
           {animationHasAssets ? (
             <>
               {sortedAssets.map((asset, i) => (

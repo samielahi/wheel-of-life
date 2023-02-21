@@ -79,7 +79,7 @@ function Frame(props: FrameType) {
             alt={`Frame ${props.id}'s image`}
           ></img>
         ) : (
-          <div className="h-full w-full p-8">
+          <div className="h-full w-full p-8 hidden md:block">
             <div className="h-full w-full rounded-xl border-2 border-dashed border-silver"></div>
           </div>
         )}

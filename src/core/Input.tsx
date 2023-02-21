@@ -54,7 +54,6 @@ export default function Input(props: InputProps) {
         name: value!,
         animationId: props.animationId!,
       });
-
       setIsEditing(false);
       setShowError(false);
     } else {

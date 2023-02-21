@@ -20,8 +20,8 @@ export default function AutoAssign(props: { isIdle: boolean; hasAssets: boolean 
         onClick={toggleAutoAssignDialog}
         disabled={!props.hasAssets || !props.isIdle ? true : false}
       >
-        <span className="sm:hidden">auto</span>
-        <span className="hidden sm:block">auto assign</span>
+        <span className="block xl:hidden">auto</span>
+        <span className="hidden xl:block">auto assign</span>
       </Button>
     </>
   );

@@ -22,7 +22,7 @@ function AnimationCard(props: AnimationCardProps) {
     <>
       <div
         tabIndex={0}
-        className="expand group relative origin-center rounded border-4 border-silver bg-white p-4 drop-shadow-sm hover:border-orange focus:outline-2 focus:outline-offset-4 focus:outline-orange"
+        className="expand group relative origin-center rounded border-2 border-silver bg-white p-4 drop-shadow-sm hover:border-orange focus:outline-2 focus:outline-offset-4 focus:outline-orange"
       >
         <DeleteAnimation animationId={props.animationId!} />
 

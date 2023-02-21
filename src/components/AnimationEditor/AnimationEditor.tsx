@@ -15,13 +15,13 @@ import Toolbar from "./Toolbar";
 import AssetList from "./AssetList";
 import FrameList from "./FrameList";
 import { getAllAssets, getAllFrames, getAnimation } from "../../state/idb";
-import { Link } from "react-router-dom";
 import AutoAssignDialog from "../Tools/AutoAssign/AutoAssignDialog";
 import DeleteDialog from "../Tools/DeleteImage/DeleteImageDialog";
 import ExportDialog from "../Tools/Export/ExportDialog";
 import ClearFramesDialog from "../Tools/ClearFrames/ClearFramesDialog";
 import BuildDialog from "../Tools/Build/BuildDialog";
 import StyledLink from "../../core/StyledLink";
+import HelpDialog from "../Tools/Help/HelpDialog";
 
 export default function AnimationEditor() {
   // Get the animation name from the url
@@ -104,13 +104,13 @@ export default function AnimationEditor() {
               <FrameList />
               <Toolbar />
               <AssetList />
-              {/* <Footer /> */}
               {/* Dialogs */}
               <AutoAssignDialog />
+              <BuildDialog name={animation.name!} />
+              <ClearFramesDialog />
               <DeleteDialog />
               <ExportDialog />
-              <ClearFramesDialog />
-              <BuildDialog name={animation.name!} />
+              <HelpDialog />
             </AnimationEditorDispatchContext.Provider>
           </AnimationEditorContext.Provider>
         </ToolsDispatchContext.Provider>
