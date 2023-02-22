@@ -8,7 +8,7 @@ export default function AnimationCards() {
   return (
     <>
       {animationMenu.length !== 0 ? (
-        <div className="wrapper my-4 flex flex-wrap justify-center gap-8 overflow-auto md:justify-start">
+        <div className="wrapper md:overflow-none my-4 flex flex-wrap justify-center gap-8 overflow-auto md:justify-start">
           {animationMenu.map((animation, i) => (
             <AnimationCard
               key={i}

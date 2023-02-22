@@ -1,4 +1,4 @@
-import { useState, useContext, isValidElement } from "react";
+import { useState, useContext, useRef } from "react";
 import { AnimationMenuDispatchContext } from "../state/context";
 import { inputIsValid } from "../utils";
 
@@ -44,7 +44,7 @@ export default function Input(props: InputProps) {
   const [value, setValue] = useState(props.name);
   const [isEditing, setIsEditing] = useState(false);
   const [showError, setShowError] = useState(false);
-  const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null);
+  const timeoutId = useRef<NodeJS.Timeout | null>(null);
   const dispatch = useContext(AnimationMenuDispatchContext)!;
 
   function confirmNameChange() {
@@ -58,10 +58,10 @@ export default function Input(props: InputProps) {
       setShowError(false);
     } else {
       setShowError(true);
-      if (timeoutId) {
-        clearTimeout(timeoutId);
+      if (timeoutId.current) {
+        clearTimeout(timeoutId.current);
       }
-      setTimeoutId(setTimeout(() => setShowError(false), 1500));
+      setTimeout(() => setShowError(false), 1000);
     }
   }
 
@@ -108,7 +108,7 @@ export default function Input(props: InputProps) {
           </span>
 
           {showError ? (
-            <span className="absolute mt-[8rem] text-sm italic text-red">
+            <span className="absolute mb-[5rem] text-sm italic text-red">
               Alphanumeric characters only.
             </span>
           ) : (
