@@ -26,7 +26,13 @@ export default function ExportDialog() {
     <>
       <Modal status="exporting">
         <div className="wrapper flex h-full flex-col items-center justify-center gap-8">
-          <h3 className="text-lg text-center md:text-3xl text-red">Export your strip as a:</h3>
+          <h3 className="text-center text-lg text-red md:text-3xl">
+            Export your strip as a:
+          </h3>
+          <p className="flex italic">
+            Tip: Make sure you've built your strip before exporting to save the newest
+            version of your animation strip!
+          </p>
           <div className="flex gap-4">
             <Button
               onClick={() => {

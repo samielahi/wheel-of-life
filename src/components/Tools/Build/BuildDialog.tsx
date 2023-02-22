@@ -14,7 +14,7 @@ export default function BuildDialog(props: { name: string }) {
             Animation strip <i className="text-orange">'{props.name}'</i> was successfully
             built!
           </h3>
-          <p>You can now go play your animation in the 3D zoetrope.</p>
+          <p className="italic">You can now go play your animation in the 3D zoetrope.</p>
           <div className="flex gap-4">
             <Link
               className="flex w-fit items-center justify-center gap-2 rounded-md border-2 border-silver bg-white px-2 py-1 text-sm text-violet drop-shadow-sm hover:bg-smoke sm:px-4 sm:py-2 lg:h-[50px] lg:text-lg"

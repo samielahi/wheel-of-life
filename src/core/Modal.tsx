@@ -24,7 +24,7 @@ export default function Modal(props: ModalProps) {
                 role="dialog"
                 aria-labelledby="dialogTitle"
                 aria-describedby="dialogDesc"
-                className="expand z-9999 fixed p-6 left-[calc(50%_-_10rem)] top-[calc(50%_-_150px)] h-[350px] w-[20rem] rounded border-4 border-lightViolet  bg-active text-center text-sm drop-shadow-lg sm:left-[calc(50%_-_12rem)] sm:w-[24rem] md:left-[calc(50%_-_16rem)] md:h-[300px] md:w-[32rem] md:p-8 md:text-left lg:text-base"
+                className="expand z-9999 fixed left-[calc(50%_-_10rem)] top-[calc(50%_-_200px)] h-[350px] w-[20rem] rounded border-4 border-lightViolet bg-active  p-6 text-center text-sm drop-shadow-lg sm:left-[calc(50%_-_12rem)] sm:w-[24rem] md:left-[calc(50%_-_20rem)] md:h-[400px] md:w-[40rem] md:p-8 md:text-left lg:text-base"
               >
                 {props.children}
               </div>

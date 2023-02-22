@@ -47,12 +47,24 @@ const MenuHelpInfo = (props: HelpProps) => (
 const EditorHelpInfo = (props: HelpProps) => (
   <>
     <div className="flex h-full flex-col items-center justify-center gap-4">
-      <h3 id="dialogTitle" className="text-center text-lg text-red md:text-3xl">
-        Welcome!
+      <h3 id="dialogTitle" className="text-center text-lg text-red md:text-2xl">
+        Making Your Animation
       </h3>
-      <p id="dialogDesc" className="leading-7">
-        Make your animation here.
-      </p>
+      <ol start={1} type="1" id="dialogDesc" className="leading-7">
+        <li>
+          Upload 16 images. (If you'd like to auto-assign your images to the frames, make
+          sure to name them in alphanumerical order).
+        </li>
+        <li>
+          Click select to start selecting images and click on a frame to assign the image
+          to the frame. You can also click auto-assign, but make sure your images are in
+          alphanumerical order!
+        </li>
+        <li>
+          Once all frames are assigned, click build to build your strip and you're all
+          set! You can now play your animation on the 3D zoetrope.
+        </li>
+      </ol>
 
       <div className="flex w-fit items-center justify-between gap-4">
         <Button onClick={props.closeModal}>cancel</Button>

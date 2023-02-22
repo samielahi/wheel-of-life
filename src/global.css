@@ -75,6 +75,12 @@ h6 {
   isolation: isolate;
 }
 
+li {
+  display: list-item;
+  list-style: decimal;
+  list-style-position: inside;
+}
+
 body {
   font-family: "Archivo", sans-serif;
   color: #4f4c4c;

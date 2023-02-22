@@ -35,7 +35,7 @@ export default function Toolbar() {
         <StatusMessage />
 
         <div className="flex gap-4 sm:gap-2 md:w-1/3 md:justify-end">
-          <Build />
+          <Build isIdle={isIdle} />
           <Export isIdle={isIdle} isBuilt={isBuilt} />
         </div>
       </div>

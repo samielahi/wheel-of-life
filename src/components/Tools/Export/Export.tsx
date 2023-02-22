@@ -16,7 +16,12 @@ export default function Export(props: { isIdle?: boolean; isBuilt?: boolean }) {
 
   return (
     <>
-      <IconButton tooltip="export" onClick={toggleEsportDialog} disabled={!props.isBuilt}>
+      <IconButton
+        tooltip="export"
+        onClick={toggleEsportDialog}
+        // Disable if not idle and props not built
+        disabled={!props.isIdle || !props.isBuilt}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
