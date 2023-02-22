@@ -2,15 +2,17 @@ import Zoetrope from "./Zoetrope";
 import Table from "./Table";
 import { OrbitControls, Stage, Environment } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { Suspense, useEffect, FormEvent, MouseEvent } from "react";
-import { useState } from "react";
+import { Suspense, useEffect, FormEvent, MouseEvent, useState, useRef } from "react";
 import { blobToDataURL } from "../../utils";
 import { getAllAnimations } from "../../state/idb";
 import Strip from "./Strip/Strip";
 import Footer from "../../core/Footer";
 import Controls from "./Controls";
+import Header from "../../core/Header";
 
 export default function Scene() {
+  const [zoomed, setZoomed] = useState(false);
+  const zoetropeRef = useRef<any>(null);
   const [animations, setAnimations] = useState<Record<string, string>>({});
   const [speed, setSpeed] = useState(0);
   const [currentStrip, setCurrentStrip] = useState("/strips/Jessica.png");
@@ -29,7 +31,9 @@ export default function Scene() {
 
   useEffect(() => {
     async function loadAnimations() {
-      const animationDataURLs: Record<string, string> = { Jessica: "/Jessica.png" };
+      const animationDataURLs: Record<string, string> = {
+        Jessica: "/strips/Jessica.png",
+      };
 
       for (const animation of await getAllAnimations()) {
         const name = animation.name!;
@@ -46,37 +50,52 @@ export default function Scene() {
 
   return (
     <>
-      <div className="fixed z-20 w-full">
-        <div className="flex items-center justify-center bg-bg/40 py-10 backdrop-blur-2xl">
-          <h1 className="text-5xl text-red">Wheel Of Life</h1>
-        </div>
-      </div>
+      <Header type="zoetrope"></Header>
 
-      <div className="absolute left-[5%] top-[75%] z-20 rounded-md bg-yellow/40 p-6 backdrop-blur">
-        <h3 className="text-lg text-red">Now Playing:</h3>
-        <p className="italic">Jessica Campbell</p>
+      <div className="absolute left-[5%] top-[70%] z-20 hidden w-[16rem] rounded-md bg-yellow/40 p-6 backdrop-blur lg:block">
+        <div className="flex flex-col justify-center gap-2">
+          <h3 className="text-center text-lg text-red">Controls:</h3>
+          <p className="italic">
+            <span className="font-bold">Zoom:</span> scroll
+          </p>
+          <p className="italic">
+            <span className="font-bold">Tilt:</span> left click + drag.
+          </p>
+          <p className="italic">
+            <span className="font-bold">Pan:</span> right click + drag.
+          </p>
+        </div>
       </div>
 
       <Controls
         changeSpeed={changeZoetropeSpinSpeed}
         selectStrip={selectStrip}
         animations={animations}
-      ></Controls>
+      />
 
-      <Canvas shadows camera={{ position: [0, 10, 10], fov: 80 }}>
-        <OrbitControls
-          maxDistance={8}
-          minDistance={2}
-          minAzimuthAngle={0}
-          maxAzimuthAngle={0}
-          minPolarAngle={0}
-          maxPolarAngle={Math.PI / 2.5}
-        />
+      <Canvas
+        shadows
+        camera={{ position: [0, 2.75, 15], fov: 60 }}
+        className="cursor-grab overflow-hidden"
+      >
         <Suspense>
+          <OrbitControls
+            maxDistance={15}
+            minDistance={5}
+            minAzimuthAngle={0}
+            maxAzimuthAngle={0}
+            minPolarAngle={0}
+            maxPolarAngle={Math.PI / 2.5}
+          />
           <Stage
             adjustCamera={false}
             intensity={0.4}
-            shadows={{ type: "accumulative", color: "gray", colorBlend: 1, opacity: 0.4 }}
+            shadows={{
+              type: "accumulative",
+              color: "gray",
+              colorBlend: 1,
+              opacity: 0.4,
+            }}
             // @ts-ignore
             environment={null}
             preset="rembrandt"
@@ -84,12 +103,18 @@ export default function Scene() {
             <Environment files={"/lebombo_1k.hdr"} />
 
             <Strip></Strip>
-            <Zoetrope speed={speed} image={currentStrip} />
+            <Zoetrope
+              onClick={() => setZoomed(!zoomed)}
+              ref={zoetropeRef}
+              speed={speed}
+              image={currentStrip}
+            />
             <Table />
           </Stage>
         </Suspense>
       </Canvas>
-      <Footer></Footer>
+
+      <Footer />
     </>
   );
 }

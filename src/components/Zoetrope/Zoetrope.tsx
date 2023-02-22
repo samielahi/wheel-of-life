@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, forwardRef, ForwardedRef, MutableRefObject } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import Strip from "./Strip/Strip";
@@ -6,16 +6,21 @@ import Strip from "./Strip/Strip";
 interface ZoetropeProps {
   image?: string;
   speed?: number;
+  onClick?: () => void;
 }
 
-export default function Zoetrope(props: ZoetropeProps) {
-  const mesh = useRef<any>();
+const Zoetrope = forwardRef(function Zoetrope(
+  props: ZoetropeProps,
+  meshRef: ForwardedRef<any>
+) {
   // If a result.scene prop is found useGLTF will automatically create a object & material collection: { nodes, materials }
   // @ts-ignore
   const { nodes, materials } = useGLTF("/models/zoetrope.glb");
-  useFrame(() => (mesh.current!.rotation.y -= props.speed!));
+  useFrame(
+    () => ((meshRef as MutableRefObject<any>)!.current.rotation.y -= props.speed!)
+  );
   return (
-    <group ref={mesh} {...props} dispose={null}>
+    <group ref={meshRef} {...props} dispose={null} onClick={props.onClick}>
       <mesh
         castShadow
         receiveShadow
@@ -28,6 +33,8 @@ export default function Zoetrope(props: ZoetropeProps) {
       <Strip image={props.image} />
     </group>
   );
-}
+});
 
 useGLTF.preload("/models/zoetrope.glb");
+
+export default Zoetrope;

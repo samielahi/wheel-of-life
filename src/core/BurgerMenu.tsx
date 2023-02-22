@@ -17,7 +17,7 @@ export default function BurgerMenu(props: { children?: any }) {
     <>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="absolute left-[calc(100%_-_5rem)] top-[3rem] z-30 outline-offset-2 outline-violet focus:outline-4 md:hidden"
+        className="absolute left-[calc(100%_-_5rem)] top-[3rem] z-50 outline-offset-2 outline-violet focus:outline-4 lg:hidden"
       >
         <div className="flex cursor-pointer flex-col gap-1 ">
           <span
@@ -42,7 +42,7 @@ export default function BurgerMenu(props: { children?: any }) {
       </button>
 
       {isOpen ? (
-        <div className="fadeIn fixed z-20 h-full w-full bg-white/70 pt-10 pl-8 backdrop-blur-lg">
+        <div className="fadeIn fixed z-30 h-full w-full bg-white/70 pt-10 pl-8 backdrop-blur-lg">
           <h3 className="mb-8 text-3xl text-red">Wheel Of Life</h3>
           <div className="flex flex-col gap-8">{props.children}</div>
         </div>

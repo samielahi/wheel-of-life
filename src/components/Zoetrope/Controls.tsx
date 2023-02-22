@@ -9,10 +9,10 @@ interface ControlsProps {
 export default function Controls(props: ControlsProps) {
   return (
     <>
-      <div className="absolute left-[80%] top-[70%] z-20 h-max w-max rounded-md bg-silver p-6 text-center text-lg drop-shadow-md backdrop-blur-3xl">
+      <div className="absolute left-[calc(100%_-_250px_-_5%)] top-[78%] lg:top-[70%] z-20  h-max w-[250px] rounded-md bg-silver p-6 text-center text-lg drop-shadow-md backdrop-blur-3xl ">
         <div className="flex flex-col gap-4">
           <label htmlFor="speed-select">
-            <h3 className="text-red">Set spin speed :</h3>
+            <h3 className="text-sm text-red lg:text-base">Set spin speed :</h3>
           </label>
           <input
             id="speed-select"
@@ -26,12 +26,12 @@ export default function Controls(props: ControlsProps) {
 
         <div className="mt-4 flex flex-col gap-4">
           <label htmlFor="strip-select">
-            <h3 className="text-violet">Choose a strip :</h3>
+            <h3 className="text-sm text-violet lg:text-base">Choose a strip :</h3>
           </label>
           <select
             name="strips"
             id="strip-select"
-            className="cursor-pointer rounded bg-white p-2"
+            className="cursor-pointer rounded bg-white p-2 text-sm lg:text-base"
             onClick={props.selectStrip}
           >
             {Object.entries(props.animations!).map((animation, i) => (

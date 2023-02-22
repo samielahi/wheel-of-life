@@ -74,7 +74,7 @@ export default function Home() {
           <span className="lg:text-lg xl:text-2xl">Kanter-McCormick Gallery</span>
         </div>
 
-        <div className="hidden gap-4 md:flex xl:gap-8">
+        <div className="hidden gap-4 lg:flex xl:gap-8">
           <Links />
         </div>
 
