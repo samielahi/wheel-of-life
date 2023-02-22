@@ -1,5 +1,3 @@
-import prax from "../assets/images/prax.png";
-import light from "../assets/images/light.png";
 import Footer from "../core/Footer";
 import StyledLink from "../core/StyledLink";
 import BurgerMenu from "../core/BurgerMenu";
@@ -27,12 +25,10 @@ const Links = () => (
       </span>
     </StyledLink>
     <StyledLink to="/zoetrope">
-      <span className="font-bold text-violet xl:text-2xl">3D Zoetrope</span>
+      <span className="font-bold text-orange xl:text-2xl">3D Zoetrope</span>
     </StyledLink>
     <StyledLink to="/animations">
-      <span className="font-bold text-violet xl:text-2xl">
-        Create An Animation
-      </span>
+      <span className="font-bold text-violet xl:text-2xl">Create An Animation</span>
     </StyledLink>
   </>
 );
@@ -43,15 +39,15 @@ export default function Home() {
       <BurgerMenu>
         <Links />
       </BurgerMenu>
-      {/* <section className="absolute left-[7%] 2xl:left-[15%]">
+      <section className="absolute left-[7%] 2xl:left-[15%]">
         <div className="z-0 hidden flex-col gap-20 md:flex">
           <img
-            src={light}
+            src="/images/light.png"
             className="w-[325px] drop-shadow-2xl lg:w-[420px] xl:w-auto"
             alt="A clip light used in the exhibition."
           />
           <img
-            src={prax}
+            src="/images/prax.png"
             className="w-[350px] drop-shadow-2xl lg:w-[450px] 2xl:w-[500px]"
             alt="A praxinoscope featuring artwork by participating artist Georgina Valverde."
           />
@@ -59,7 +55,7 @@ export default function Home() {
       </section>
       <section className="flex h-full flex-col items-center justify-evenly text-center md:items-end md:pr-[3rem] md:text-end lg:pr-[5rem] xl:pr-[8rem]">
         <img
-          src={light}
+          src="./light.png"
           alt="A clip light used to light the zoetropes in the show."
           className="w-[250px] -translate-y-10 sm:-translate-y-20 md:hidden"
         />
@@ -83,11 +79,11 @@ export default function Home() {
         </div>
 
         <img
-          src={prax}
+          src="/prax.png"
           className="w-[300px] md:hidden"
           alt="A praxinoscope featuring artwork by participating artist Georgina Valverde."
         />
-      </section> */}
+      </section>
       <Footer />
     </>
   );

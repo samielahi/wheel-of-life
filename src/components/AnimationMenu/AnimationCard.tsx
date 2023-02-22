@@ -1,5 +1,4 @@
 import { memo } from "react";
-import placeholderImage from "../../assets/icons/file-image.svg";
 import Input from "../../core/Input";
 import DeleteAnimation from "../Tools/DeleteAnimation/DeleteAnimation";
 import { Link } from "react-router-dom";
@@ -36,7 +35,7 @@ function AnimationCard(props: AnimationCardProps) {
             <img
               tabIndex={-1}
               className="h-full w-full cursor-pointer opacity-75"
-              src={thumbnailURL || placeholderImage}
+              src={thumbnailURL || "/icons/file-image.svg"}
               alt={`Thumbnail for the animation ${props.name}`}
             />
           </Link>

@@ -20,7 +20,8 @@ const animationDB = openDB<AnimationSchema>("animations", 1, {
 });
 
 export async function getAnimationByIdx(name: string) {
-  return (await animationDB).getFromIndex("animations", "by-name", name);
+  const animation = (await animationDB).getFromIndex("animations", "by-name", name);
+  return animation;
 }
 
 export async function getAnimation(key: string) {
