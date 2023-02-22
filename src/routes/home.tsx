@@ -55,7 +55,7 @@ export default function Home() {
       </section>
       <section className="flex h-full flex-col items-center justify-evenly text-center md:items-end md:pr-[3rem] md:text-end lg:pr-[5rem] xl:pr-[8rem]">
         <img
-          src="./light.png"
+          src="/images/light.png"
           alt="A clip light used to light the zoetropes in the show."
           className="w-[250px] -translate-y-10 sm:-translate-y-20 md:hidden"
         />
@@ -79,7 +79,7 @@ export default function Home() {
         </div>
 
         <img
-          src="/prax.png"
+          src="/images/prax.png"
           className="w-[300px] md:hidden"
           alt="A praxinoscope featuring artwork by participating artist Georgina Valverde."
         />
