@@ -23,6 +23,7 @@ export function sortAssetsAlphaNumerically(a: Asset, b: Asset): number {
 }
 
 /**
+ * Uses FileReader to convert blob to dataURL
  * @param  {Blob|File} blob
  * @returns Promise<string>
  */
@@ -36,12 +37,22 @@ export function blobToDataURL(blob: Blob | File): Promise<string> {
   });
 }
 
+/**
+ * Delays passed in promise by 700ms
+ * @param  {Promise<any>} promise
+ * @returns Promise<any>
+ */
 export function artificialDelay(promise: Promise<any>) {
   return new Promise((resolve) => {
-    setTimeout(resolve, 1500);
+    setTimeout(resolve, 700);
   }).then(() => promise);
 }
 
+/**
+ * Checks if input is alphanumeric
+ * @param  {string} text
+ * @returns Boolean
+ */
 export function inputIsValid(text: string) {
   if (text.match(/^[0-9a-zA-Z]{1,16}$/)) {
     return true;
