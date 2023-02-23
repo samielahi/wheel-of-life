@@ -61,8 +61,8 @@ const EditorHelpInfo = (props: HelpProps) => (
           alphanumerical order!
         </li>
         <li>
-          Once all frames are assigned, click build to build your strip and you're all
-          set! You can now play your animation on the 3D zoetrope.
+          Once all frames are assigned, click the hammer to build your strip and you're all set! You
+          can now play your animation on the 3D zoetrope.
         </li>
       </ol>
 

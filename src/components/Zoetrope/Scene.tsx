@@ -50,35 +50,34 @@ export default function Scene() {
 
   return (
     <>
-      <Header type="zoetrope"></Header>
+        <Header type="zoetrope"></Header>
 
-      <div className="absolute left-[5%] top-[70%] z-20 hidden w-[16rem] rounded-md bg-yellow/40 p-6 backdrop-blur lg:block">
-        <div className="flex flex-col justify-center gap-2">
-          <h3 className="text-center text-lg text-red">Controls:</h3>
-          <p className="italic">
-            <span className="font-bold">Zoom:</span> scroll
-          </p>
-          <p className="italic">
-            <span className="font-bold">Tilt:</span> left click + drag.
-          </p>
-          <p className="italic">
-            <span className="font-bold">Pan:</span> right click + drag.
-          </p>
+        <div className="absolute left-[5%] top-[70%] z-20 hidden w-[16rem] rounded-md bg-yellow/40 p-6 backdrop-blur lg:block">
+          <div className="flex flex-col justify-center gap-2">
+            <h3 className="text-center text-lg text-red">Controls:</h3>
+            <p className="italic">
+              <span className="font-bold">Zoom:</span> scroll
+            </p>
+            <p className="italic">
+              <span className="font-bold">Tilt:</span> left click + drag.
+            </p>
+            <p className="italic">
+              <span className="font-bold">Pan:</span> right click + drag.
+            </p>
+          </div>
         </div>
-      </div>
 
-      <Controls
-        changeSpeed={changeZoetropeSpinSpeed}
-        selectStrip={selectStrip}
-        animations={animations}
-      />
+        <Controls
+          changeSpeed={changeZoetropeSpinSpeed}
+          selectStrip={selectStrip}
+          animations={animations}
+        />
 
-      <Canvas
-        shadows
-        camera={{ position: [0, 2.75, 15], fov: 60 }}
-        className="cursor-grab overflow-hidden"
-      >
-        <Suspense>
+        <Canvas
+          shadows
+          camera={{ position: [0, 2.75, 15], fov: 60 }}
+          className="cursor-grab overflow-hidden"
+        >
           <OrbitControls
             maxDistance={15}
             minDistance={5}
@@ -111,10 +110,9 @@ export default function Scene() {
             />
             <Table />
           </Stage>
-        </Suspense>
-      </Canvas>
+        </Canvas>
 
-      <Footer />
+        <Footer />
     </>
   );
 }

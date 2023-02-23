@@ -36,10 +36,15 @@ export function blobToDataURL(blob: Blob | File): Promise<string> {
   });
 }
 
+export function artificialDelay(promise: Promise<any>) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, 1500);
+  }).then(() => promise);
+}
+
 export function inputIsValid(text: string) {
   if (text.match(/^[0-9a-zA-Z]{1,16}$/)) {
     return true;
   }
-
   return false;
 }
