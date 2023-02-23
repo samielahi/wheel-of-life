@@ -44,7 +44,7 @@ export function blobToDataURL(blob: Blob | File): Promise<string> {
  */
 export function artificialDelay(promise: Promise<any>) {
   return new Promise((resolve) => {
-    setTimeout(resolve, 700);
+    setTimeout(resolve, 1000);
   }).then(() => promise);
 }
 

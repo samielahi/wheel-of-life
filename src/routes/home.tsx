@@ -42,16 +42,16 @@ export default function Home() {
         <BurgerMenu>
           <Links />
         </BurgerMenu>
-        <section className="absolute left-[7%] md:left-[3%] 2xl:left-[15%]">
+        <section className="absolute left-[7%] xl:left-[5%] 2xl:left-[15%]">
           <div className="z-0 hidden flex-col gap-[20rem] md:flex lg:gap-20">
             <img
               src="/images/light.png"
-              className="w-[325px] drop-shadow-2xl lg:w-[420px]"
+              className="w-[350px] xl:w-[400px] drop-shadow-2xl 2xl:w-[420px]"
               alt="A clip light used in the exhibition."
             />
             <img
               src="/images/prax.png"
-              className="w-[350px] drop-shadow-2xl lg:w-[450px] 2xl:w-[500px] air:w-[450px]"
+              className="w-[350px] xl:w-[425px] drop-shadow-2xl 2xl:w-[500px]"
               alt="A praxinoscope featuring artwork by participating artist Georgina Valverde."
             />
           </div>
