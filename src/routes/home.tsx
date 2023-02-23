@@ -46,17 +46,17 @@ export default function Home() {
           <div className="z-0 hidden flex-col gap-[20rem] md:flex lg:gap-20">
             <img
               src="/images/light.png"
-              className="w-[350px] xl:w-[400px] drop-shadow-2xl 2xl:w-[420px]"
+              className="w-[350px] drop-shadow-2xl xl:w-[400px] 2xl:w-[420px]"
               alt="A clip light used in the exhibition."
             />
             <img
               src="/images/prax.png"
-              className="w-[350px] xl:w-[425px] drop-shadow-2xl 2xl:w-[500px]"
+              className="w-[350px] drop-shadow-2xl xl:w-[400px] 2xl:w-[500px]"
               alt="A praxinoscope featuring artwork by participating artist Georgina Valverde."
             />
           </div>
         </section>
-        <section className="flex h-full flex-col items-center justify-evenly text-center md:items-end md:pr-[3rem] md:text-end lg:pr-[5rem] xl:pr-[8rem]">
+        <section className="flex h-full flex-col items-center justify-evenly text-center md:items-end md:pr-[3rem] md:text-end lg:pr-[5rem] 2xl:pr-[8rem]">
           <img
             src="/images/light.png"
             alt="A clip light used to light the zoetropes in the show."
